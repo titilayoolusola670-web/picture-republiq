@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Photography | Picture Republiq</title>
+  <meta name="description" content="From “Yes” to “I Do,” every beautiful detail captured. Luxury wedding photography by Picture Republiq — engagement sessions, traditional and white weddings, destination weddings and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-name">Picture Republiq</span>
+      <span class="brand-sub">Photography</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <div class="dropdown">
+        <a href="weddings.html" class="active">Services</a>
+        <div class="dropdown-menu">
+          <a href="weddings.html">Weddings</a>
+          <a href="portraits.html">Portraits</a>
+          <a href="family.html">Family</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Book Your Session</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="bg" style="background-image:url('assets/portfolio/wedding-01.jpg')"></div>
+  <div class="wrap">
+    <span class="eyebrow">Weddings</span>
+    <h1>From “Yes” to “I Do,”<br>Every Beautiful Detail Captured</h1>
+    <p>Your Love Story Deserves to Be Remembered Forever</p>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="wrap-narrow center reveal">
+    <p>Your wedding is one of life's most important celebrations. It's a collection of unforgettable moments.</p>
+    <p class="poem" style="margin:34px 0">
+      <span>The anticipation.</span>
+      <span>The vows.</span>
+      <span>The joyful tears.</span>
+      <span>The laughter.</span>
+      <span class="gold">The celebration.</span>
+    </p>
+    <p>I document every chapter with authenticity, elegance, and attention to detail, allowing you to relive your wedding day for years to come.</p>
+  </div>
+</section>
+
+<section class="section bg-grey">
+  <div class="wrap center reveal">
+    <span class="eyebrow">Services Include</span>
+    <h2>Wedding Photography Services</h2>
+    <hr class="gold-rule">
+  </div>
+  <div class="wrap reveal">
+    <ul class="service-list" style="margin-top:44px">
+      <li>Engagement Sessions</li>
+      <li>Traditional Weddings</li>
+      <li>White Weddings</li>
+      <li>Destination Weddings</li>
+      <li>Civil Ceremonies</li>
+      <li>Reception Coverage</li>
+      <li>Bridal Portraits</li>
+      <li>Family Portraits</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Wedding Enquiry -->
+<section class="section bg-white" id="enquiry">
+  <div class="wrap-narrow">
+    <div class="center reveal form-intro">
+      <span class="eyebrow">Wedding Coverage Enquiry</span>
+      <h2>Let's Start Planning Your Wedding Photography Experience</h2>
+      <hr class="gold-rule">
+      <p>Your wedding is unlike any other, and we'd love to learn more about your special day. Please complete the enquiry form below with as much detail as possible. The information you provide will help us understand your vision.</p>
+      <p style="font-size:14px;color:var(--muted)">We typically respond to all enquiries within 24–48 hours.</p>
+    </div>
+
+    <div class="form-shell reveal" style="margin-top:48px">
+      <form data-confirm="wedding-confirmation" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="w-name">Full Name <span class="req">*</span></label>
+            <input type="text" id="w-name" name="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="field">
+            <label for="w-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="w-email" name="email" placeholder="Enter your email address" required>
+          </div>
+          <div class="field">
+            <label for="w-city">City (Wedding Location) <span class="req">*</span></label>
+            <input type="text" id="w-city" name="city" placeholder="Where will your wedding take place?" required>
+          </div>
+          <div class="field">
+            <label for="w-date">Wedding Date <span class="req">*</span></label>
+            <input type="date" id="w-date" name="weddingDate" required>
+          </div>
+          <div class="field">
+            <label for="w-hours">How long would you like photography coverage? <span class="req">*</span></label>
+            <select id="w-hours" name="coverage" required>
+              <option value="" disabled selected>Select coverage duration</option>
+              <option>1 Hour</option>
+              <option>2 Hours</option>
+              <option>3 Hours</option>
+              <option>4 Hours</option>
+              <option>5+ Hours</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="w-guests">Approximately how many guests are you expecting? <span class="req">*</span></label>
+            <p class="hint">This helps us determine whether a second photographer is recommended to ensure every important moment is beautifully captured.</p>
+            <select id="w-guests" name="guests" required>
+              <option value="" disabled selected>Select guest count</option>
+              <option>50 guests or fewer</option>
+              <option>51–100 guests</option>
+              <option>101–150 guests</option>
+              <option>151–200 guests</option>
+              <option>201–300 guests</option>
+              <option>More than 300 guests</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Additional Services</label>
+            <p class="hint">Select all that apply.</p>
+            <div class="check-group">
+              <label class="check"><input type="checkbox" name="addons" value="Second Photographer"> Second Photographer</label>
+              <label class="check"><input type="checkbox" name="addons" value="Professional Videography"> Professional Videography</label>
+              <label class="check"><input type="checkbox" name="addons" value="Drone Coverage"> Drone Coverage (where permitted)</label>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="w-message">Tell Us More About Your Wedding</label>
+            <textarea id="w-message" name="message" placeholder="We'd love to hear more about your celebration. Tell us about your venue, wedding style, special traditions, photography preferences, or anything else you'd like us to know."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn gold">Request My Wedding Photography Quote</button>
+          <p class="form-note">We typically respond to all enquiries within 24–48 hours.</p>
+        </div>
+      </form>
+
+      <div class="confirmation" id="wedding-confirmation">
+        <div class="mark">✓</div>
+        <h3>Thank You for Your Enquiry!</h3>
+        <hr class="gold-rule">
+        <p>We're honoured that you're considering Picture Republiq to capture your wedding day.</p>
+        <p>Your enquiry has been received successfully, and we'll review your details carefully before getting in touch with you within 24–48 hours.</p>
+        <p>In the meantime, feel free to explore our portfolio and follow our latest work on Instagram.</p>
+        <div class="btn-row">
+          <a href="portfolio.html" class="btn">View Portfolio</a>
+          <a href="https://instagram.com/picture_republiq" target="_blank" rel="noopener" class="btn gold">Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo2-footer.jpg" alt="Picture Republiq logo">
+        <p>Create authentic images that evoke emotion today and become treasured memories tomorrow.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>Services
+            <ul>
+              <li><a href="weddings.html">Weddings</a></li>
+              <li><a href="portraits.html">Portraits</a></li>
+              <li><a href="family.html">Family</a></li>
+              <li><a href="events.html">Events</a></li>
+            </ul>
+          </li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://instagram.com/picture_republiq" target="_blank" rel="noopener">Instagram — @picture_republiq</a></li>
+          <li><a href="https://www.tiktok.com/@picture_republiq" target="_blank" rel="noopener">TikTok — @picture_republiq</a></li>
+          <li><a href="https://wa.me/2348097633559" target="_blank" rel="noopener">WhatsApp — +234 809 763 3559</a></li>
+          <li><a href="mailto:hello@picturerepubliq.com">Email — hello@picturerepubliq.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> Picture Republiq. All rights reserved.</span>
+      <span>Luxury Wedding, Portrait &amp; Event Photography</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

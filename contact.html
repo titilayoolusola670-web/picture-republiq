@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Picture Republiq</title>
+  <meta name="description" content="We'd love to tell your story. Contact Picture Republiq to book your wedding, portrait, family or event photography session.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-name">Picture Republiq</span>
+      <span class="brand-sub">Photography</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <div class="dropdown">
+        <a href="weddings.html">Services</a>
+        <div class="dropdown-menu">
+          <a href="weddings.html">Weddings</a>
+          <a href="portraits.html">Portraits</a>
+          <a href="family.html">Family</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html" class="nav-cta">Book Your Session</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="bg" style="background-image:url('assets/portfolio/couple-01.jpg')"></div>
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h1>We'd Love to Tell Your Story</h1>
+    <p>Every great photograph begins with a conversation.</p>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="wrap-narrow">
+    <div class="center reveal form-intro">
+      <p>Whether you are planning your wedding, celebrating your graduation, growing your family, or elevating your professional brand, we would be honoured to work with you.</p>
+    </div>
+
+    <div class="form-shell reveal" style="margin-top:48px">
+      <form data-confirm="contact-confirmation" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="c-name">Full Name <span class="req">*</span></label>
+            <input type="text" id="c-name" name="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Email <span class="req">*</span></label>
+            <input type="email" id="c-email" name="email" placeholder="Enter your email address" required>
+          </div>
+          <div class="field">
+            <label for="c-phone">Phone</label>
+            <input type="tel" id="c-phone" name="phone" placeholder="Enter your phone number">
+          </div>
+          <div class="field">
+            <label for="c-service">Photography Service <span class="req">*</span></label>
+            <select id="c-service" name="service" required>
+              <option value="" disabled selected>Select your package</option>
+              <option value="portrait">Portrait</option>
+              <option value="family">Family</option>
+              <option value="wedding">Wedding</option>
+              <option value="event">Event</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-date">Event Date</label>
+            <input type="date" id="c-date" name="eventDate">
+          </div>
+          <div class="field full">
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" placeholder="Tell us about your session — your vision, location ideas, or any questions you have."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn gold">Send Your Enquiry</button>
+          <p class="form-note">We typically respond to all enquiries within 24–48 hours.</p>
+        </div>
+      </form>
+
+      <div class="confirmation" id="contact-confirmation">
+        <div class="mark">✓</div>
+        <h3>Thank You for Your Enquiry!</h3>
+        <hr class="gold-rule">
+        <p>Your message has been received successfully. We'll review your details carefully and get in touch with you within 24–48 hours.</p>
+        <p>In the meantime, feel free to explore our portfolio and follow our latest work on Instagram.</p>
+        <div class="btn-row">
+          <a href="portfolio.html" class="btn">View Portfolio</a>
+          <a href="https://instagram.com/picture_republiq" target="_blank" rel="noopener" class="btn gold">Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="center reveal" style="margin-top:56px">
+      <p style="font-size:15px;color:var(--muted)">
+        Prefer to reach us directly?<br>
+        WhatsApp: <a href="https://wa.me/2348097633559" style="color:var(--gold)">+234 809 763 3559</a> ·
+        Instagram: <a href="https://instagram.com/picture_republiq" style="color:var(--gold)">@picture_republiq</a> ·
+        TikTok: <a href="https://www.tiktok.com/@picture_republiq" style="color:var(--gold)">@picture_republiq</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo2-footer.jpg" alt="Picture Republiq logo">
+        <p>Create authentic images that evoke emotion today and become treasured memories tomorrow.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>Services
+            <ul>
+              <li><a href="weddings.html">Weddings</a></li>
+              <li><a href="portraits.html">Portraits</a></li>
+              <li><a href="family.html">Family</a></li>
+              <li><a href="events.html">Events</a></li>
+            </ul>
+          </li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://instagram.com/picture_republiq" target="_blank" rel="noopener">Instagram — @picture_republiq</a></li>
+          <li><a href="https://www.tiktok.com/@picture_republiq" target="_blank" rel="noopener">TikTok — @picture_republiq</a></li>
+          <li><a href="https://wa.me/2348097633559" target="_blank" rel="noopener">WhatsApp — +234 809 763 3559</a></li>
+          <li><a href="mailto:hello@picturerepubliq.com">Email — hello@picturerepubliq.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> Picture Republiq. All rights reserved.</span>
+      <span>Luxury Wedding, Portrait &amp; Event Photography</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Preselect the service when arriving from a "Book …" button (e.g. ?service=portrait-signature)
+  (function () {
+    var s = new URLSearchParams(location.search).get("service");
+    if (!s) return;
+    var select = document.getElementById("c-service");
+    var base = s.split("-")[0];
+    if ([...select.options].some(function (o) { return o.value === base; })) {
+      select.value = base;
+    }
+    var msg = document.getElementById("c-message");
+    if (s.indexOf("-") > -1 && msg && !msg.value) {
+      var pretty = s.split("-").map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" — ");
+      msg.value = "I'm interested in: " + pretty + " Collection.";
+    }
+  })();
+</script>
+</body>
+</html>

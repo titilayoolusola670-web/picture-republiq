@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Photography | Picture Republiq</title>
+  <meta name="description" content="Professional photography for meaningful events — corporate events, conferences, award ceremonies, birthdays, church and community events by Picture Republiq.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-name">Picture Republiq</span>
+      <span class="brand-sub">Photography</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <div class="dropdown">
+        <a href="weddings.html" class="active">Services</a>
+        <div class="dropdown-menu">
+          <a href="weddings.html">Weddings</a>
+          <a href="portraits.html">Portraits</a>
+          <a href="family.html">Family</a>
+          <a href="events.html">Events</a>
+        </div>
+      </div>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Book Your Session</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="bg" style="background-image:url('assets/portfolio/event-02.jpg')"></div>
+  <div class="wrap">
+    <span class="eyebrow">Events</span>
+    <h1>Professional Photography<br>for Meaningful Events</h1>
+    <p>From intimate celebrations to corporate conferences, we document every event with professionalism and creativity.</p>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="wrap center reveal">
+    <span class="eyebrow">Services Include</span>
+    <h2>Event Photography Services</h2>
+    <hr class="gold-rule">
+  </div>
+  <div class="wrap reveal">
+    <ul class="service-list" style="margin-top:44px">
+      <li>Corporate Events</li>
+      <li>Church Events</li>
+      <li>Award Ceremonies</li>
+      <li>Conferences</li>
+      <li>Birthday Celebrations</li>
+      <li>Community Events</li>
+      <li>Networking Events</li>
+      <li>Professional Branding</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Event Enquiry -->
+<section class="section bg-grey" id="enquiry">
+  <div class="wrap-narrow">
+    <div class="center reveal form-intro">
+      <span class="eyebrow">Event Coverage Enquiry</span>
+      <h2>Tell Us About Your Event</h2>
+      <hr class="gold-rule">
+      <p style="font-size:14px;color:var(--muted)">We typically respond to all enquiries within 24–48 hours.</p>
+    </div>
+
+    <div class="form-shell reveal" style="margin-top:48px">
+      <form data-confirm="event-confirmation" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="e-name">Full Name <span class="req">*</span></label>
+            <input type="text" id="e-name" name="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="field">
+            <label for="e-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="e-email" name="email" placeholder="Enter your email address" required>
+          </div>
+          <div class="field">
+            <label for="e-city">City (Event Location) <span class="req">*</span></label>
+            <input type="text" id="e-city" name="city" placeholder="Where will your event take place?" required>
+          </div>
+          <div class="field">
+            <label for="e-type">Event Type <span class="req">*</span></label>
+            <select id="e-type" name="eventType" required>
+              <option value="" disabled selected>Select event type</option>
+              <option>Birthday Celebration</option>
+              <option>Corporate Event</option>
+              <option>Anniversary</option>
+              <option>Engagement Party</option>
+              <option>Baby Shower</option>
+              <option>Bridal Shower</option>
+              <option>Graduation Celebration</option>
+              <option>Conference</option>
+              <option>Church Programme</option>
+              <option>Award Ceremony</option>
+              <option>Gala Dinner</option>
+              <option>Product Launch</option>
+              <option>Networking Event</option>
+              <option>Private Party</option>
+              <option>Other (Please specify)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="e-date">Event Date <span class="req">*</span></label>
+            <input type="date" id="e-date" name="eventDate" required>
+          </div>
+          <div class="field">
+            <label for="e-hours">How long will your event run? <span class="req">*</span></label>
+            <select id="e-hours" name="duration" required>
+              <option value="" disabled selected>Select event duration</option>
+              <option>1 Hour</option>
+              <option>2 Hours</option>
+              <option>3 Hours</option>
+              <option>4 Hours</option>
+              <option>5+ Hours</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="e-guests">Approximately how many guests are you expecting? <span class="req">*</span></label>
+            <p class="hint">This helps us determine whether additional photography coverage is recommended to ensure every important moment is captured.</p>
+            <select id="e-guests" name="guests" required>
+              <option value="" disabled selected>Select guest count</option>
+              <option>50 guests or fewer</option>
+              <option>51–100 guests</option>
+              <option>101–150 guests</option>
+              <option>151–200 guests</option>
+              <option>201–300 guests</option>
+              <option>More than 300 guests</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Additional Services</label>
+            <p class="hint">Select all that apply.</p>
+            <div class="check-group">
+              <label class="check"><input type="checkbox" name="addons" value="Second Photographer"> Second Photographer</label>
+              <label class="check"><input type="checkbox" name="addons" value="Professional Videography"> Professional Videography</label>
+              <label class="check"><input type="checkbox" name="addons" value="Drone Coverage"> Drone Coverage (where permitted and weather conditions allow)</label>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="e-message">Tell Us More About Your Event</label>
+            <textarea id="e-message" name="message" placeholder="We'd love to hear more about your event. Share any important details such as the venue, event schedule, photography style preferences, or any other information that will help us create the perfect photography experience."></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn gold">Request My Event Photography Quote</button>
+          <p class="form-note">We typically respond to all enquiries within 24–48 hours.</p>
+        </div>
+      </form>
+
+      <div class="confirmation" id="event-confirmation">
+        <div class="mark">✓</div>
+        <h3>Thank You for Your Enquiry!</h3>
+        <hr class="gold-rule">
+        <p>We've successfully received your event enquiry.</p>
+        <p>Thank you for considering Picture Republiq to capture your special occasion. Our team will carefully review your event details and contact you within 24–48 hours with the next steps and a personalized quotation.</p>
+        <p>We look forward to helping you preserve every memorable moment.</p>
+        <div class="btn-row">
+          <a href="portfolio.html" class="btn">View Portfolio</a>
+          <a href="https://instagram.com/picture_republiq" target="_blank" rel="noopener" class="btn gold">Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo2-footer.jpg" alt="Picture Republiq logo">
+        <p>Create authentic images that evoke emotion today and become treasured memories tomorrow.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>Services
+            <ul>
+              <li><a href="weddings.html">Weddings</a></li>
+              <li><a href="portraits.html">Portraits</a></li>
+              <li><a href="family.html">Family</a></li>
+              <li><a href="events.html">Events</a></li>
+            </ul>
+          </li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://instagram.com/picture_republiq" target="_blank" rel="noopener">Instagram — @picture_republiq</a></li>
+          <li><a href="https://www.tiktok.com/@picture_republiq" target="_blank" rel="noopener">TikTok — @picture_republiq</a></li>
+          <li><a href="https://wa.me/2348097633559" target="_blank" rel="noopener">WhatsApp — +234 809 763 3559</a></li>
+          <li><a href="mailto:hello@picturerepubliq.com">Email — hello@picturerepubliq.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> Picture Republiq. All rights reserved.</span>
+      <span>Luxury Wedding, Portrait &amp; Event Photography</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
