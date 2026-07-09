@@ -410,6 +410,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 10000);
   })();
 
+  // Poem highlight: the gold accent moves from line to line every 2 seconds
+  document.querySelectorAll(".poem").forEach(function (poem) {
+    var lines = poem.querySelectorAll("span");
+    if (lines.length < 2) return;
+    var i = Array.prototype.findIndex.call(lines, function (l) { return l.classList.contains("gold"); });
+    if (i < 0) { i = 0; lines[0].classList.add("gold"); }
+    setInterval(function () {
+      lines[i].classList.remove("gold");
+      i = (i + 1) % lines.length;
+      lines[i].classList.add("gold");
+    }, 2000);
+  });
+
   // Current year in footer
   document.querySelectorAll(".year").forEach(function (el) {
     el.textContent = new Date().getFullYear();

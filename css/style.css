@@ -432,7 +432,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.6;
 }
 .bg-black .poem { color: var(--white); }
-.poem span { display: block; }
+.poem span { display: block; transition: color 0.6s ease; }
 .poem .gold { color: var(--gold); }
 
 /* Split layout */
@@ -1124,6 +1124,105 @@ body.intro-lock { overflow: hidden; }
   .news-modal .newsletter-form { flex-direction: column; gap: 12px; }
   .news-modal .newsletter-form input[type="email"] { border-right: 1px solid var(--line); }
 }
+
+/* ---------- Contact split (photo beside the form) ---------- */
+
+.contact-split {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+}
+.contact-photo {
+  position: relative;
+  min-height: 100vh;
+  background: var(--black);
+  overflow: hidden;
+}
+.contact-photo .bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+}
+.contact-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.82), rgba(8,8,8,0.28) 55%);
+}
+.contact-photo-text {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px clamp(28px, 5vw, 72px) 90px;
+}
+.contact-photo-text h1 { color: var(--white); }
+.contact-photo-text h1 em { color: var(--gold); }
+.contact-photo-text p {
+  color: rgba(255,255,255,0.8);
+  max-width: 380px;
+  margin-top: 18px;
+}
+.contact-form-col {
+  background: var(--white);
+  padding: clamp(130px, 16vh, 170px) clamp(28px, 5.5vw, 84px) 90px;
+}
+.contact-form-col h2 em { color: var(--gold-dark); }
+.contact-form-lede {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 520px;
+  margin: 18px 0 42px;
+}
+.contact-form-col .form-actions { text-align: left; }
+@media (max-width: 900px) {
+  .contact-split { grid-template-columns: 1fr; }
+  .contact-photo { min-height: 62vh; }
+  .contact-photo-text { padding-top: 150px; justify-content: flex-end; }
+  .contact-form-col { padding-top: 72px; }
+}
+
+/* ---------- Promise cards (about: Every Client Receives) ---------- */
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 56px;
+}
+.promise-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 44px 30px 38px;
+  text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.promise-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(194,160,93,0.55);
+  box-shadow: 0 22px 44px rgba(16,16,16,0.08);
+}
+.promise-card .icon {
+  width: 54px;
+  height: 54px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--gold);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+.promise-card:hover .icon { background: var(--gold); color: var(--white); }
+.promise-card .icon svg { width: 22px; height: 22px; display: block; }
+.promise-card h3 { font-size: 20px; margin-bottom: 8px; }
+.promise-card p { font-size: 14.5px; color: var(--muted); margin: 0; }
+@media (max-width: 1000px) { .promise-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .promise-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Connect cards (contact options with icons) ---------- */
 
