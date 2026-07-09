@@ -1125,6 +1125,72 @@ body.intro-lock { overflow: hidden; }
   .news-modal .newsletter-form input[type="email"] { border-right: 1px solid var(--line); }
 }
 
+/* ---------- Services include (numbered editorial grid) ---------- */
+
+.include-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 clamp(40px, 6vw, 90px);
+  max-width: 920px;
+  margin: 48px auto 0;
+}
+.include-item {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  padding: 20px 4px;
+  border-bottom: 1px solid rgba(16,16,16,0.14);
+  transition: padding-left 0.3s ease;
+}
+.include-item:nth-child(1),
+.include-item:nth-child(2) { border-top: 1px solid rgba(16,16,16,0.14); }
+.include-item:hover { padding-left: 16px; }
+.inc-num {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--gold-dark);
+  min-width: 26px;
+}
+.inc-name { font-size: 17px; color: var(--text); }
+@media (max-width: 640px) {
+  .include-grid { grid-template-columns: 1fr; }
+  .include-item:nth-child(2) { border-top: 0; }
+}
+
+/* ---------- Services overview page ---------- */
+
+.split.flip .media { order: 2; }
+@media (max-width: 780px) { .split.flip .media { order: 0; } }
+.svc-tag {
+  display: block;
+  font-family: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.svc-row h2 em { color: var(--gold-dark); }
+.mini-list {
+  list-style: none;
+  margin: 22px 0 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 26px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.mini-list li::before { content: "— "; color: var(--gold); }
+@media (max-width: 560px) { .mini-list { grid-template-columns: 1fr; } }
+
+/* ---------- Portfolio pointer (replaces in-page galleries) ---------- */
+
+.work-pointer .pointer-lede {
+  max-width: 520px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 16px;
+}
+
 /* ---------- Contact split (photo beside the form) ---------- */
 
 .contact-split {

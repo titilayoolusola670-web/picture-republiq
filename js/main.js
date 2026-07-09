@@ -171,6 +171,13 @@ document.addEventListener("DOMContentLoaded", function () {
         refreshLightboxItems();
       });
     });
+
+    // Preselect a category from ?cat= (e.g. portfolio.html?cat=weddings)
+    var preCat = new URLSearchParams(location.search).get("cat");
+    if (preCat) {
+      var preBtn = filterBar.querySelector('button[data-filter="' + preCat + '"]');
+      if (preBtn) preBtn.click();
+    }
   }
 
   // ------------------------------------------------------------------
