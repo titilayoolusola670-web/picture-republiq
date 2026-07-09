@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /login
-Disallow: /login.html
-Disallow: /admin.html
-
-Sitemap: https://titilayoolusola670-web.github.io/picture-republiq/sitemap.xml

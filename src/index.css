@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #101010;
+  --color-ink2: #1a1a1a;
+  --color-gold: #c2a05d;
+  --color-golddark: #a8874a;
+  --color-ivory: #f7f4ee;
+  --color-warmgrey: #edeae4;
+  --color-beige: #e7ddcc;
+  --color-body: #2b2b2b;
+  --color-muted: #6f6a61;
+  --color-line: rgba(16, 16, 16, 0.12);
+  --font-serif: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Switzer", "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-sans text-[17px] leading-[1.75] font-light text-body bg-ivory antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif font-normal text-ink;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  img { @apply max-w-full block; }
+}
+
+@layer components {
+  /* Form controls (shared by all enquiry forms) */
+  .field-label {
+    @apply block text-xs font-medium tracking-[0.16em] uppercase text-ink mb-2;
+  }
+  .field-input {
+    @apply w-full font-sans text-[15px] font-light text-body bg-ivory border border-line px-[18px] py-[14px] rounded-none appearance-none transition-colors duration-300;
+  }
+  .field-input:focus { @apply outline-none border-gold bg-white; }
+  select.field-input {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c2a05d' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 44px;
+  }
+
+  /* Price card feature list checkmarks */
+  .price-li {
+    @apply py-2 pl-[30px] border-b border-line relative;
+  }
+  .price-li:last-child { @apply border-b-0; }
+  .price-li::before {
+    content: "✓";
+    @apply absolute left-0.5 text-gold;
+  }
+
+  /* Footer: subtle camera / aperture line-art pattern over near-black */
+  .footer-pattern {
+    background:
+      radial-gradient(ellipse 75% 55% at 50% 0%, rgba(194, 160, 93, 0.06), transparent 65%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='340'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1.2'%3E%3Crect x='36' y='60' width='84' height='62' rx='8'/%3E%3Ccircle cx='78' cy='91' r='19'/%3E%3Ccircle cx='78' cy='91' r='11'/%3E%3Cpath d='M62 60l8-12h16l8 12'/%3E%3Ccircle cx='106' cy='74' r='2.5'/%3E%3Ccircle cx='248' cy='236' r='28'/%3E%3Ccircle cx='248' cy='236' r='12'/%3E%3Cpath d='M260 236l7.8 19.8M254 246.4l-13.2 16.6M242 246.4l-21-3.2M236 236l-7.8-19.8M242 225.6l13.2-16.6M254 225.6l21 3.2'/%3E%3Cpath d='M150 282h-14v14M186 282h14v14M150 332h-14v-14M186 332h14v-14'/%3E%3Ccircle cx='168' cy='307' r='2'/%3E%3C/g%3E%3C/svg%3E") repeat,
+      #1a1a1a;
+  }
+
+  /* Instagram marquee (HBA-style infinite filmstrip) */
+  .ig-track {
+    display: flex;
+    width: max-content;
+    animation: ig-scroll 45s linear infinite;
+  }
+  .ig-track:hover { animation-play-state: paused; }
+}
+
+@keyframes ig-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.7s ease both; }
+
+@keyframes breath {
+  from { transform: scale(1.045); }
+  to { transform: scale(1); }
+}
+.animate-breath { animation: breath 4.8s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ig-track { animation: none; }
+}

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Picture Republiq</title>
+  <script>
+    // SPA fallback: send unknown paths to the app router
+    var path = location.pathname.split('/').filter(Boolean).pop() || ''
+    location.replace(location.pathname.replace(/[^/]*$/, '') + '#/' + (path === 'picture-republiq' ? '' : path))
+  </script>
+</head>
+<body></body>
+</html>
