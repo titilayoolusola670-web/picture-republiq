@@ -318,17 +318,36 @@ document.addEventListener("DOMContentLoaded", function () {
     tRestart();
   }
 
-  // Newsletter signup: show inline thank-you. Connect to Mailchimp/Formspree to
-  // actually collect subscribers.
+  // Newsletter signup: submissions are emailed via FormSubmit.
+  // NOTE: the first submission triggers a one-time activation email to the
+  // address below — click the link in it once and all future submissions arrive.
+  var NEWSLETTER_ENDPOINT = "https://formsubmit.co/ajax/titilayoolusola670@gmail.com";
   document.querySelectorAll(".newsletter-form").forEach(function (form) {
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      var done = document.createElement("p");
-      done.className = "poem";
-      done.style.fontSize = "22px";
-      done.textContent = "Thank you — you're on the list.";
-      form.replaceWith(done);
+      var btn = form.querySelector("button[type=submit]");
+      var email = form.querySelector("input[name=email]").value;
+      if (btn) { btn.disabled = true; btn.textContent = "Subscribing…"; }
+      fetch(NEWSLETTER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          _subject: "New newsletter subscriber — Picture Republiq",
+          _template: "table"
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error("Subscription failed");
+        var done = document.createElement("p");
+        done.className = "poem";
+        done.style.fontSize = "22px";
+        done.textContent = "Thank you — you're on the list.";
+        form.replaceWith(done);
+      }).catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = "Subscribe"; }
+        alert("Sorry — something went wrong. Please try again, or email us at hello@picturerepubliq.com.");
+      });
     });
   });
 
