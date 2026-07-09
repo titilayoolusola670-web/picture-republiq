@@ -275,9 +275,32 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
-  // Enquiry / contact forms: show confirmation message on submit.
-  // NOTE: to receive submissions by email, connect the form to a service
-  // such as Formspree/Getform, or a site platform's built-in forms.
+  // ------------------------------------------------------------------
+  // Form records: every enquiry/newsletter submission is (1) saved to
+  // this browser's localStorage so it appears in the admin dashboard
+  // (/login -> admin.html), and (2) emailed via FormSubmit as the
+  // reliable copy that works from every visitor's device.
+  // ------------------------------------------------------------------
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/titilayoolusola670@gmail.com";
+
+  function collectForm(form) {
+    var data = {};
+    new FormData(form).forEach(function (v, k) {
+      if (!String(v).trim()) return;
+      data[k] = data[k] ? data[k] + ", " + v : v;
+    });
+    return data;
+  }
+
+  function saveRecord(key, rec) {
+    try {
+      var arr = JSON.parse(localStorage.getItem(key) || "[]");
+      arr.unshift(rec);
+      localStorage.setItem(key, JSON.stringify(arr.slice(0, 500)));
+    } catch (e) { /* storage unavailable — email copy still goes out */ }
+  }
+
+  // Enquiry / contact forms: record, email a copy, then show confirmation.
   document.querySelectorAll("form[data-confirm]").forEach(function (form) {
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -285,6 +308,21 @@ document.addEventListener("DOMContentLoaded", function () {
         form.reportValidity();
         return;
       }
+      var kind = form.getAttribute("data-kind") || "Booking";
+      var data = collectForm(form);
+      saveRecord("pr-bookings", { kind: kind, ts: new Date().toISOString(), data: data });
+
+      // Email copy (fire and forget — the visitor still sees the confirmation)
+      var payload = {};
+      for (var k in data) payload[k] = data[k];
+      payload._subject = "New " + kind + " booking enquiry — Picture Republiq";
+      payload._template = "table";
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      }).catch(function () {});
+
       var confirmation = document.getElementById(form.getAttribute("data-confirm"));
       form.style.display = "none";
       var intro = form.parentElement.querySelector(".form-intro");
@@ -336,6 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var btn = form.querySelector("button[type=submit]");
       var email = form.querySelector("input[name=email]").value;
+      saveRecord("pr-subscribers", { email: email, ts: new Date().toISOString() });
       if (btn) { btn.disabled = true; btn.textContent = "Subscribing…"; }
       fetch(NEWSLETTER_ENDPOINT, {
         method: "POST",
