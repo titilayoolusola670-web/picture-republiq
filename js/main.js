@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         splash.classList.add("hide");
         document.body.classList.remove("intro-lock");
         setTimeout(function () { splash.remove(); }, 1000);
-      }, 1800);
+      }, 4000);
     } else {
       splash.remove();
     }
@@ -318,11 +318,12 @@ document.addEventListener("DOMContentLoaded", function () {
     tRestart();
   }
 
-  // Newsletter signup: submissions are emailed via FormSubmit.
+  // Newsletter: submissions are emailed via FormSubmit.
   // NOTE: the first submission triggers a one-time activation email to the
   // address below — click the link in it once and all future submissions arrive.
   var NEWSLETTER_ENDPOINT = "https://formsubmit.co/ajax/titilayoolusola670@gmail.com";
-  document.querySelectorAll(".newsletter-form").forEach(function (form) {
+
+  function bindNewsletter(form, onSuccess) {
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -344,12 +345,70 @@ document.addEventListener("DOMContentLoaded", function () {
         done.style.fontSize = "22px";
         done.textContent = "Thank you — you're on the list.";
         form.replaceWith(done);
+        if (onSuccess) onSuccess();
       }).catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = "Subscribe"; }
         alert("Sorry — something went wrong. Please try again, or email us at hello@picturerepubliq.com.");
       });
     });
-  });
+  }
+  document.querySelectorAll(".newsletter-form").forEach(function (f) { bindNewsletter(f); });
+
+  // Newsletter modal: pops up once, 10 seconds after arriving on the site.
+  // Skipped if the visitor already subscribed, or dismissed it in the last 7 days.
+  (function () {
+    var DONE_KEY = "pr-news-done", SNOOZE_KEY = "pr-news-snooze";
+    try {
+      if (localStorage.getItem(DONE_KEY)) return;
+      if (Date.now() < +(localStorage.getItem(SNOOZE_KEY) || 0)) return;
+    } catch (e) { /* private mode — just show it */ }
+
+    setTimeout(function () {
+      var modal = document.createElement("div");
+      modal.className = "news-modal";
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      modal.setAttribute("aria-label", "Join our newsletter");
+      modal.innerHTML =
+        '<div class="news-card">' +
+          '<button class="news-close" aria-label="Close">&#10005;</button>' +
+          '<span class="eyebrow">Stay Inspired</span>' +
+          '<h2>Join Our Newsletter</h2>' +
+          '<p>Be the first to see our newest work, session availability, and seasonal offers — delivered occasionally, straight to your inbox.</p>' +
+          '<form class="newsletter-form" novalidate>' +
+            '<input type="email" name="email" placeholder="Enter your email address" required aria-label="Email address">' +
+            '<button type="submit" class="btn gold">Subscribe</button>' +
+          '</form>' +
+          '<p class="fine">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>' +
+            'We respect your inbox. No spam — unsubscribe at any time.' +
+          '</p>' +
+        '</div>';
+      document.body.appendChild(modal);
+
+      function close() {
+        modal.classList.remove("open");
+        try { localStorage.setItem(SNOOZE_KEY, String(Date.now() + 7 * 24 * 60 * 60 * 1000)); } catch (e) {}
+        setTimeout(function () { modal.remove(); }, 450);
+        document.removeEventListener("keydown", onKey);
+      }
+      function onKey(ev) { if (ev.key === "Escape") close(); }
+
+      modal.querySelector(".news-close").addEventListener("click", close);
+      modal.addEventListener("click", function (ev) { if (ev.target === modal) close(); });
+      document.addEventListener("keydown", onKey);
+
+      bindNewsletter(modal.querySelector(".newsletter-form"), function () {
+        try { localStorage.setItem(DONE_KEY, "1"); } catch (e) {}
+        setTimeout(function () {
+          modal.classList.remove("open");
+          setTimeout(function () { modal.remove(); }, 450);
+        }, 2200);
+      });
+
+      requestAnimationFrame(function () { modal.classList.add("open"); });
+    }, 10000);
+  })();
 
   // Current year in footer
   document.querySelectorAll(".year").forEach(function (el) {
