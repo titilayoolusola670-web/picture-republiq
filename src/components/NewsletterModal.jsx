@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Eyebrow } from './ui.jsx'
-import { FORM_ENDPOINT, saveRecord } from '../lib/forms.js'
+import { saveRecord, emailCopy } from '../lib/forms.js'
 
 const DONE_KEY = 'pr-news-done'
 const SNOOZE_KEY = 'pr-news-snooze'
@@ -38,11 +38,7 @@ export default function NewsletterModal() {
     saveRecord('pr-subscribers', { email, ts: new Date().toISOString() })
     setState('busy')
     try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, _subject: 'New newsletter subscriber — Picture Republiq', _template: 'table' }),
-      })
+      const res = await emailCopy({ email }, 'New newsletter subscriber — Picture Republiq')
       if (!res.ok) throw new Error()
       setState('done')
       try { localStorage.setItem(DONE_KEY, '1') } catch { /* ok */ }

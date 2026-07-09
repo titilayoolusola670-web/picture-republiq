@@ -12,9 +12,9 @@ const SECTION_BG = {
   dark: 'bg-[#1f1f1f] text-white/80',
 }
 
-export function Section({ bg = 'white', tight = false, className = '', children }) {
+export function Section({ bg = 'white', tight = false, className = '', children, ...rest }) {
   return (
-    <section className={`${SECTION_BG[bg]} ${tight ? 'py-20' : 'py-24 md:py-28'} ${className}`}>
+    <section className={`${SECTION_BG[bg]} ${tight ? 'py-20' : 'py-24 md:py-28'} ${className}`} {...rest}>
       {children}
     </section>
   )

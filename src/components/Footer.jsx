@@ -41,6 +41,7 @@ export default function Footer() {
               <FLink to="/about">About</FLink>
               <FLink to="/portfolio">Portfolio</FLink>
               <FLink to="/contact">Book Your Session</FLink>
+              <FLink to="/policy">Payment &amp; Cancellation Policy</FLink>
             </ul>
           </div>
           <div>

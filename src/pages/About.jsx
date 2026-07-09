@@ -1,6 +1,7 @@
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, Poem, Stats, useTitle } from '../components/ui.jsx'
 import { STATS, galleryImg } from '../data.jsx'
 import { PageHero } from '../components/ui.jsx'
+import FaqSection from '../components/Faq.jsx'
 
 const PROMISES = [
   ['A Relaxed Experience', 'Sessions that feel like time with a friend — unhurried, easy, and genuinely enjoyable from start to finish.',
@@ -76,6 +77,8 @@ export default function About() {
           </div>
         </Wrap>
       </Section>
+
+      <FaqSection bg="grey" />
 
       <Section bg="black" className="text-center">
         <Wrap>

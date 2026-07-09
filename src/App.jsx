@@ -14,6 +14,7 @@ import Portfolio from './pages/Portfolio.jsx'
 import Contact from './pages/Contact.jsx'
 import Login from './pages/Login.jsx'
 import Admin from './pages/Admin.jsx'
+import Policy from './pages/Policy.jsx'
 
 // Fullscreen logo intro: shows logo1 for 4 seconds on arrival at the
 // home page, then fades into the site.
@@ -39,8 +40,15 @@ function Splash() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    if (hash) {
+      // allow the page to render, then jump to the anchored section
+      const t = setTimeout(() => document.querySelector(hash)?.scrollIntoView(), 60)
+      return () => clearTimeout(t)
+    }
+    window.scrollTo(0, 0)
+  }, [pathname, hash])
   return null
 }
 
@@ -68,6 +76,7 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/policy" element={<Policy />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Navigate to="/" replace />} />

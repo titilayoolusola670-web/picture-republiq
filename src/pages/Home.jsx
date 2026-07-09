@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, Poem, Stats, useTitle } from '../components/ui.jsx'
 import { InstagramIcon } from '../components/icons.jsx'
 import { SERVICE_CARDS, STATS, WHY_ITEMS, INSTA_IMAGES, SOCIAL, galleryImg } from '../data.jsx'
+import FaqSection from '../components/Faq.jsx'
 
 const HERO_SLIDES = [galleryImg('weddings', 1), galleryImg('portraits', 10), galleryImg('family', 5), galleryImg('events', 10)]
 
@@ -207,6 +208,7 @@ export default function Home() {
       <AboutTeaser />
       <WeddingCta />
       <WhyChoose />
+      <FaqSection bg="white" limit={6} />
       <InstagramStrip />
     </main>
   )
