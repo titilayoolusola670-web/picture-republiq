@@ -14,7 +14,7 @@ function Hero() {
     return () => clearInterval(t)
   }, [])
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center text-center bg-ink overflow-hidden">
+    <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center bg-ink overflow-hidden">
       {HERO_SLIDES.map((src, i) => (
         <div key={src}
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-2000 ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
