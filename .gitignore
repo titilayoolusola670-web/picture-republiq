@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+r2-selected-urls.json
+selected-site-images/**
+!selected-site-images/.gitkeep
 
 # Editor directories and files
 .vscode/*

@@ -1,11 +1,11 @@
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, PageHero, useTitle } from '../components/ui.jsx'
-import { SERVICE_ROWS, SOCIAL, galleryImg } from '../data.jsx'
+import { SERVICE_ROWS, SOCIAL } from '../data.jsx'
 
 export default function Services() {
   useTitle('Our Services')
   return (
     <main>
-      <PageHero image={galleryImg('family', 5)} eyebrow="Our Services"
+      <PageHero eyebrow="Our Services"
         title={<>Photography for Every<br />Chapter of Your Story</>}
         sub="Weddings, portraits, family, and events — each with its own approach, always with the same care." />
 

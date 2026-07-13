@@ -28,8 +28,7 @@ export default function Contact() {
       {/* Contact split: photo beside the enquiry form */}
       <section className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr]">
         <div className="relative min-h-[62vh] md:min-h-screen bg-ink overflow-hidden">
-          <div className="absolute inset-0 bg-cover bg-center opacity-55" style={{ backgroundImage: `url(${galleryImg('portraits', 10)})` }} />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/82 via-[#080808]/28 to-[#080808]/28" />
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${galleryImg('portraits', 10)})` }} />
           <div className="relative z-2 h-full flex flex-col justify-end md:justify-center pt-36 pb-16 md:pb-24 px-7 lg:px-16">
             <Eyebrow>Contact</Eyebrow>
             <h1 className="text-white text-[clamp(38px,5.2vw,62px)]">Let's <em className="text-gold">talk.</em></h1>

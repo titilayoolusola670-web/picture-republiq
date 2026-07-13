@@ -2,34 +2,37 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTitle } from '../components/ui.jsx'
 
-// SHA-256 of the admin password (kept as a hash so the password is not
-// written in plain text in the source).
-const HASH = 'd149f575651ad5cbf647353f662b263666d1218568287d311ac18dbf4f78c3d3'
-
-async function sha256(text) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
-  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('')
-}
-
 export default function Login() {
   useTitle('Admin Login')
   const navigate = useNavigate()
   const [error, setError] = useState(false)
+  const [busy, setBusy] = useState(false)
 
   useEffect(() => {
-    try { if (sessionStorage.getItem('pr-admin') === '1') navigate('/admin', { replace: true }) } catch { /* ok */ }
+    try { if (sessionStorage.getItem('pr-admin-token')) navigate('/admin', { replace: true }) } catch { /* ok */ }
   }, [navigate])
 
   async function submit(e) {
     e.preventDefault()
     const pw = e.target.pw.value
-    if (pw && (await sha256(pw)) === HASH) {
-      try { sessionStorage.setItem('pr-admin', '1') } catch { /* ok */ }
+    setBusy(true)
+    setError(false)
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ password: pw }),
+      })
+      if (!res.ok) throw new Error()
+      const data = await res.json()
+      try { sessionStorage.setItem('pr-admin-token', data.token) } catch { /* ok */ }
       navigate('/admin', { replace: true })
-    } else {
+    } catch {
       setError(true)
       e.target.pw.value = ''
       e.target.pw.focus()
+    } finally {
+      setBusy(false)
     }
   }
 
@@ -43,8 +46,8 @@ export default function Login() {
         <form onSubmit={submit} noValidate>
           <input type="password" name="pw" required autoFocus placeholder="Password" autoComplete="current-password"
             className="field-input text-center tracking-[0.2em]" />
-          <button type="submit" className="w-full mt-4 inline-block font-sans text-[13px] font-medium tracking-[0.22em] uppercase px-9 py-[15px] border border-gold bg-gold text-white cursor-pointer transition-colors duration-300 hover:bg-golddark hover:border-golddark">
-            Log In
+          <button type="submit" disabled={busy} className="w-full mt-4 inline-block font-sans text-[13px] font-medium tracking-[0.22em] uppercase px-9 py-[15px] border border-gold bg-gold text-white cursor-pointer transition-colors duration-300 hover:bg-golddark hover:border-golddark disabled:opacity-60">
+            {busy ? 'Logging In...' : 'Log In'}
           </button>
         </form>
         {error && <p className="mt-4 text-[13.5px] text-[#a4392f] animate-fade-up">Incorrect password. Please try again.</p>}

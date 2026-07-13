@@ -34,18 +34,29 @@ export function Confirmation({ children }) {
    then swaps in the confirmation message. */
 export function EnquiryShell({ kind, confirmation, children }) {
   const [done, setDone] = useState(false)
+  const [state, setState] = useState('idle')
+  const [error, setError] = useState('')
   if (done) return confirmation
   return (
     <form
       noValidate
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault()
         if (!e.target.checkValidity()) { e.target.reportValidity(); return }
-        submitBooking(e.target, kind)
-        setDone(true)
+        setState('busy')
+        setError('')
+        try {
+          await submitBooking(e.target, kind)
+          setDone(true)
+        } catch (err) {
+          setState('idle')
+          setError(err.message || 'Could not save your enquiry. Please try again.')
+        }
       }}
     >
       {children}
+      {state === 'busy' && <p className="text-[13px] text-muted mt-4">Saving your enquiry...</p>}
+      {error && <p className="text-[13px] text-[#a4392f] mt-4">{error}</p>}
     </form>
   )
 }

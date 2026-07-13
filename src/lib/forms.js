@@ -32,8 +32,33 @@ export function emailCopy(data, subject) {
   })
 }
 
-export function submitBooking(form, kind) {
+async function apiPost(path, body) {
+  const res = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}))
+    throw new Error(data.error || 'Request failed')
+  }
+  return res.json()
+}
+
+export function saveBookingToDb(kind, data) {
+  return apiPost('/api/bookings', { kind, data })
+}
+
+export function saveSubscriberToDb(email) {
+  return apiPost('/api/newsletter', { email })
+}
+
+export async function submitBooking(form, kind) {
   const data = collectForm(form)
   saveRecord('pr-bookings', { kind, ts: new Date().toISOString(), data })
-  emailCopy(data, `New ${kind} booking enquiry — Picture Republiq`).catch(() => {})
+  const [db] = await Promise.allSettled([
+    saveBookingToDb(kind, data),
+    emailCopy(data, `New ${kind} booking enquiry — Picture Republiq`),
+  ])
+  if (db.status === 'rejected') throw db.reason
 }

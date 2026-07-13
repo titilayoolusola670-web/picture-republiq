@@ -7,9 +7,18 @@ Luxury wedding, portrait, family & event photography site, built with
 
 ```bash
 npm install
-npm run dev       # local dev server
+npm run dev:api   # backend API -> http://127.0.0.1:4000
+npm run dev       # local dev server -> http://127.0.0.1:5173
 npm run build     # production build -> dist/
 npm run preview   # preview the production build
+```
+
+Create a local `.env` file before starting the API:
+
+```bash
+MONGODB_URI=mongodb+srv://USER:PASSWORD@cluster.mongodb.net/picture-republiq
+ADMIN_PASSWORD=your-admin-password
+ADMIN_TOKEN_SECRET=replace-with-a-long-random-string
 ```
 
 ## Structure
@@ -32,8 +41,8 @@ npm run preview   # preview the production build
 
 ## Notes
 
-- Admin dashboard: `/#/login` (password-only). Bookings/newsletter records
-  are stored per-browser (localStorage) and every submission is also emailed
-  via FormSubmit to the studio inbox.
+- Admin dashboard: `/#/login`. Bookings/newsletter records are saved to
+  MongoDB through the local API and every submission is also emailed via
+  FormSubmit to the studio inbox.
 - Routing uses hash URLs (`/#/services`) so the static build works on any
   host without server rewrites.

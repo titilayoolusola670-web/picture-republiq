@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, Poem, Stats, useTitle } from '../components/ui.jsx'
 import { InstagramIcon } from '../components/icons.jsx'
-import { SERVICE_CARDS, STATS, WHY_ITEMS, INSTA_IMAGES, SOCIAL, galleryImg } from '../data.jsx'
+import { SERVICE_CARDS, STATS, WHY_ITEMS, INSTA_IMAGES, SOCIAL, SITE_IMAGES, galleryImg } from '../data.jsx'
 import FaqSection from '../components/Faq.jsx'
 
-const HERO_SLIDES = [galleryImg('weddings', 1), galleryImg('portraits', 10), galleryImg('family', 5), galleryImg('events', 10)]
+const HERO_SLIDES = SITE_IMAGES.home.hero
 
 function Hero() {
   const [active, setActive] = useState(0)
@@ -123,7 +123,7 @@ function WeddingCta() {
             </div>
           </Reveal>
           <Reveal className="order-1 md:order-2 relative after:content-[''] after:absolute after:border after:border-gold/60 after:-z-1 after:top-[18px] after:-right-[18px] after:-bottom-[18px] after:left-[18px]">
-            <Tile src={galleryImg('weddings', 10)} alt="A wedding photographed by Picture Republiq" />
+            <Tile src={SITE_IMAGES.home.weddingFeature} alt="A wedding photographed by Picture Republiq" />
           </Reveal>
         </div>
       </Wrap>

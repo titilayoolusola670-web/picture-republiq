@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Eyebrow } from './ui.jsx'
-import { saveRecord, emailCopy } from '../lib/forms.js'
+import { saveRecord, emailCopy, saveSubscriberToDb } from '../lib/forms.js'
 
 const DONE_KEY = 'pr-news-done'
 const SNOOZE_KEY = 'pr-news-snooze'
@@ -38,8 +38,11 @@ export default function NewsletterModal() {
     saveRecord('pr-subscribers', { email, ts: new Date().toISOString() })
     setState('busy')
     try {
-      const res = await emailCopy({ email }, 'New newsletter subscriber — Picture Republiq')
-      if (!res.ok) throw new Error()
+      const [db] = await Promise.allSettled([
+        saveSubscriberToDb(email),
+        emailCopy({ email }, 'New newsletter subscriber — Picture Republiq'),
+      ])
+      if (db.status === 'rejected') throw db.reason
       setState('done')
       try { localStorage.setItem(DONE_KEY, '1') } catch { /* ok */ }
       setTimeout(() => setShow(false), 2200)

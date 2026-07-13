@@ -13,12 +13,35 @@ export const GALLERY_LABELS = { weddings: 'Weddings', portraits: 'Portraits', fa
 
 export const galleryImg = (cat, n) => `assets/gallery/${cat}/${cat}-${String(n).padStart(3, '0')}.jpg`
 
+export const SITE_IMAGES = {
+  services: {
+    weddings: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/services/weddings/weddings-108.jpg',
+    portraits: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/services/portraits/portraits-047.jpg',
+    family: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/services/family/family-020.jpg',
+    events: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/services/events/events-009.jpg',
+  },
+  home: {
+    services: {
+      weddings: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/weddings/weddings-099.jpg',
+      portraits: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/portraits/portraits-007.jpg',
+      family: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/family/family-032.jpg',
+      events: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/events/events-010.jpg',
+    },
+    hero: [
+      'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/family-018.jpg',
+      'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/weddings-052.jpg',
+      'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/weddings-027.jpg',
+    ],
+    weddingFeature: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/wedding-feature/weddings-013.jpg',
+  },
+}
+
 // Our Services cards (home) — single gold accent colour on titles
 export const SERVICE_CARDS = [
-  { to: '/weddings', img: galleryImg('weddings', 60), tag: '01 — The Big Day', title: 'Wedding Photography', text: 'From "Yes" to "I Do" — every vow, every tear, and every dance-floor moment, captured beautifully.', link: 'Explore' },
-  { to: '/portraits', img: galleryImg('portraits', 1), tag: '02 — In the Studio', title: 'Portraits & Headshots', text: 'Graduation, professional, and personal portraits that feel natural, confident, and timeless.', link: 'See the Work' },
-  { to: '/family', img: galleryImg('family', 1), tag: '03 — At Home Together', title: 'Family Stories', text: 'Honest, relaxed family sessions — the moments you never want to forget, exactly as they felt.', link: 'See More' },
-  { to: '/events', img: galleryImg('events', 1), tag: '04 — Milestones & Celebrations', title: 'Event Photography', text: 'Professional coverage for meaningful events — discreet, creative, and delivered on time.', link: 'Explore' },
+  { to: '/weddings', img: SITE_IMAGES.home.services.weddings, tag: '01 — The Big Day', title: 'Wedding Photography', text: 'From "Yes" to "I Do" — every vow, every tear, and every dance-floor moment, captured beautifully.', link: 'Explore' },
+  { to: '/portraits', img: SITE_IMAGES.home.services.portraits, tag: '02 — In the Studio', title: 'Portraits & Headshots', text: 'Graduation, professional, and personal portraits that feel natural, confident, and timeless.', link: 'See the Work' },
+  { to: '/family', img: SITE_IMAGES.home.services.family, tag: '03 — At Home Together', title: 'Family Stories', text: 'Honest, relaxed family sessions — the moments you never want to forget, exactly as they felt.', link: 'See More' },
+  { to: '/events', img: SITE_IMAGES.home.services.events, tag: '04 — Milestones & Celebrations', title: 'Event Photography', text: 'Professional coverage for meaningful events — discreet, creative, and delivered on time.', link: 'Explore' },
 ]
 
 export const STATS = [
@@ -60,8 +83,8 @@ export const FAMILY_COLLECTIONS = [
 ]
 
 export const SERVICE_ROWS = [
-  { to: '/weddings', img: galleryImg('weddings', 45), tag: '01 — Weddings', title: <>From &ldquo;Yes&rdquo; to &ldquo;I Do&rdquo; — <em className="text-golddark">Every Detail Captured</em></>, body: 'Your love story deserves to be remembered forever. We document every chapter of your day — the anticipation, the vows, the joyful tears, the celebration — with authenticity, elegance, and attention to detail.', items: ['Traditional & White Weddings', 'Engagement Sessions', 'Destination Weddings', 'Civil Ceremonies', 'Reception Coverage', 'Bridal Portraits'], btn: 'Explore Weddings' },
-  { to: '/portraits', img: galleryImg('portraits', 1), tag: '02 — Portraits', title: <>Portraits That Feel Like <em className="text-golddark">You</em></>, body: "Whether you're updating your professional image, celebrating a milestone, or simply capturing this season of life, we create portraits that feel natural, confident, and timeless — with collections starting from ₦75,000.", items: ['Professional Headshots', 'Creative Portraits', 'Personal Branding', 'Editorial Portraits'], btn: 'Explore Portraits', flip: true, bg: 'grey' },
-  { to: '/family', img: galleryImg('family', 1), tag: '03 — Family', title: <>The Moments You Never Want to <em className="text-golddark">Forget</em></>, body: "Relaxed sessions that let your family's story unfold naturally — genuine love, personality, and connection, photographed to be treasured for years. Collections start from ₦100,000.", items: ['Studio Family Portraits', 'Outdoor Family Sessions', 'Extended Family Photography'], btn: 'Explore Family' },
-  { to: '/events', img: galleryImg('events', 1), tag: '04 — Events', title: <>Professional Coverage for Meaningful <em className="text-golddark">Events</em></>, body: 'From intimate celebrations to corporate conferences, we document every event with professionalism, discretion, and creativity — and deliver on time, every time.', items: ['Corporate Events', 'Conferences', 'Award Ceremonies', 'Church Events', 'Birthdays & Celebrations', 'Community Events'], btn: 'Explore Events', flip: true, bg: 'grey' },
+  { to: '/weddings', img: SITE_IMAGES.services.weddings, tag: '01 — Weddings', title: <>From &ldquo;Yes&rdquo; to &ldquo;I Do&rdquo; — <em className="text-golddark">Every Detail Captured</em></>, body: 'Your love story deserves to be remembered forever. We document every chapter of your day — the anticipation, the vows, the joyful tears, the celebration — with authenticity, elegance, and attention to detail.', items: ['Traditional & White Weddings', 'Engagement Sessions', 'Destination Weddings', 'Civil Ceremonies', 'Reception Coverage', 'Bridal Portraits'], btn: 'Explore Weddings' },
+  { to: '/portraits', img: SITE_IMAGES.services.portraits, tag: '02 — Portraits', title: <>Portraits That Feel Like <em className="text-golddark">You</em></>, body: "Whether you're updating your professional image, celebrating a milestone, or simply capturing this season of life, we create portraits that feel natural, confident, and timeless — with collections starting from ₦75,000.", items: ['Professional Headshots', 'Creative Portraits', 'Personal Branding', 'Editorial Portraits'], btn: 'Explore Portraits', flip: true, bg: 'grey' },
+  { to: '/family', img: SITE_IMAGES.services.family, tag: '03 — Family', title: <>The Moments You Never Want to <em className="text-golddark">Forget</em></>, body: "Relaxed sessions that let your family's story unfold naturally — genuine love, personality, and connection, photographed to be treasured for years. Collections start from ₦100,000.", items: ['Studio Family Portraits', 'Outdoor Family Sessions', 'Extended Family Photography'], btn: 'Explore Family' },
+  { to: '/events', img: SITE_IMAGES.services.events, tag: '04 — Events', title: <>Professional Coverage for Meaningful <em className="text-golddark">Events</em></>, body: 'From intimate celebrations to corporate conferences, we document every event with professionalism, discretion, and creativity — and deliver on time, every time.', items: ['Corporate Events', 'Conferences', 'Award Ceremonies', 'Church Events', 'Birthdays & Celebrations', 'Community Events'], btn: 'Explore Events', flip: true, bg: 'grey' },
 ]

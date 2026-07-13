@@ -1,4 +1,4 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, Poem, Stats, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, Stats, useTitle } from '../components/ui.jsx'
 import { STATS, galleryImg } from '../data.jsx'
 import { PageHero } from '../components/ui.jsx'
 import FaqSection from '../components/Faq.jsx'
@@ -25,15 +25,22 @@ export default function About() {
       <PageHero image={galleryImg('about', 2)} eyebrow="About" title={<>Behind Every Great Photograph<br />Is a Story Worth Telling</>} />
 
       <Section bg="white">
-        <Wrap narrow className="text-center">
-          <Reveal>
-            <p className="mb-4">At Picture Republiq, photography is about preserving life's most meaningful experiences.</p>
-            <Poem className="text-[clamp(24px,3vw,34px)] my-8" lines={['Every smile.', 'Every embrace.', 'Every celebration.', 'Every quiet moment.']} />
-            <p>These are the memories that deserve to last forever.</p>
-            <GoldRule />
-            <p className="mb-4">Our philosophy is rooted in authentic storytelling, artistic excellence, and creating an enjoyable experience from your first consultation to the delivery of your final gallery.</p>
-            <p>We believe that great photographs don't simply document events—they preserve emotions. When you look back years from now, we want you to remember exactly how that moment felt.</p>
-          </Reveal>
+        <Wrap>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-18 items-center">
+            <Reveal className="relative after:content-[''] after:absolute after:border after:border-gold after:-z-1 after:top-[18px] after:-right-[18px] after:-bottom-[18px] after:left-[18px]">
+              <Tile src={galleryImg('about', 1)} alt="Jerry, the photographer behind Picture Republiq" />
+            </Reveal>
+            <Reveal>
+              <Eyebrow>Meet the Photographer</Eyebrow>
+              <h2 className="text-[clamp(29px,3.5vw,42px)]">Photography isn't just about taking pictures. <em className="text-golddark">It's about preserving emotions.</em></h2>
+              <GoldRule left />
+              <p className="font-normal mb-4">Hi. I am Jerry.</p>
+              <p className="mb-4">I'm the photographer behind Picture Republiq. Creating inspired wedding concepts and capturing flawless events with love, joy, and dedication is what I do. I approach every session with creativity, patience, and an eye for authentic storytelling. My goal is true-to-colour, clean, and bold. I create images that you'll proudly display for generations.</p>
+              <p>From intimate portraits to grand celebrations, we are passionate about capturing moments that truly matter.</p>
+              <Stats items={STATS} />
+              <Btn variant="gold" to="/portfolio" className="mt-8">View Portfolio</Btn>
+            </Reveal>
+          </div>
         </Wrap>
       </Section>
 
@@ -54,26 +61,6 @@ export default function About() {
                 <p className="text-[14.5px] text-muted m-0">{text}</p>
               </Reveal>
             ))}
-          </div>
-        </Wrap>
-      </Section>
-
-      <Section bg="white">
-        <Wrap>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-18 items-center">
-            <Reveal className="relative after:content-[''] after:absolute after:border after:border-gold after:-z-1 after:top-[18px] after:-right-[18px] after:-bottom-[18px] after:left-[18px]">
-              <Tile src={galleryImg('about', 1)} alt="Jerry, the photographer behind Picture Republiq" />
-            </Reveal>
-            <Reveal>
-              <Eyebrow>Meet the Photographer</Eyebrow>
-              <h2 className="text-[clamp(29px,3.5vw,42px)]">Photography isn't just about taking pictures. <em className="text-golddark">It's about preserving emotions.</em></h2>
-              <GoldRule left />
-              <p className="font-normal mb-4">Hi. I am Jerry.</p>
-              <p className="mb-4">I'm the photographer behind Picture Republiq. Creating inspired wedding concepts and capturing flawless events with love, joy, and dedication is what I do. I approach every session with creativity, patience, and an eye for authentic storytelling. My goal is true-to-colour, clean, and bold. I create images that you'll proudly display for generations.</p>
-              <p>From intimate portraits to grand celebrations, we are passionate about capturing moments that truly matter.</p>
-              <Stats items={STATS} />
-              <Btn variant="gold" to="/portfolio" className="mt-8">View Portfolio</Btn>
-            </Reveal>
           </div>
         </Wrap>
       </Section>

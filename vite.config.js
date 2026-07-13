@@ -7,6 +7,14 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   base: './',
   plugins: [react(), tailwindcss()],
+  server: {
+    host: '127.0.0.1',
+    port: 5173,
+    strictPort: true,
+    proxy: {
+      '/api': 'http://127.0.0.1:4000',
+    },
+  },
   build: {
     // keep Vite's bundles out of /assets, which holds the photo library
     assetsDir: 'static',
