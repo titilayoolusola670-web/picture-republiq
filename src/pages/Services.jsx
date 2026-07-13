@@ -7,7 +7,7 @@ export default function Services() {
     <main>
       <PageHero eyebrow="Our Services"
         title={<>Photography for Every<br />Chapter of Your Story</>}
-        sub="Weddings, portraits, family, and events — each with its own approach, always with the same care." />
+        compact />
 
       {SERVICE_ROWS.map((row) => (
         <Section key={row.to} bg={row.bg || 'white'}>

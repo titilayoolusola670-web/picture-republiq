@@ -79,9 +79,9 @@ export function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
 
 /* ---------- page hero (inner pages) ---------- */
 
-export function PageHero({ image, eyebrow, title, sub }) {
+export function PageHero({ image, eyebrow, title, sub, compact = false }) {
   return (
-    <section className="relative pt-[210px] pb-[110px] bg-ink text-center overflow-hidden">
+    <section className={`relative bg-ink text-center overflow-hidden ${compact ? 'pt-[126px] pb-[66px]' : 'pt-[210px] pb-[110px]'}`}>
       {image && <div className="absolute inset-0 bg-cover bg-center opacity-35" style={{ backgroundImage: `url(${image})` }} />}
       <Wrap className="relative z-[2]">
         <Eyebrow>{eyebrow}</Eyebrow>
