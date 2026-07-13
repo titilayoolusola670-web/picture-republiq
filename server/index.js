@@ -15,19 +15,17 @@ const HOST = process.env.HOST || '0.0.0.0'
 const TOKEN_SECRET = process.env.ADMIN_TOKEN_SECRET || crypto.randomBytes(32).toString('hex')
 const LEGACY_ADMIN_PASSWORD_HASH = 'd149f575651ad5cbf647353f662b263666d1218568287d311ac18dbf4f78c3d3'
 const distDir = path.resolve(__dirname, '..', 'dist')
-const configuredCorsOrigins = (process.env.CORS_ORIGINS || '').split(',').map((origin) => origin.trim()).filter(Boolean)
-const corsOrigins = configuredCorsOrigins.length ? configuredCorsOrigins : ['*']
 
 app.use((req, res, next) => {
-  if (!req.path.startsWith('/api')) return next()
+  const url = req.originalUrl || req.url || ''
+  if (!url.startsWith('/api')) return next()
 
   const origin = req.get('origin')
-  const allowAll = corsOrigins.includes('*')
-  if (allowAll) {
-    res.set('Access-Control-Allow-Origin', origin || '*')
-  } else if (origin && corsOrigins.includes(origin)) {
+  if (origin) {
     res.set('Access-Control-Allow-Origin', origin)
     res.set('Vary', 'Origin')
+  } else {
+    res.set('Access-Control-Allow-Origin', '*')
   }
 
   res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
