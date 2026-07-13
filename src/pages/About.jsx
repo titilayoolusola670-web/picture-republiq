@@ -66,18 +66,6 @@ export default function About() {
       </Section>
 
       <FaqSection bg="grey" />
-
-      <Section bg="black" className="text-center">
-        <Wrap>
-          <Reveal>
-            <Eyebrow>Ready When You Are</Eyebrow>
-            <h2 className="text-white text-[clamp(29px,3.5vw,42px)] max-w-[760px] mx-auto">Let's Create Something Timeless Together</h2>
-            <div className="flex flex-wrap gap-4 justify-center mt-9">
-              <Btn variant="gold" to="/contact">Book Your Session</Btn>
-            </div>
-          </Reveal>
-        </Wrap>
-      </Section>
     </main>
   )
 }

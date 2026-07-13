@@ -14,7 +14,7 @@ function Hero() {
     return () => clearInterval(t)
   }, [])
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center bg-ink overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center justify-center text-center bg-ink overflow-hidden">
       {HERO_SLIDES.map((src, i) => (
         <div key={src}
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-2000 ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
@@ -50,9 +50,6 @@ function OurServices() {
       <Wrap>
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-5 md:gap-12 border-t border-line pt-9">
           <h2 className="text-[clamp(29px,3.5vw,42px)] m-0">Our <em>Services.</em></h2>
-          <p className="max-w-[340px] m-0 text-muted text-base leading-relaxed">
-            Weddings, portraits, family, and events — pick where you'd like to start.
-          </p>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-14 md:gap-y-18 gap-x-14 mt-15">
           {SERVICE_CARDS.map((c) => (
