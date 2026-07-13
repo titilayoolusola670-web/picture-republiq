@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTitle } from '../components/ui.jsx'
+import { apiUrl } from '../lib/forms.js'
 
 function fmt(ts) {
   const d = new Date(ts)
@@ -45,8 +46,8 @@ export default function Admin() {
       try {
         const headers = { Authorization: `Bearer ${token}` }
         const [bookingRes, subRes] = await Promise.all([
-          fetch('/api/admin/bookings', { headers }),
-          fetch('/api/admin/subscribers', { headers }),
+          fetch(apiUrl('/api/admin/bookings'), { headers }),
+          fetch(apiUrl('/api/admin/subscribers'), { headers }),
         ])
         if (bookingRes.status === 401 || subRes.status === 401) {
           try { sessionStorage.removeItem('pr-admin-token') } catch { /* ok */ }

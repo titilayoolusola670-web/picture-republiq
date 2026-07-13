@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTitle } from '../components/ui.jsx'
+import { apiUrl } from '../lib/forms.js'
 
 export default function Login() {
   useTitle('Admin Login')
@@ -18,7 +19,7 @@ export default function Login() {
     setBusy(true)
     setError(false)
     try {
-      const res = await fetch('/api/admin/login', {
+      const res = await fetch(apiUrl('/api/admin/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ password: pw }),

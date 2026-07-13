@@ -6,6 +6,12 @@
 // FormSubmit endpoint and info@picturerepubliq.com is CC'd on every email.
 export const FORM_ENDPOINT = 'https://formsubmit.co/ajax/picturerepubliq2@gmail.com'
 export const FORM_CC = 'info@picturerepubliq.com'
+export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '')
+
+export function apiUrl(path) {
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  return `${API_BASE_URL}${normalized}`
+}
 
 export function collectForm(form) {
   const data = {}
@@ -33,7 +39,7 @@ export function emailCopy(data, subject) {
 }
 
 async function apiPost(path, body) {
-  const res = await fetch(path, {
+  const res = await fetch(apiUrl(path), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(body),
