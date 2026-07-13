@@ -1,10 +1,10 @@
 // Every submission is (1) saved to this browser's localStorage as a fallback
 // and (2) emailed via FormSubmit as the reliable studio notification.
 //
-// Deliveries go to BOTH studio inboxes: picturerepubliq2@gmail.com is the
-// FormSubmit endpoint and info@picturerepubliq.com is CC'd on every email.
-export const FORM_ENDPOINT = 'https://formsubmit.co/ajax/picturerepubliq2@gmail.com'
-export const FORM_CC = 'info@picturerepubliq.com'
+// Deliveries go to BOTH studio inboxes: info@picturerepubliq.com is the
+// activated FormSubmit endpoint and picturerepubliq2@gmail.com is CC'd.
+export const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@picturerepubliq.com'
+export const FORM_CC = 'picturerepubliq2@gmail.com'
 export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '')
 
 export function apiUrl(path) {
