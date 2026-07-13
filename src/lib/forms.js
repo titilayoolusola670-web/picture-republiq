@@ -1,6 +1,5 @@
-// Every submission is (1) saved to this browser's localStorage so it
-// appears in the admin dashboard, and (2) emailed via FormSubmit as the
-// reliable copy that works from every visitor's device.
+// Every submission is (1) saved to this browser's localStorage as a fallback
+// and (2) emailed via FormSubmit as the reliable studio notification.
 //
 // Deliveries go to BOTH studio inboxes: picturerepubliq2@gmail.com is the
 // FormSubmit endpoint and info@picturerepubliq.com is CC'd on every email.
@@ -30,12 +29,38 @@ export function saveRecord(key, rec) {
   } catch { /* storage unavailable — the email copy still goes out */ }
 }
 
-export function emailCopy(data, subject) {
+function studioEmail(data, subject) {
   return fetch(FORM_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ ...data, _subject: subject, _cc: FORM_CC, _template: 'table' }),
+    body: JSON.stringify({
+      ...data,
+      _subject: subject,
+      _cc: FORM_CC,
+      _template: 'box',
+      _captcha: 'false',
+    }),
   })
+}
+
+export function bookingEmailCopy(data, kind) {
+  return studioEmail({
+    'Alert Type': 'New Form Enquiry',
+    'Website': 'Picture Republiq',
+    'Service Type': kind,
+    ...data,
+    'Brand Note': 'Picture Republiq black, gold, and white alert',
+  }, `New ${kind} booking enquiry — Picture Republiq`)
+}
+
+export function subscriberAlertEmail(email) {
+  return studioEmail({
+    'Alert Type': 'New Newsletter Subscriber',
+    'Website': 'Picture Republiq',
+    'Subscriber Email': email,
+    'Submitted At': new Date().toISOString(),
+    'Brand Note': 'Picture Republiq black, gold, and white alert',
+  }, 'New newsletter subscriber — Picture Republiq')
 }
 
 async function apiPost(path, body) {
@@ -64,7 +89,7 @@ export async function submitBooking(form, kind) {
   saveRecord('pr-bookings', { kind, ts: new Date().toISOString(), data })
   const [db] = await Promise.allSettled([
     saveBookingToDb(kind, data),
-    emailCopy(data, `New ${kind} booking enquiry — Picture Republiq`),
+    bookingEmailCopy(data, kind),
   ])
   if (db.status === 'rejected') throw db.reason
 }

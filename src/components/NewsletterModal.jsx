@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Eyebrow } from './ui.jsx'
-import { saveRecord, emailCopy, saveSubscriberToDb } from '../lib/forms.js'
+import { saveRecord, saveSubscriberToDb, subscriberAlertEmail } from '../lib/forms.js'
 import { toast } from './Toast.jsx'
 
 const DONE_KEY = 'pr-news-done'
@@ -41,7 +41,7 @@ export default function NewsletterModal() {
     try {
       const [db] = await Promise.allSettled([
         saveSubscriberToDb(email),
-        emailCopy({ email }, 'New newsletter subscriber — Picture Republiq'),
+        subscriberAlertEmail(email),
       ])
       if (db.status === 'rejected') throw db.reason
       setState('done')
