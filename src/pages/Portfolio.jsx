@@ -78,14 +78,14 @@ export default function Portfolio() {
       <PageHero image={galleryImg('weddings', 1)} eyebrow="Portfolio" title="Our Work"
         sub="A curated selection of the moments we've been honoured to capture." />
 
-      <Section bg="white">
+      <Section bg="white" className="pt-8 pb-16 md:py-28">
         <Wrap>
-          <Reveal className="flex justify-center flex-wrap gap-3 mb-13">
+          <Reveal className="flex justify-center flex-wrap gap-2 sm:gap-3 mb-7 sm:mb-10 md:mb-13">
             {FILTERS.map(([key, label, count]) => (
               <button key={key} onClick={() => setFilter(key)}
-                className={`font-sans text-xs tracking-[0.22em] uppercase px-5.5 py-[11px] border cursor-pointer transition-all duration-300
+                className={`font-sans text-[10.5px] sm:text-xs tracking-[0.16em] sm:tracking-[0.22em] uppercase px-3.5 sm:px-5.5 py-2 sm:py-[11px] border cursor-pointer transition-all duration-300
                 ${filter === key ? 'bg-ink border-ink text-white' : 'border-line text-muted hover:border-gold hover:text-golddark'}`}>
-                {label} <span className={`text-[10px] ml-1.5 tracking-[0.08em] ${filter === key ? 'text-gold' : 'text-gold'}`}>{count}</span>
+                {label} <span className={`text-[9.5px] sm:text-[10px] ml-1 tracking-[0.08em] ${filter === key ? 'text-gold' : 'text-gold'}`}>{count}</span>
               </button>
             ))}
           </Reveal>
