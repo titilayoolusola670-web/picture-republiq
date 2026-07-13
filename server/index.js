@@ -15,17 +15,26 @@ const HOST = process.env.HOST || '0.0.0.0'
 const TOKEN_SECRET = process.env.ADMIN_TOKEN_SECRET || crypto.randomBytes(32).toString('hex')
 const LEGACY_ADMIN_PASSWORD_HASH = 'd149f575651ad5cbf647353f662b263666d1218568287d311ac18dbf4f78c3d3'
 const distDir = path.resolve(__dirname, '..', 'dist')
-const corsOrigins = (process.env.CORS_ORIGINS || '*').split(',').map((origin) => origin.trim()).filter(Boolean)
+const configuredCorsOrigins = (process.env.CORS_ORIGINS || '').split(',').map((origin) => origin.trim()).filter(Boolean)
+const corsOrigins = configuredCorsOrigins.length ? configuredCorsOrigins : ['*']
 
-app.use('/api', (req, res, next) => {
+app.use((req, res, next) => {
+  if (!req.path.startsWith('/api')) return next()
+
   const origin = req.get('origin')
-  if (origin && (corsOrigins.includes('*') || corsOrigins.includes(origin))) {
+  const allowAll = corsOrigins.includes('*')
+  if (allowAll) {
+    res.set('Access-Control-Allow-Origin', origin || '*')
+  } else if (origin && corsOrigins.includes(origin)) {
     res.set('Access-Control-Allow-Origin', origin)
     res.set('Vary', 'Origin')
   }
+
   res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-  res.set('Access-Control-Allow-Headers', 'Content-Type,Accept,Authorization')
-  if (req.method === 'OPTIONS') return res.sendStatus(204)
+  res.set('Access-Control-Allow-Headers', req.get('access-control-request-headers') || 'Content-Type,Accept,Authorization')
+  res.set('Access-Control-Max-Age', '86400')
+  if (req.method === 'OPTIONS') return res.status(204).end()
+
   next()
 })
 
