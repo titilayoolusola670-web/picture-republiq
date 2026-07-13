@@ -1,15 +1,20 @@
 import crypto from 'node:crypto'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
 
 dotenv.config()
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const PORT = process.env.PORT || 4000
-const HOST = process.env.HOST || '127.0.0.1'
+const HOST = process.env.HOST || '0.0.0.0'
 const TOKEN_SECRET = process.env.ADMIN_TOKEN_SECRET || crypto.randomBytes(32).toString('hex')
 const LEGACY_ADMIN_PASSWORD_HASH = 'd149f575651ad5cbf647353f662b263666d1218568287d311ac18dbf4f78c3d3'
+const distDir = path.resolve(__dirname, '..', 'dist')
 
 app.use(express.json({ limit: '100kb' }))
 
@@ -140,6 +145,13 @@ app.get('/api/admin/subscribers', requireAdmin, requireDb, async (req, res, next
     next(err)
   }
 })
+
+if (fs.existsSync(distDir)) {
+  app.use(express.static(distDir))
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(distDir, 'index.html'))
+  })
+}
 
 app.use((err, req, res) => {
   console.error(err)
