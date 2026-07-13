@@ -133,7 +133,7 @@ app.post('/api/newsletter', requireDb, async (req, res, next) => {
     const subscriber = await Subscriber.findOneAndUpdate(
       { email },
       { $setOnInsert: { email } },
-      { new: true, upsert: true, setDefaultsOnInsert: true },
+      { returnDocument: 'after', upsert: true, setDefaultsOnInsert: true },
     )
     res.status(201).json({ subscriber: publicRecord(subscriber) })
   } catch (err) {
@@ -166,7 +166,7 @@ if (fs.existsSync(distDir)) {
   })
 }
 
-app.use((err, req, res) => {
+app.use((err, req, res, _next) => {
   console.error(err)
   res.status(500).json({ error: 'Server error' })
 })
