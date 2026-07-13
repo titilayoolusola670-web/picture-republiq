@@ -11,7 +11,8 @@ export const SOCIAL = {
 export const GALLERY_COUNTS = { weddings: 116, portraits: 85, family: 32, events: 34 }
 export const GALLERY_LABELS = { weddings: 'Weddings', portraits: 'Portraits', family: 'Family', events: 'Events' }
 
-export const galleryImg = (cat, n) => `assets/gallery/${cat}/${cat}-${String(n).padStart(3, '0')}.jpg`
+export const R2_PUBLIC_URL = 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev'
+export const galleryImg = (cat, n) => `${R2_PUBLIC_URL}/gallery/${cat}/${cat}-${String(n).padStart(3, '0')}.jpg`
 
 export const SITE_IMAGES = {
   services: {
