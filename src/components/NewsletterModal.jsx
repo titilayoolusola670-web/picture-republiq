@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Eyebrow } from './ui.jsx'
 import { saveRecord, emailCopy, saveSubscriberToDb } from '../lib/forms.js'
+import { toast } from './Toast.jsx'
 
 const DONE_KEY = 'pr-news-done'
 const SNOOZE_KEY = 'pr-news-snooze'
@@ -44,11 +45,12 @@ export default function NewsletterModal() {
       ])
       if (db.status === 'rejected') throw db.reason
       setState('done')
+      toast("You're on the newsletter list.")
       try { localStorage.setItem(DONE_KEY, '1') } catch { /* ok */ }
       setTimeout(() => setShow(false), 2200)
-    } catch {
+    } catch (err) {
       setState('idle')
-      alert('Sorry — something went wrong. Please try again, or email us at hello@picturerepubliq.com.')
+      toast(err.message || 'Sorry, something went wrong. Please try again, or email us at hello@picturerepubliq.com.', 'error')
     }
   }
 

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Btn, GoldRule } from './ui.jsx'
 import { submitBooking } from '../lib/forms.js'
 import { SOCIAL } from '../data.jsx'
+import { toast } from './Toast.jsx'
 
 export function Field({ label, required, hint, children }) {
   return (
@@ -47,10 +48,13 @@ export function EnquiryShell({ kind, confirmation, children }) {
         setError('')
         try {
           await submitBooking(e.target, kind)
+          toast('Your enquiry has been submitted successfully. We will get back to you within 24-48 hours.')
           setDone(true)
         } catch (err) {
           setState('idle')
-          setError(err.message || 'Could not save your enquiry. Please try again.')
+          const message = err.message || 'Could not save your enquiry. Please try again.'
+          setError(message)
+          toast(message, 'error')
         }
       }}
     >

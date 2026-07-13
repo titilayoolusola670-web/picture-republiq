@@ -28,6 +28,7 @@ export default function Admin() {
   const [error, setError] = useState('')
   const [bookings, setBookings] = useState([])
   const [subs, setSubs] = useState([])
+  const [activeEnquiry, setActiveEnquiry] = useState(null)
 
   useEffect(() => {
     let token = ''
@@ -143,7 +144,14 @@ export default function Admin() {
                         <td className={td}>{d.fullName}</td>
                         <td className={td}>{d.email}{d.phone && <><br />{d.phone}</>}</td>
                         <td className={td}>{details.map((x) => <div key={x}>{x}</div>)}</td>
-                        <td className={`${td} max-w-[320px] text-[13px] text-muted`}>{d.message}</td>
+                        <td className={`${td} max-w-[320px] text-[13px] text-muted`}>
+                          <p className="m-0 overflow-hidden [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]">{d.message || 'No message provided.'}</p>
+                          <button
+                            onClick={() => setActiveEnquiry(b)}
+                            className="mt-2 text-[10.5px] tracking-[0.18em] uppercase border border-gold text-golddark px-3 py-1.5 cursor-pointer transition-all duration-300 hover:bg-gold hover:text-white">
+                            Open
+                          </button>
+                        </td>
                       </tr>
                     )
                   })}
@@ -173,6 +181,7 @@ export default function Admin() {
           If this page cannot load records, check that the local API is running and that <code>MONGODB_URI</code> is set in <code>.env</code>.
         </p>
       </div>
+      {activeEnquiry && <EnquiryModal enquiry={activeEnquiry} onClose={() => setActiveEnquiry(null)} />}
     </main>
   )
 }
@@ -182,6 +191,68 @@ function Empty({ title, children }) {
     <div className="py-15 px-6 text-center text-muted text-[15px]">
       <strong className="block font-serif font-normal text-[22px] text-body mb-2">{title}</strong>
       {children}
+    </div>
+  )
+}
+
+function EnquiryModal({ enquiry, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [onClose])
+
+  const d = enquiry.data || {}
+  const details = [
+    ['Received', fmt(enquiry.ts)],
+    ['Type', enquiry.kind],
+    ['Name', d.fullName],
+    ['Email', d.email],
+    ['Phone', d.phone],
+    ['City', d.city],
+    ['Date', d.eventDate || d.weddingDate],
+    ['Service / Event', d.service || d.eventType],
+    ['Coverage', d.coverage || d.duration],
+    ['Guests', d.guests],
+    ['Add-ons', d.addons],
+  ].filter(([, value]) => value)
+
+  return (
+    <div
+      className="fixed inset-0 z-[900] flex items-center justify-center bg-[#0a0a0a]/70 px-5 py-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Form enquiry details"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+    >
+      <div className="w-full max-w-[860px] max-h-[88vh] overflow-hidden bg-white border-t-[3px] border-gold shadow-[0_36px_90px_rgba(0,0,0,0.35)] animate-fade-up">
+        <header className="flex items-start justify-between gap-5 bg-ink px-6 py-5">
+          <div>
+            <span className="block text-[10px] tracking-[0.24em] uppercase text-gold">Form Enquiry</span>
+            <h2 className="text-white text-[clamp(24px,3vw,32px)] mt-1">{d.fullName || 'Unnamed enquiry'}</h2>
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Close enquiry"
+            className="border border-white/35 text-white/85 w-10 h-10 cursor-pointer transition-all duration-300 hover:bg-gold hover:border-gold hover:text-white">
+            x
+          </button>
+        </header>
+        <div className="max-h-[calc(88vh-112px)] overflow-y-auto px-6 py-6">
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+            {details.map(([label, value]) => (
+              <div key={label}>
+                <dt className="text-[10px] tracking-[0.18em] uppercase text-muted">{label}</dt>
+                <dd className="mt-1 text-[14.5px] text-body break-words">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="border-t border-line mt-6 pt-6">
+            <span className="block text-[10px] tracking-[0.18em] uppercase text-muted mb-2">Message</span>
+            <p className="whitespace-pre-wrap break-words text-[15px] leading-relaxed text-body">{d.message || 'No message provided.'}</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

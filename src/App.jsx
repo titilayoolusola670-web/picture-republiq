@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import NewsletterModal from './components/NewsletterModal.jsx'
+import ToastHost from './components/Toast.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
@@ -83,6 +84,7 @@ export default function App() {
       </Routes>
       {!bare && <Footer />}
       {!bare && <NewsletterModal />}
+      <ToastHost />
     </>
   )
 }
