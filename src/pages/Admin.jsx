@@ -103,11 +103,11 @@ export default function Admin() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-11 pt-12 pb-24">
         <h1 className="text-[clamp(28px,3.4vw,38px)] mb-1.5">Welcome back.</h1>
         <p className="text-muted text-[15px] mb-8">Form enquiries and newsletter subscribers saved in MongoDB.</p>
-        {error && <p className="mb-8 text-[13px] text-[#a4392f] bg-white border border-[#a4392f]/20 px-4.5 py-3.5">{error}</p>}
+        {error && <p className="mb-8 text-[13px] text-[#a4392f] bg-ivory border border-[#a4392f]/20 px-4.5 py-3.5">{error}</p>}
 
         <div className="grid grid-cols-2 gap-4.5 max-w-[560px] mb-10">
           {[[bookings.length, 'Form Enquiries'], [subs.length, 'Newsletter Subscribers']].map(([n, l]) => (
-            <div key={l} className="bg-white border border-line border-t-[3px] border-t-gold px-6 py-5">
+            <div key={l} className="bg-ivory border border-line border-t-[3px] border-t-gold px-6 py-5">
               <span className="block font-serif text-[40px] leading-none text-ink">{n}</span>
               <span className="block text-[11px] tracking-[0.18em] uppercase text-muted mt-2">{l}</span>
             </div>
@@ -127,7 +127,7 @@ export default function Admin() {
           </button>
         </div>
 
-        <div className="bg-white border border-line overflow-x-auto animate-fade-up" key={tab}>
+        <div className="bg-ivory border border-line overflow-x-auto animate-fade-up" key={tab}>
           {tab === 'bookings' ? (
             bookings.length === 0 ? (
               <Empty title="No form enquiries recorded yet">New enquiries submitted through the website forms will appear here — and every enquiry also lands in your email.</Empty>
@@ -226,7 +226,7 @@ function EnquiryModal({ enquiry, onClose }) {
       aria-label="Form enquiry details"
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
     >
-      <div className="w-full max-w-[860px] max-h-[88vh] overflow-hidden bg-white border-t-[3px] border-gold shadow-[0_36px_90px_rgba(0,0,0,0.35)] animate-fade-up">
+      <div className="w-full max-w-[860px] max-h-[88vh] overflow-hidden bg-ivory border-t-[3px] border-gold shadow-[0_36px_90px_rgba(0,0,0,0.35)] animate-fade-up">
         <header className="flex items-start justify-between gap-5 bg-ink px-6 py-5">
           <div>
             <span className="block text-[10px] tracking-[0.24em] uppercase text-gold">Form Enquiry</span>

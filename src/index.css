@@ -5,8 +5,8 @@
   --color-ink2: #1a1a1a;
   --color-gold: #c2a05d;
   --color-golddark: #a8874a;
-  --color-ivory: #f7f4ee;
-  --color-warmgrey: #edeae4;
+  --color-ivory: #f4efe6;
+  --color-warmgrey: #dfdad0;
   --color-beige: #e7ddcc;
   --color-body: #2b2b2b;
   --color-muted: #6f6a61;
@@ -18,7 +18,7 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body {
-    @apply font-sans text-[17px] leading-[1.75] font-light text-body bg-ivory antialiased;
+    @apply font-sans text-[17px] leading-[1.75] font-light text-body bg-warmgrey antialiased;
   }
   h1, h2, h3, h4 {
     @apply font-serif font-normal text-ink;
@@ -37,7 +37,7 @@
   .field-input {
     @apply w-full font-sans text-[15px] font-light text-body bg-ivory border border-line px-[18px] py-[14px] rounded-none appearance-none transition-colors duration-300;
   }
-  .field-input:focus { @apply outline-none border-gold bg-white; }
+  .field-input:focus { @apply outline-none border-gold bg-ivory; }
   select.field-input {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c2a05d' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;

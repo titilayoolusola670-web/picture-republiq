@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 /* ---------- layout ---------- */
 
 const SECTION_BG = {
-  white: 'bg-white',
+  white: 'bg-warmgrey',
   grey: 'bg-warmgrey',
   beige: 'bg-beige',
   black: 'bg-ink text-white/80',
@@ -45,7 +45,7 @@ export function GoldRule({ left = false, className = '' }) {
 const BTN = {
   dark: 'border-ink text-ink hover:bg-ink hover:text-white',
   gold: 'border-gold bg-gold text-white hover:bg-golddark hover:border-golddark',
-  ghost: 'border-white/85 text-white hover:bg-white hover:text-ink',
+  ghost: 'border-white/85 text-white hover:bg-warmgrey hover:text-ink',
 }
 
 export function Btn({ variant = 'dark', to, href, className = '', children, ...rest }) {
@@ -153,7 +153,7 @@ export function IncludeGrid({ items }) {
 
 export function PriceCard({ tag, title, blurb, price, features, cta, to, featured = false }) {
   return (
-    <Reveal className={`bg-white border border-line flex flex-col text-center px-10 pt-13 pb-11 transition-shadow hover:shadow-[0_24px_48px_rgba(16,16,16,0.10)] hover:-translate-y-1.5 ${featured ? 'border-t-[3px] border-t-gold' : ''}`}>
+    <Reveal className={`bg-ivory border border-line flex flex-col text-center px-10 pt-13 pb-11 transition-shadow hover:shadow-[0_24px_48px_rgba(16,16,16,0.10)] hover:-translate-y-1.5 ${featured ? 'border-t-[3px] border-t-gold' : ''}`}>
       <div className="text-[11px] tracking-[0.3em] uppercase text-gold mb-3.5">{tag}</div>
       <h3 className="text-[clamp(22px,2.3vw,27px)] mb-3">{title}</h3>
       <p className="text-[15px] text-muted min-h-[72px]">{blurb}</p>

@@ -37,7 +37,7 @@ export default function Weddings() {
 
       <Section bg="grey" id="enquiry">
         <Wrap narrow>
-          <div className="bg-white border border-line border-t-[3px] border-t-gold px-7 py-11 sm:px-14 sm:py-16">
+          <div className="bg-ivory border border-line border-t-[3px] border-t-gold px-7 py-11 sm:px-14 sm:py-16">
             <EnquiryShell kind="Wedding" confirmation={
               <Confirmation>
                 <p className="mb-4">We are honoured that you're considering Picture Republiq to capture your wedding day. Your enquiry has been received successfully, and we will review your details carefully before getting in touch with you within 24–48 hours.</p>

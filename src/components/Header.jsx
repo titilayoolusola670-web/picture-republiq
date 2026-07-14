@@ -45,9 +45,9 @@ export default function Header({ solid = false }) {
           aria-label="Menu"
           onClick={() => setOpen(!open)}
         >
-          <span className={`block h-px bg-white transition-all duration-300 ${open ? 'translate-y-2 rotate-45' : ''}`} />
-          <span className={`block h-px bg-white transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-          <span className={`block h-px bg-white transition-all duration-300 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+          <span className={`block h-px bg-warmgrey transition-all duration-300 ${open ? 'translate-y-2 rotate-45' : ''}`} />
+          <span className={`block h-px bg-warmgrey transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+          <span className={`block h-px bg-warmgrey transition-all duration-300 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
         </button>
 
         <nav className={`

@@ -38,7 +38,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="bg-white pt-32 md:pt-40 pb-20 px-7 lg:px-20" id="enquiry">
+        <div className="bg-warmgrey pt-32 md:pt-40 pb-20 px-7 lg:px-20" id="enquiry">
           <Eyebrow>— Get in Touch</Eyebrow>
           <h2 className="text-[clamp(29px,3.5vw,42px)]">What can we <em className="text-golddark">help with?</em></h2>
           <p className="text-muted text-base max-w-[520px] mt-4 mb-10">
@@ -95,7 +95,7 @@ export default function Contact() {
             {CONNECT.map(([href, Icon, label, value]) => (
               <Reveal key={label}>
                 <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                  className="flex items-center gap-5 bg-white border border-line px-7 py-6 transition-all duration-350 hover:-translate-y-1 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)] group/connect">
+                  className="flex items-center gap-5 bg-ivory border border-line px-7 py-6 transition-all duration-350 hover:-translate-y-1 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)] group/connect">
                   <span className="w-[50px] h-[50px] shrink-0 border border-gold rounded-full flex items-center justify-center text-gold transition-colors duration-350 group-hover/connect:bg-gold group-hover/connect:text-white">
                     <Icon className="w-[21px] h-[21px]" />
                   </span>

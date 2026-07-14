@@ -64,7 +64,7 @@ export default function Policy() {
               <p className="mb-4">To secure your photography session or event date, a <strong className="font-medium text-ink">70% booking fee</strong> is required at the time of booking. This payment confirms your reservation and allows us to allocate the requested date and time exclusively to you. Until the booking fee has been received, your date remains available for other clients.</p>
               <p>The remaining <strong className="font-medium text-ink">30% balance</strong> is due immediately after the photography session or event.</p>
             </Reveal>
-            <Reveal className="bg-white border border-line border-t-[3px] border-t-gold px-9 py-10">
+            <Reveal className="bg-ivory border border-line border-t-[3px] border-t-gold px-9 py-10">
               <span className="block text-[11px] tracking-[0.3em] uppercase text-gold mb-4">Please note</span>
               <ul className="grid gap-4 text-[15.5px] text-body">
                 <li className="pl-7 relative"><span className="absolute left-0 text-gold">✓</span>Final image selection and delivery will only begin once the outstanding balance has been fully paid.</li>
@@ -89,7 +89,7 @@ export default function Policy() {
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-13 text-left">
             {TIERS.map(([when, charge, text]) => (
-              <Reveal key={when} className="bg-white border border-line px-8 pt-9 pb-8 transition-all duration-350 hover:-translate-y-1 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)]">
+              <Reveal key={when} className="bg-ivory border border-line px-8 pt-9 pb-8 transition-all duration-350 hover:-translate-y-1 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)]">
                 <span className="block text-[11px] tracking-[0.24em] uppercase text-muted mb-2">{when}</span>
                 <span className="block font-serif text-[clamp(24px,2.4vw,30px)] text-golddark mb-3.5">{charge}</span>
                 <p className="text-[14.5px] text-muted m-0">{text}</p>

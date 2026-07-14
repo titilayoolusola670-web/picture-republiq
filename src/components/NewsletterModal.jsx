@@ -61,7 +61,7 @@ export default function NewsletterModal() {
       role="dialog" aria-modal="true" aria-label="Join our newsletter"
       onClick={(e) => { if (e.target === e.currentTarget) close() }}
     >
-      <div className="relative w-full max-w-[540px] bg-white border-t-[3px] border-gold px-7 sm:px-13 pt-14 pb-12 text-center shadow-[0_40px_90px_rgba(0,0,0,0.35)] animate-fade-up">
+      <div className="relative w-full max-w-[540px] bg-ivory border-t-[3px] border-gold px-7 sm:px-13 pt-14 pb-12 text-center shadow-[0_40px_90px_rgba(0,0,0,0.35)] animate-fade-up">
         <button
           onClick={close} aria-label="Close"
           className="absolute top-3.5 right-3.5 w-[38px] h-[38px] border border-line text-muted text-[15px] leading-none cursor-pointer transition-all duration-300 hover:border-gold hover:text-golddark"

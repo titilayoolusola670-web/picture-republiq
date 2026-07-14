@@ -53,7 +53,7 @@ export default function About() {
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14 text-left">
             {PROMISES.map(([title, text, icon]) => (
-              <Reveal key={title} className="bg-white border border-line px-8 pt-11 pb-9 text-center transition-all duration-350 hover:-translate-y-1.5 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)] group/promise">
+              <Reveal key={title} className="bg-ivory border border-line px-8 pt-11 pb-9 text-center transition-all duration-350 hover:-translate-y-1.5 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)] group/promise">
                 <span className="w-[54px] h-[54px] border border-gold rounded-full flex items-center justify-center mx-auto mb-5 text-gold transition-colors duration-350 group-hover/promise:bg-gold group-hover/promise:text-white">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="w-[22px] h-[22px]">{icon}</svg>
                 </span>

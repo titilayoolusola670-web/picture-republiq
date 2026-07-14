@@ -40,7 +40,7 @@ export default function Login() {
   return (
     <main className="min-h-screen flex items-center justify-center p-6 bg-ink bg-cover bg-center relative" style={{ backgroundImage: 'url(assets/logo1.jpg)' }}>
       <div className="absolute inset-0 bg-[#0a0a0a]/82" />
-      <div className="relative w-full max-w-[420px] bg-white border-t-[3px] border-gold px-11 pt-13 pb-11 text-center animate-fade-up">
+      <div className="relative w-full max-w-[420px] bg-ivory border-t-[3px] border-gold px-11 pt-13 pb-11 text-center animate-fade-up">
         <img src="assets/logo-mark-white.png" alt="Picture Republiq" className="w-[120px] mx-auto mb-5 invert" />
         <h1 className="text-3xl mb-2">Admin Access</h1>
         <p className="text-sm text-muted mb-7">Enter the admin password to continue.</p>

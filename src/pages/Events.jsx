@@ -29,7 +29,7 @@ export default function Events() {
 
       <Section bg="white" id="enquiry">
         <Wrap narrow>
-          <div className="bg-white border border-line border-t-[3px] border-t-gold px-7 py-11 sm:px-14 sm:py-16">
+          <div className="bg-ivory border border-line border-t-[3px] border-t-gold px-7 py-11 sm:px-14 sm:py-16">
             <EnquiryShell kind="Event" confirmation={
               <Confirmation>
                 <p className="mb-4">We've successfully received your event enquiry. Thank you for considering Picture Republiq to capture your special occasion.</p>
