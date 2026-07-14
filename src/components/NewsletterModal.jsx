@@ -50,7 +50,7 @@ export default function NewsletterModal() {
       setTimeout(() => setShow(false), 2200)
     } catch (err) {
       setState('idle')
-      toast(err.message || 'Sorry, something went wrong. Please try again, or email us at hello@picturerepubliq.com.', 'error')
+      toast(err.message || 'Sorry, something went wrong. Please try again, or email us at info@picturerepubliq.com.', 'error')
     }
   }
 

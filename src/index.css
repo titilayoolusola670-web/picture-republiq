@@ -70,9 +70,21 @@
     animation: ig-scroll 45s linear infinite;
   }
   .ig-track:hover { animation-play-state: paused; }
+
+  .service-rail {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: service-rail-scroll 54s linear infinite;
+  }
+  .service-rail:hover { animation-play-state: paused; }
 }
 
 @keyframes ig-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes service-rail-scroll {
   to { transform: translateX(-50%); }
 }
 
@@ -97,4 +109,5 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ig-track { animation: none; }
+  .service-rail { animation: none; }
 }

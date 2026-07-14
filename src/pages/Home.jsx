@@ -116,7 +116,6 @@ function WeddingCta() {
             <p className="text-white/78">If you're planning your big day, we would love to hear your story.</p>
             <div className="flex flex-wrap gap-4 mt-9">
               <Btn variant="gold" to="/weddings">View Wedding Collections</Btn>
-              <Btn variant="ghost" to="/contact?service=wedding">Check Your Date</Btn>
             </div>
           </Reveal>
           <Reveal className="order-1 md:order-2 relative after:content-[''] after:absolute after:border after:border-gold/60 after:-z-1 after:top-[18px] after:-right-[18px] after:-bottom-[18px] after:left-[18px]">

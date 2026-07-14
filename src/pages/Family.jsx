@@ -1,24 +1,41 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Poem, IncludeGrid, PriceCard, WorkPointer, PageHero, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, WorkPointer, ServiceHero, ImageRail, ServiceStory, useTitle } from '../components/ui.jsx'
 import { INCLUDES, FAMILY_COLLECTIONS, galleryImg } from '../data.jsx'
+
+const FAMILY_SLIDES = [18, 32, 20, 5].map((n) => galleryImg('family', n))
+const FAMILY_RAIL = [18, 20, 32, 5, 2, 11, 24, 30].map((n) => galleryImg('family', n))
 
 export default function Family() {
   useTitle('Family')
   return (
     <main>
-      <PageHero image={galleryImg('family', 5)} eyebrow="Family"
+      <ServiceHero images={FAMILY_SLIDES} eyebrow="Family"
         title={<>The Moments You Never<br />Want to Forget</>}
-        sub="Family is where our most meaningful stories begin." />
+        sub="Relaxed family photographs that preserve connection, personality, laughter, and the small gestures that become priceless with time."
+        cta="Start Your Family Enquiry"
+        to="/contact?service=family" />
 
-      <Section bg="white">
-        <Wrap narrow className="text-center">
+      <ImageRail images={FAMILY_RAIL} label="Family photography highlights" />
+
+      <ServiceStory
+        eyebrow="The Family Experience"
+        title={<>A calm, natural space for real <em className="text-golddark">connection.</em></>}
+        image={galleryImg('family', 20)}
+        body={[
+          "The laughter shared around the dinner table. The little moments between parents and children. The quiet embraces, playful interactions, and genuine connections that make your family unique.",
+          "Our sessions are designed to feel natural, relaxed, and enjoyable, allowing your family's true connection to shine through every photograph.",
+        ]}
+        points={INCLUDES.family}
+      />
+
+      <Section bg="grey">
+        <Wrap className="text-center">
           <Reveal>
-            <p className="mb-4">The laughter shared around the dinner table. The little moments between parents and children. The quiet embraces, playful interactions, and genuine connections that make your family unique.</p>
-            <p>I create timeless family photography that captures the love, personality, and bond that exists between the people who matter most. Our sessions are designed to feel natural, relaxed, and enjoyable, allowing your family's true connection to shine through every photograph.</p>
-            <Poem className="text-[clamp(22px,2.6vw,28px)] my-8" lines={['Because children grow.', 'Seasons change.', 'Moments pass.']} />
-            <p>But beautiful photographs allow you to return to those memories again and again.</p>
+            <Eyebrow>Services Include</Eyebrow>
+            <h2 className="text-[clamp(29px,3.5vw,42px)]">Family Photography Services</h2>
+            <GoldRule />
           </Reveal>
+          <IncludeGrid items={INCLUDES.family} />
         </Wrap>
-        <Wrap><IncludeGrid items={INCLUDES.family} /></Wrap>
       </Section>
 
       <Section bg="grey">

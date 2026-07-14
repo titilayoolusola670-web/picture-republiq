@@ -1,18 +1,36 @@
-import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, WorkPointer, PageHero, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, WorkPointer, ServiceHero, ImageRail, ServiceStory, useTitle } from '../components/ui.jsx'
 import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '../components/EnquiryForm.jsx'
 import { INCLUDES, galleryImg } from '../data.jsx'
 
 const EVENT_TYPES = ['Birthday Celebration', 'Corporate Event', 'Anniversary', 'Engagement Party', 'Baby Shower', 'Bridal Shower', 'Graduation Celebration', 'Conference', 'Church Programme', 'Award Ceremony', 'Gala Dinner', 'Product Launch', 'Networking Event', 'Private Party', 'Other (Please specify)']
+const EVENT_SLIDES = [10, 9, 11, 3].map((n) => galleryImg('events', n))
+const EVENT_RAIL = [10, 9, 11, 3, 1, 5, 17, 24].map((n) => galleryImg('events', n))
 
 export default function Events() {
   useTitle('Events')
   return (
     <main>
-      <PageHero image={galleryImg('events', 10)} eyebrow="Events"
+      <ServiceHero images={EVENT_SLIDES} eyebrow="Events"
         title={<>Professional Photography<br />for Meaningful Events</>}
-        sub="From intimate celebrations to corporate conferences, we document every event with professionalism and creativity." />
+        sub="From intimate celebrations to corporate conferences, we document atmosphere, guests, details, key moments, and the energy of the day."
+        cta="Start Your Event Enquiry"
+        to="/contact?service=event" />
 
-      <Section bg="white">
+      <ImageRail images={EVENT_RAIL} label="Event photography highlights" />
+
+      <ServiceStory
+        eyebrow="The Event Experience"
+        title={<>Coverage that keeps the room, the rhythm, and the <em className="text-golddark">moments.</em></>}
+        image={galleryImg('events', 9)}
+        reverse
+        body={[
+          "Every event has a pace of its own. We work discreetly and intentionally, capturing the people, details, programme flow, and candid interactions that make the occasion matter.",
+          "The result is a polished gallery that feels useful, memorable, and complete whether the event is personal, corporate, faith-based, or community-led.",
+        ]}
+        points={INCLUDES.events.slice(0, 6)}
+      />
+
+      <Section bg="grey">
         <Wrap className="text-center">
           <Reveal>
             <Eyebrow>Services Include</Eyebrow>

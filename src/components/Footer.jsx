@@ -65,6 +65,10 @@ export default function Footer() {
                 <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors duration-300">{SOCIAL.handle}</a>
               </li>
               <li className="mb-3 flex items-center gap-3">
+                <TikTokIcon className="w-[15px] h-[15px] shrink-0 text-gold" />
+                <a href={SOCIAL.tiktok} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors duration-300">{SOCIAL.handle}</a>
+              </li>
+              <li className="mb-3 flex items-center gap-3">
                 <MailIcon className="w-[15px] h-[15px] shrink-0 text-gold" />
                 <a href={SOCIAL.email} className="hover:text-gold transition-colors duration-300">{SOCIAL.emailText}</a>
               </li>

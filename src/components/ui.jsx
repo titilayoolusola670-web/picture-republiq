@@ -92,6 +92,95 @@ export function PageHero({ image, eyebrow, title, sub, compact = false, tight = 
   )
 }
 
+export function ServiceHero({ eyebrow, title, sub, images = [], cta = 'Start an Enquiry', to = '/contact' }) {
+  const [active, setActive] = useState(0)
+  useEffect(() => {
+    if (images.length < 2) return undefined
+    const t = setInterval(() => setActive((a) => (a + 1) % images.length), 4600)
+    return () => clearInterval(t)
+  }, [images.length])
+
+  return (
+    <section className="relative min-h-[78vh] bg-ink overflow-hidden flex items-end">
+      {images.map((src, i) => (
+        <div
+          key={src}
+          className={`absolute inset-0 bg-cover bg-center transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+          style={{ backgroundImage: `url(${src})` }}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/88 via-[#080808]/50 to-[#080808]/24" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-[#080808]/35" />
+      <Wrap className="relative z-[2] pb-14 pt-36 md:pb-20">
+        <div className="max-w-[760px]">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h1 className="text-white text-[clamp(40px,6vw,74px)]">{title}</h1>
+          {sub && <p className="text-white/82 max-w-[590px] mt-6 text-lg">{sub}</p>}
+          <Btn variant="gold" to={to} className="mt-9">{cta}</Btn>
+        </div>
+        <div className="mt-12 grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-[560px]">
+          {images.slice(0, 4).map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              aria-label={`Show ${eyebrow} image ${i + 1}`}
+              onClick={() => setActive(i)}
+              className={`relative aspect-[4/3] overflow-hidden border cursor-pointer transition-all duration-300 ${i === active ? 'border-gold opacity-100' : 'border-white/20 opacity-60 hover:opacity-90'}`}
+            >
+              <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </Wrap>
+    </section>
+  )
+}
+
+export function ImageRail({ images = [], label = 'Selected Work' }) {
+  const rail = [...images, ...images]
+  return (
+    <section className="bg-ink py-5 overflow-hidden" aria-label={label}>
+      <div className="service-rail">
+        {rail.map((src, i) => (
+          <div key={`${src}-${i}`} className="w-[240px] sm:w-[330px] lg:w-[410px] h-[310px] sm:h-[390px] lg:h-[480px] shrink-0 overflow-hidden bg-ink2">
+            <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export function ServiceStory({ eyebrow, title, body, points = [], image, reverse = false }) {
+  return (
+    <Section bg="white">
+      <Wrap>
+        <div className={`grid grid-cols-1 lg:grid-cols-[0.92fr_1.08fr] gap-12 lg:gap-20 items-center ${reverse ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+          <Reveal>
+            <Eyebrow>{eyebrow}</Eyebrow>
+            <h2 className="text-[clamp(30px,4vw,50px)]">{title}</h2>
+            <GoldRule left />
+            <div className="grid gap-4 text-body">
+              {body.map((p) => <p key={p}>{p}</p>)}
+            </div>
+            {points.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8">
+                {points.map((point) => (
+                  <span key={point} className="border border-ink/12 bg-ivory px-4 py-3 text-[13px] tracking-[0.13em] uppercase text-muted">{point}</span>
+                ))}
+              </div>
+            )}
+          </Reveal>
+          <Reveal className="relative min-h-[420px] lg:min-h-[620px]">
+            <div className="absolute inset-0 border border-gold/60 translate-x-4 translate-y-4" />
+            <Tile src={image} alt="" className="relative h-full min-h-[420px] lg:min-h-[620px]" />
+          </Reveal>
+        </div>
+      </Wrap>
+    </Section>
+  )
+}
+
 /* ---------- image tile ---------- */
 
 export function Tile({ src, alt, wide = false, className = '' }) {

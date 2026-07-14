@@ -2,10 +2,10 @@ export const SOCIAL = {
   instagram: 'https://instagram.com/picture_republiq',
   tiktok: 'https://www.tiktok.com/@picture_republiq',
   whatsapp: 'https://wa.me/2348097633559',
-  email: 'mailto:hello@picturerepubliq.com',
+  email: 'mailto:info@picturerepubliq.com',
   handle: '@picture_republiq',
   phone: '+234 809 763 3559',
-  emailText: 'hello@picturerepubliq.com',
+  emailText: 'info@picturerepubliq.com',
 }
 
 export const GALLERY_COUNTS = { weddings: 116, portraits: 85, family: 32, events: 34 }

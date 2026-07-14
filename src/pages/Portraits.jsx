@@ -1,21 +1,42 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, WorkPointer, PageHero, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, WorkPointer, ServiceHero, ImageRail, ServiceStory, useTitle } from '../components/ui.jsx'
 import { INCLUDES, PORTRAIT_COLLECTIONS, galleryImg } from '../data.jsx'
+
+const PORTRAIT_SLIDES = [7, 1, 10, 47].map((n) => galleryImg('portraits', n))
+const PORTRAIT_RAIL = [7, 1, 3, 10, 15, 47, 52, 68].map((n) => galleryImg('portraits', n))
 
 export default function Portraits() {
   useTitle('Portraits')
   return (
     <main>
-      <PageHero image={galleryImg('portraits', 1)} eyebrow="Portraits"
+      <ServiceHero images={PORTRAIT_SLIDES} eyebrow="Portraits"
         title="Portraits That Feel Like You"
-        sub="Every portrait should celebrate who you are." />
+        sub="Confident, polished, and personal images for milestones, branding, graduation, editorial concepts, and the season of life you are in now."
+        cta="Start Your Portrait Enquiry"
+        to="/contact?service=portrait" />
 
-      <Section bg="white">
-        <Wrap narrow className="text-center">
+      <ImageRail images={PORTRAIT_RAIL} label="Portrait photography highlights" />
+
+      <ServiceStory
+        eyebrow="The Portrait Experience"
+        title={<>A guided session built around your <em className="text-golddark">presence.</em></>}
+        image={galleryImg('portraits', 47)}
+        reverse
+        body={[
+          "Whether you are updating your professional image, celebrating a milestone, building a personal brand, or creating something editorial, your portrait session should feel considered from start to finish.",
+          "We guide expression, posture, styling rhythm, and image selection so the final gallery feels natural, confident, and unmistakably personal.",
+        ]}
+        points={INCLUDES.portraits}
+      />
+
+      <Section bg="grey">
+        <Wrap className="text-center">
           <Reveal>
-            <p>Whether you're updating your professional image, celebrating a milestone, or simply capturing this season of life, we create portraits that feel natural, confident, and timeless.</p>
+            <Eyebrow>Services Include</Eyebrow>
+            <h2 className="text-[clamp(29px,3.5vw,42px)]">Portrait Photography Services</h2>
+            <GoldRule />
           </Reveal>
+          <IncludeGrid items={INCLUDES.portraits} />
         </Wrap>
-        <Wrap><IncludeGrid items={INCLUDES.portraits} /></Wrap>
       </Section>
 
       <Section bg="grey">

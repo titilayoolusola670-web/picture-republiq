@@ -1,24 +1,32 @@
-import { Section, Wrap, Eyebrow, GoldRule, Reveal, Poem, IncludeGrid, WorkPointer, PageHero, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, WorkPointer, ServiceHero, ImageRail, ServiceStory, useTitle } from '../components/ui.jsx'
 import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '../components/EnquiryForm.jsx'
 import { INCLUDES, galleryImg } from '../data.jsx'
+
+const WEDDING_SLIDES = [52, 13, 27, 45].map((n) => galleryImg('weddings', n))
+const WEDDING_RAIL = [5, 13, 27, 45, 52, 99, 108, 1].map((n) => galleryImg('weddings', n))
 
 export default function Weddings() {
   useTitle('Weddings')
   return (
     <main>
-      <PageHero image={galleryImg('weddings', 1)} eyebrow="Weddings"
+      <ServiceHero images={WEDDING_SLIDES} eyebrow="Weddings"
         title={<>From &ldquo;Yes&rdquo; to &ldquo;I Do,&rdquo;<br />Every Beautiful Detail Captured</>}
-        sub="Your Love Story Deserves to Be Remembered Forever" />
+        sub="A wedding day moves quickly. We photograph the emotion, the people, the atmosphere, and the quiet details with the kind of care your story deserves."
+        cta="Start Your Wedding Enquiry"
+        to="/contact?service=wedding" />
 
-      <Section bg="white">
-        <Wrap narrow className="text-center">
-          <Reveal>
-            <p>Your wedding is one of life's most important celebrations. It's a collection of unforgettable moments.</p>
-            <Poem className="text-[clamp(24px,3vw,34px)] my-8" lines={['The anticipation.', 'The vows.', 'The joyful tears.', 'The laughter.', 'The celebration.']} />
-            <p>I document every chapter with authenticity, elegance, and attention to detail, allowing you to relive your wedding day for years to come.</p>
-          </Reveal>
-        </Wrap>
-      </Section>
+      <ImageRail images={WEDDING_RAIL} label="Wedding photography highlights" />
+
+      <ServiceStory
+        eyebrow="The Wedding Experience"
+        title={<>Photography that remembers how the day <em className="text-golddark">felt.</em></>}
+        image={galleryImg('weddings', 99)}
+        body={[
+          "Your wedding is not just a schedule of events. It is anticipation, vows, joyful tears, laughter, movement, family, beauty, and celebration happening all at once.",
+          "We document every chapter with authenticity, elegance, and attention to detail, so years from now the photographs still bring you back to the room, the people, and the feeling.",
+        ]}
+        points={['Emotion-led coverage', 'True-to-colour editing', 'Detail storytelling', 'Gallery delivery']}
+      />
 
       <Section bg="grey">
         <Wrap className="text-center">
