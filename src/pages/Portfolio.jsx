@@ -75,7 +75,7 @@ export default function Portfolio() {
 
   return (
     <main>
-      <PageHero image={galleryImg('weddings', 1)} eyebrow="Portfolio" title="Our Work"
+      <PageHero image="/assets/portfolio-camera-hero.png" imageFit="cover" imagePosition="center" eyebrow="Portfolio" title="Our Work"
         sub="A curated selection of the moments we've been honoured to capture." />
 
       <Section bg="white" className="pt-8 pb-16 md:py-28">
@@ -89,12 +89,12 @@ export default function Portfolio() {
               </button>
             ))}
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5.5">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5.5">
             {visible.map((t, i) => (
               <button key={t.src} onClick={() => setLb(i)} aria-label="View photo"
-                className={`relative overflow-hidden bg-warmgrey cursor-zoom-in group ${i % 3 === 1 ? 'aspect-[3/4.4]' : 'aspect-[3/4]'}`}>
+                className="relative overflow-hidden cursor-zoom-in group bg-transparent block w-full mb-5.5 break-inside-avoid">
                 <img src={t.src} alt={`${GALLERY_LABELS[t.cat]} photography by Picture Republiq`} loading="lazy" decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+                  className="w-full h-auto transition-transform duration-[1200ms] group-hover:scale-[1.025]" />
               </button>
             ))}
           </div>

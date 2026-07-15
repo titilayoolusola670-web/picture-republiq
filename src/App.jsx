@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import NewsletterModal from './components/NewsletterModal.jsx'
 import ToastHost from './components/Toast.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
@@ -66,7 +65,7 @@ export default function App() {
     <>
       {withSplash && <Splash />}
       <ScrollToTop />
-      {!bare && <Header solid={location.pathname === '/contact'} />}
+      {!bare && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -83,7 +82,6 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       {!bare && <Footer />}
-      {!bare && <NewsletterModal />}
       <ToastHost />
     </>
   )

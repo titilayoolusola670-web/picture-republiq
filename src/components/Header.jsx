@@ -17,31 +17,31 @@ const navCls = ({ isActive }) =>
    after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-gold after:transition-all after:duration-300
    ${isActive ? 'text-gold after:w-full' : 'text-white/85 hover:text-gold after:w-0 hover:after:w-full'}`
 
-export default function Header({ solid = false }) {
-  const [scrolled, setScrolled] = useState(false)
+export default function Header() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
   useEffect(() => { setOpen(false) }, [location])
+  useEffect(() => {
+    if (!open) {
+      document.body.style.overflow = ''
+      return undefined
+    }
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   const servicesActive = ['/services', ...SERVICE_LINKS.map((l) => l.to)].includes(location.pathname)
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-100 transition-all duration-400 ${scrolled || solid ? 'bg-ink/96 py-3.5 shadow-[0_2px_24px_rgba(0,0,0,0.25)]' : 'py-5'}`}>
-      <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between gap-8">
+    <header className="fixed inset-x-0 top-0 z-100 h-16 bg-ink shadow-[0_2px_24px_rgba(0,0,0,0.25)]">
+      <div className="h-full max-w-[1200px] mx-auto px-6 flex items-center justify-between gap-8">
         <Link to="/" aria-label="Picture Republiq — Home" className="shrink-0">
-          <img src="assets/logo-mark-white.png" alt="Picture Republiq" className={`w-auto transition-all duration-400 ${scrolled ? 'h-8' : 'h-9'}`} />
+          <img src="assets/logo-mark-white.png" alt="Picture Republiq" className="w-auto h-8" />
         </Link>
 
         <button
-          className="lg:hidden relative z-110 w-9 h-7 flex flex-col justify-center gap-[7px] cursor-pointer"
+          className="lg:hidden relative z-110 w-9 h-9 flex flex-col justify-center gap-[7px] cursor-pointer"
           aria-label="Menu"
           onClick={() => setOpen(!open)}
         >
@@ -52,8 +52,8 @@ export default function Header({ solid = false }) {
 
         <nav className={`
           lg:flex lg:items-center lg:gap-8 lg:static lg:bg-transparent lg:opacity-100 lg:visible lg:flex-row
-          fixed inset-0 bg-[#0c0c0c]/98 flex flex-col items-center justify-center gap-6 transition-opacity duration-300
-          ${open ? 'opacity-100 visible' : 'opacity-0 invisible lg:opacity-100 lg:visible'}
+          fixed inset-0 bg-[#0c0c0c] flex flex-col items-center justify-center gap-6
+          ${open ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none lg:pointer-events-auto lg:opacity-100 lg:visible'}
         `}>
           {LINKS.map((l) => <NavLink key={l.to} to={l.to} className={navCls} end={l.to === '/'}>{l.label}</NavLink>)}
 

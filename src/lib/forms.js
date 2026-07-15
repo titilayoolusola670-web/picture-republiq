@@ -53,16 +53,6 @@ export function bookingEmailCopy(data, kind) {
   }, `New ${kind} booking enquiry — Picture Republiq`)
 }
 
-export function subscriberAlertEmail(email) {
-  return studioEmail({
-    'Alert Type': 'New Newsletter Subscriber',
-    'Website': 'Picture Republiq',
-    'Subscriber Email': email,
-    'Submitted At': new Date().toISOString(),
-    'Brand Note': 'Picture Republiq black, gold, and white alert',
-  }, 'New newsletter subscriber — Picture Republiq')
-}
-
 async function apiPost(path, body) {
   const res = await fetch(apiUrl(path), {
     method: 'POST',
@@ -78,10 +68,6 @@ async function apiPost(path, body) {
 
 export function saveBookingToDb(kind, data) {
   return apiPost('/api/bookings', { kind, data })
-}
-
-export function saveSubscriberToDb(email) {
-  return apiPost('/api/newsletter', { email })
 }
 
 export async function submitBooking(form, kind) {

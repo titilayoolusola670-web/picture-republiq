@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, Tile, Poem, Stats, useTitle } from '../components/ui.jsx'
-import { InstagramIcon } from '../components/icons.jsx'
+import { InstagramIcon, TikTokIcon } from '../components/icons.jsx'
 import { SERVICE_CARDS, STATS, WHY_ITEMS, INSTA_IMAGES, SOCIAL, SITE_IMAGES, galleryImg } from '../data.jsx'
 import FaqSection from '../components/Faq.jsx'
 
 const HERO_SLIDES = SITE_IMAGES.home.hero
+const heroPosition = (src) => ({
+  base: 'center top',
+  lg: src.includes('weddings-027') ? 'center 30%' : 'center top',
+})
 
 function Hero() {
   const [active, setActive] = useState(0)
@@ -14,11 +18,17 @@ function Hero() {
     return () => clearInterval(t)
   }, [])
   return (
-    <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center bg-ink overflow-hidden">
+    <section className="relative min-h-screen h-screen flex items-center justify-center text-center bg-ink overflow-hidden">
       {HERO_SLIDES.map((src, i) => (
         <div key={src}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-2000 ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
-          style={{ backgroundImage: `url(${src})`, transitionProperty: 'opacity, transform', transitionDuration: '2s, 8s' }} />
+          className={`hero-slide-bg absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-2000 ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+          style={{
+            backgroundImage: `url(${src})`,
+            '--hero-position': heroPosition(src).base,
+            '--hero-position-lg': heroPosition(src).lg,
+            transitionProperty: 'opacity, transform',
+            transitionDuration: '2s, 8s',
+          }} />
       ))}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/35 to-[#0a0a0a]/72" />
       <div className="relative z-2 px-6 pt-36 pb-24 max-w-[960px]">
@@ -45,6 +55,8 @@ function Hero() {
 }
 
 function OurServices() {
+  const serviceImagePosition = (to) => (to === '/weddings' || to === '/portraits' ? 'center top' : 'center')
+
   return (
     <Section bg="white">
       <Wrap>
@@ -55,7 +67,7 @@ function OurServices() {
           {SERVICE_CARDS.map((c) => (
             <Reveal key={c.to}>
               <Link to={c.to} className="block group/card">
-                <Tile src={c.img} alt={`${c.title} by Picture Republiq`} wide className="mb-6" />
+                <Tile src={c.img} alt={`${c.title} by Picture Republiq`} wide fit="cover" position={serviceImagePosition(c.to)} className="mb-6 h-[300px] sm:h-[360px] lg:h-[420px] aspect-auto" />
                 <span className="block font-mono text-[11px] tracking-[0.08em] text-muted mb-3">{c.tag}</span>
                 <h3 className="text-[clamp(22px,2.3vw,27px)] text-golddark mb-2.5">{c.title}</h3>
                 <p className="text-[15.5px] text-muted max-w-[480px]">{c.text}</p>
@@ -77,7 +89,7 @@ function AboutTeaser() {
       <Wrap>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-18 items-center">
           <Reveal className="relative after:content-[''] after:absolute after:border after:border-gold after:-z-1 after:top-[18px] after:-right-[18px] after:-bottom-[18px] after:left-[18px]">
-            <Tile src={galleryImg('about', 1)} alt="Jerry — the photographer behind Picture Republiq" />
+            <Tile src={galleryImg('about', 1)} alt="Jerry — the photographer behind Picture Republiq" fit="cover" />
           </Reveal>
           <Reveal>
             <Eyebrow>About</Eyebrow>
@@ -119,7 +131,7 @@ function WeddingCta() {
             </div>
           </Reveal>
           <Reveal className="order-1 md:order-2 relative after:content-[''] after:absolute after:border after:border-gold/60 after:-z-1 after:top-[18px] after:-right-[18px] after:-bottom-[18px] after:left-[18px]">
-            <Tile src={SITE_IMAGES.home.weddingFeature} alt="A wedding photographed by Picture Republiq" />
+            <Tile src={SITE_IMAGES.home.weddingFeature} alt="A wedding photographed by Picture Republiq" fit="cover" />
           </Reveal>
         </div>
       </Wrap>
@@ -173,20 +185,27 @@ function InstagramStrip() {
             </div>
             <h2 className="mt-4 font-serif text-white text-4xl sm:text-5xl font-normal leading-[1.1]">{SOCIAL.handle}</h2>
           </div>
-          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 border-b border-white/40 pb-1 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-gold hover:text-gold">
-            <InstagramIcon className="w-[18px] h-[18px]" />
-            Follow Us
-          </a>
+          <div className="flex flex-wrap items-center gap-5">
+            <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 border-b border-white/40 pb-1 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-gold hover:text-gold">
+              <InstagramIcon className="w-[18px] h-[18px]" />
+              Instagram
+            </a>
+            <a href={SOCIAL.tiktok} target="_blank" rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 border-b border-white/40 pb-1 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-gold hover:text-gold">
+              <TikTokIcon className="w-[18px] h-[18px]" />
+              TikTok
+            </a>
+          </div>
         </Reveal>
       </div>
       <div className="overflow-hidden mt-2">
         <div className="ig-track">
           {[...INSTA_IMAGES, ...INSTA_IMAGES].map((src, i) => (
             <a key={`${src}-${i}`} href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="View on Instagram"
-              className="block overflow-hidden w-[260px] sm:w-[320px] shrink-0">
+              className="block overflow-hidden shrink-0 w-[260px] h-[300px] sm:w-[320px] sm:h-[360px] lg:w-[360px] lg:h-[400px] bg-ink">
               <img src={src} alt="Picture Republiq on Instagram" loading="lazy"
-                className="w-full h-72 sm:h-80 object-cover transition-transform duration-700 ease-out hover:scale-105" />
+              className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-[1.025]" />
             </a>
           ))}
         </div>

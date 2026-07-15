@@ -43,11 +43,12 @@ export default function Events() {
 
       <WorkPointer bg="grey" title="See the Events We've Covered"
         lede="Our full body of work lives in the portfolio — browse the events we've photographed, filtered just for you."
-        cat="events" btn="View Event Portfolio" />
+        cat="events" btn="View Event Portfolio" images={[galleryImg('events', 10), galleryImg('events', 9), galleryImg('events', 11)]} />
 
       <Section bg="white" id="enquiry">
         <Wrap narrow>
-          <div className="bg-ivory border border-line border-t-[3px] border-t-gold px-7 py-11 sm:px-14 sm:py-16">
+          <div className="vintage-panel relative overflow-hidden border border-ink/18 border-t-[4px] border-t-gold px-7 py-11 shadow-[0_28px_70px_rgba(16,16,16,0.16)] sm:px-14 sm:py-16">
+            <div className="pointer-events-none absolute -top-12 -right-8 font-serif text-[160px] leading-none text-gold/10">E</div>
             <EnquiryShell kind="Event" confirmation={
               <Confirmation>
                 <p className="mb-4">We've successfully received your event enquiry. Thank you for considering Picture Republiq to capture your special occasion.</p>
@@ -94,7 +95,7 @@ export default function Events() {
                 </div>
               </div>
               <div className="text-center mt-10">
-                <button type="submit" className="inline-block font-sans text-[13px] font-medium tracking-[0.22em] uppercase px-9 py-[15px] border border-gold bg-gold text-white cursor-pointer transition-colors duration-300 hover:bg-golddark hover:border-golddark">
+                <button type="submit" className="inline-block font-sans text-[13px] font-medium tracking-[0.22em] uppercase px-10 py-[16px] border border-ink bg-ink text-white cursor-pointer transition-all duration-300 hover:bg-gold hover:border-gold hover:text-white hover:-translate-y-0.5">
                   Request My Event Photography Quote
                 </button>
                 <p className="text-[13px] text-muted mt-4">We typically respond to all enquiries within 24–48 hours.</p>

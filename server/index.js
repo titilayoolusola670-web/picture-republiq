@@ -43,12 +43,7 @@ const bookingSchema = new mongoose.Schema({
   data: { type: mongoose.Schema.Types.Mixed, required: true },
 }, { timestamps: true })
 
-const subscriberSchema = new mongoose.Schema({
-  email: { type: String, required: true, lowercase: true, trim: true, unique: true },
-}, { timestamps: true })
-
 const Booking = mongoose.model('Booking', bookingSchema)
-const Subscriber = mongoose.model('Subscriber', subscriberSchema)
 
 function sha256(text) {
   return crypto.createHash('sha256').update(text).digest('hex')
@@ -132,35 +127,10 @@ app.post('/api/bookings', requireDb, async (req, res, next) => {
   }
 })
 
-app.post('/api/newsletter', requireDb, async (req, res, next) => {
-  try {
-    const email = String(req.body?.email || '').trim().toLowerCase()
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Invalid email address' })
-
-    const subscriber = await Subscriber.findOneAndUpdate(
-      { email },
-      { $setOnInsert: { email } },
-      { returnDocument: 'after', upsert: true, setDefaultsOnInsert: true },
-    )
-    res.status(201).json({ subscriber: publicRecord(subscriber) })
-  } catch (err) {
-    next(err)
-  }
-})
-
 app.get('/api/admin/bookings', requireAdmin, requireDb, async (req, res, next) => {
   try {
     const bookings = await Booking.find().sort({ createdAt: -1 }).limit(500).lean()
     res.json({ bookings: bookings.map(publicRecord) })
-  } catch (err) {
-    next(err)
-  }
-})
-
-app.get('/api/admin/subscribers', requireAdmin, requireDb, async (req, res, next) => {
-  try {
-    const subscribers = await Subscriber.find().sort({ createdAt: -1 }).limit(500).lean()
-    res.json({ subscribers: subscribers.map(publicRecord) })
   } catch (err) {
     next(err)
   }

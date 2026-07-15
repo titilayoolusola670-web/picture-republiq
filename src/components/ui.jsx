@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { galleryImg } from '../data.jsx'
 
 /* ---------- layout ---------- */
 
@@ -79,10 +80,27 @@ export function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
 
 /* ---------- page hero (inner pages) ---------- */
 
-export function PageHero({ image, eyebrow, title, sub, compact = false, tight = false }) {
+export function PageHero({ image, eyebrow, title, sub, compact = false, tight = false, imageFit = 'contain', imagePosition = 'center', textBelow = false }) {
+  if (textBelow && image) {
+    return (
+      <section className="bg-warmgrey">
+        <div className="bg-ink pt-[82px] md:pt-[98px]">
+          <div className="h-[46vh] md:h-[62vh] max-h-[720px] bg-ink flex items-center justify-center overflow-hidden">
+            <img src={image} alt="" className={`w-full h-full ${imageFit === 'cover' ? 'object-cover' : 'object-contain'}`} style={{ objectPosition: imagePosition }} />
+          </div>
+        </div>
+        <Wrap className="text-center py-12 md:py-16">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h1 className="text-[clamp(38px,5.2vw,62px)]">{title}</h1>
+          {sub && <p className="text-muted max-w-[620px] mx-auto mt-5">{sub}</p>}
+        </Wrap>
+      </section>
+    )
+  }
+
   return (
     <section className={`relative bg-ink text-center overflow-hidden ${tight ? 'pt-[72px] pb-[34px] md:pt-[92px] md:pb-[46px]' : compact ? 'pt-[96px] pb-[46px] md:pt-[126px] md:pb-[66px]' : 'pt-[150px] pb-[72px] md:pt-[210px] md:pb-[110px]'}`}>
-      {image && <div className="absolute inset-0 bg-cover bg-center opacity-[0.18] md:opacity-35" style={{ backgroundImage: `url(${image})` }} />}
+      {image && <div className={`absolute inset-0 bg-no-repeat opacity-[0.28] md:opacity-45 ${imageFit === 'cover' ? 'bg-cover' : 'bg-contain'}`} style={{ backgroundImage: `url(${image})`, backgroundPosition: imagePosition }} />}
       <Wrap className="relative z-[2]">
         <Eyebrow>{eyebrow}</Eyebrow>
         <h1 className="text-white text-[clamp(38px,5.2vw,62px)]">{title}</h1>
@@ -101,35 +119,34 @@ export function ServiceHero({ eyebrow, title, sub, images = [], cta = 'Start an 
   }, [images.length])
 
   return (
-    <section className="relative min-h-[78vh] bg-ink overflow-hidden flex items-end">
-      {images.map((src, i) => (
-        <div
-          key={src}
-          className={`absolute inset-0 bg-cover bg-center transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
-          style={{ backgroundImage: `url(${src})` }}
-        />
-      ))}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/88 via-[#080808]/50 to-[#080808]/24" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-[#080808]/35" />
-      <Wrap className="relative z-[2] pb-14 pt-36 md:pb-20">
-        <div className="max-w-[760px]">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="text-white text-[clamp(40px,6vw,74px)]">{title}</h1>
-          {sub && <p className="text-white/82 max-w-[590px] mt-6 text-lg">{sub}</p>}
-          <Btn variant="gold" to={to} className="mt-9">{cta}</Btn>
-        </div>
-        <div className="mt-12 grid grid-cols-3 sm:grid-cols-4 gap-3 max-w-[560px]">
-          {images.slice(0, 4).map((src, i) => (
-            <button
+    <section className="bg-warmgrey">
+      <div className="relative bg-ink pt-[82px] md:pt-[98px] overflow-hidden">
+        <div className="relative h-[58vh] md:h-[74vh] max-h-[820px] flex items-center justify-center">
+          {images.map((src, i) => (
+            <img
               key={src}
-              type="button"
-              aria-label={`Show ${eyebrow} image ${i + 1}`}
-              onClick={() => setActive(i)}
-              className={`relative aspect-[4/3] overflow-hidden border cursor-pointer transition-all duration-300 ${i === active ? 'border-gold opacity-100' : 'border-white/20 opacity-60 hover:opacity-90'}`}
-            >
+              src={src}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-contain transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'}`}
+            />
+          ))}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#080808]/70 to-transparent" />
+        </div>
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 grid grid-cols-4 gap-2 w-[min(560px,calc(100%-32px))]">
+          {images.slice(0, 4).map((src, i) => (
+            <button key={src} type="button" aria-label={`Show ${eyebrow} image ${i + 1}`} onClick={() => setActive(i)}
+              className={`relative aspect-[5/3] overflow-hidden border cursor-pointer transition-all duration-300 ${i === active ? 'border-gold opacity-100' : 'border-white/25 opacity-68 hover:opacity-95'}`}>
               <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
             </button>
           ))}
+        </div>
+      </div>
+      <Wrap className="py-12 md:py-16">
+        <div className="max-w-[900px] mx-auto text-center">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h1 className="text-[clamp(38px,5.8vw,72px)]">{title}</h1>
+          {sub && <p className="text-muted max-w-[690px] mx-auto mt-6 text-lg">{sub}</p>}
+          <Btn variant="gold" to={to} className="mt-8">{cta}</Btn>
         </div>
       </Wrap>
     </section>
@@ -142,8 +159,8 @@ export function ImageRail({ images = [], label = 'Selected Work' }) {
     <section className="bg-ink py-5 overflow-hidden" aria-label={label}>
       <div className="service-rail">
         {rail.map((src, i) => (
-          <div key={`${src}-${i}`} className="w-[240px] sm:w-[330px] lg:w-[410px] h-[310px] sm:h-[390px] lg:h-[480px] shrink-0 overflow-hidden bg-ink2">
-            <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
+          <div key={`${src}-${i}`} className="w-[240px] sm:w-[330px] lg:w-[410px] h-[310px] sm:h-[390px] lg:h-[480px] shrink-0 overflow-hidden bg-ink2 border border-white/8">
+            <img src={src} alt="" loading="lazy" className="w-full h-full object-contain" />
           </div>
         ))}
       </div>
@@ -183,10 +200,10 @@ export function ServiceStory({ eyebrow, title, body, points = [], image, reverse
 
 /* ---------- image tile ---------- */
 
-export function Tile({ src, alt, wide = false, className = '' }) {
+export function Tile({ src, alt, wide = false, fit = 'contain', position = 'center', className = '' }) {
   return (
     <div className={`relative overflow-hidden bg-beige group ${wide ? 'aspect-[16/10]' : 'aspect-[3/4]'} ${className}`}>
-      <img src={src} alt={alt} loading="lazy" className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105" />
+      <img src={src} alt={alt} loading="lazy" style={{ objectPosition: position }} className={`w-full h-full ${fit === 'cover' ? 'object-cover group-hover:scale-105' : 'object-contain group-hover:scale-[1.025]'} transition-transform duration-[1200ms] ease-out`} />
     </div>
   )
 }
@@ -227,11 +244,12 @@ export function Stats({ items, dark = false, className = '' }) {
 
 export function IncludeGrid({ items }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[clamp(40px,6vw,90px)] max-w-[920px] mx-auto mt-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[1120px] mx-auto mt-12">
       {items.map((name, i) => (
-        <Reveal key={name} className={`flex items-baseline gap-5 px-1 py-5 border-b border-ink/15 hover:pl-4 ${i < 2 ? 'sm:border-t sm:border-t-ink/15' : ''} ${i === 0 ? 'border-t border-t-ink/15' : ''}`}>
-          <span className="font-serif text-[15px] text-golddark min-w-[26px]">{String(i + 1).padStart(2, '0')}</span>
-          <span className="text-[17px] text-body">{name}</span>
+        <Reveal key={name} className="group/include vintage-paper border border-ink/13 px-5 py-6 min-h-[150px] flex flex-col justify-between transition-all duration-350 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_20px_42px_rgba(16,16,16,0.12)]">
+          <span className="font-serif text-[28px] leading-none text-golddark/75">{String(i + 1).padStart(2, '0')}</span>
+          <span className="block text-[16px] text-body mt-5 leading-snug">{name}</span>
+          <span className="block w-10 h-px bg-gold/70 mt-5 transition-all duration-350 group-hover/include:w-16" />
         </Reveal>
       ))}
     </div>
@@ -260,17 +278,31 @@ export function PriceCard({ tag, title, blurb, price, features, cta, to, feature
 
 /* ---------- portfolio pointer ---------- */
 
-export function WorkPointer({ bg = 'white', title, lede, cat, btn }) {
+export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [] }) {
+  const previewImages = images.length ? images : [1, 2, 3].map((n) => galleryImg(cat, n))
   return (
-    <Section bg={bg} tight>
-      <Wrap className="text-center">
-        <Reveal>
-          <Eyebrow>Recent Work</Eyebrow>
-          <h2 className="text-[clamp(29px,3.5vw,42px)]">{title}</h2>
-          <GoldRule />
-          <p className="max-w-[520px] mx-auto text-muted text-base">{lede}</p>
-          <Btn variant="gold" to={`/portfolio?cat=${cat}`} className="mt-7">{btn}</Btn>
-        </Reveal>
+    <Section bg={bg} tight className="overflow-hidden">
+      <Wrap>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-10 lg:gap-16 items-center">
+          <Reveal>
+            <Eyebrow>Recent Work</Eyebrow>
+            <h2 className="text-[clamp(29px,3.5vw,42px)]">{title}</h2>
+            <GoldRule left />
+            <p className="max-w-[520px] text-muted text-base">{lede}</p>
+            <Btn variant="gold" to={`/portfolio?cat=${cat}`} className="mt-7">{btn}</Btn>
+          </Reveal>
+          <Reveal className="grid grid-cols-3 gap-3 sm:gap-4">
+            {previewImages.slice(0, 3).map((src, i) => (
+              <Link
+                key={src}
+                to={`/portfolio?cat=${cat}`}
+                className={`block bg-ink border border-ink/12 p-2 transition-all duration-350 hover:-translate-y-1 hover:border-gold ${i === 1 ? 'mt-8' : ''}`}
+              >
+                <img src={src} alt="" loading="lazy" className="w-full aspect-[3/4] object-contain" />
+              </Link>
+            ))}
+          </Reveal>
+        </div>
       </Wrap>
     </Section>
   )

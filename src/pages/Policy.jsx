@@ -1,5 +1,4 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, PageHero, useTitle } from '../components/ui.jsx'
-import { galleryImg } from '../data.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, useTitle } from '../components/ui.jsx'
 
 const TIERS = [
   ['More than 14 days before', '20% charge', 'Cancellations made more than 14 days before the scheduled session or event date receive a refund of the amount paid, less a 20% administrative charge covering consultation time, planning, scheduling, communication, and processing costs.'],
@@ -41,11 +40,15 @@ export default function Policy() {
   useTitle('Payment & Cancellation Policy')
   return (
     <main>
-      <PageHero image={galleryImg('weddings', 45)} eyebrow="Our Policy"
-        title={<>Payment &amp;<br />Cancellation Policy</>}
-        sub="Clear, fair terms — so we can reserve your date, prepare properly, and deliver the experience you expect." />
+      <section className="bg-warmgrey pt-[112px] md:pt-[132px] pb-10 md:pb-12 text-center">
+        <Wrap narrow>
+          <Eyebrow>Our Policy</Eyebrow>
+          <h1 className="text-[clamp(38px,5.2vw,62px)]">Payment &amp;<br />Cancellation Policy</h1>
+          <p className="text-muted max-w-[620px] mx-auto mt-5">Clear, fair terms — so we can reserve your date, prepare properly, and deliver the experience you expect.</p>
+        </Wrap>
+      </section>
 
-      <Section bg="white">
+      <Section bg="white" tight className="py-10 md:py-12">
         <Wrap narrow className="text-center">
           <Reveal>
             <p>At Picture Republiq, we are committed to providing every client with a professional, seamless, and memorable photography experience. Our payment and cancellation policy ensures that we can reserve your date, prepare adequately for your session or event, and deliver the quality and service our clients expect.</p>
@@ -54,7 +57,7 @@ export default function Policy() {
       </Section>
 
       {/* Payment policy */}
-      <Section bg="grey">
+      <Section bg="grey" tight className="py-12 md:py-16">
         <Wrap>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-11 md:gap-16 items-center">
             <Reveal>
@@ -77,7 +80,7 @@ export default function Policy() {
       </Section>
 
       {/* Cancellation tiers */}
-      <Section bg="white">
+      <Section bg="white" tight className="py-12 md:py-16">
         <Wrap className="text-center">
           <Reveal>
             <Eyebrow>Cancellation &amp; Rescheduling</Eyebrow>
@@ -87,7 +90,7 @@ export default function Policy() {
               Once your booking is confirmed, your date is reserved exclusively for you. If you need to cancel, please notify us as soon as possible — refunds are processed based on the timing of the request.
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-13 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-9 text-left">
             {TIERS.map(([when, charge, text]) => (
               <Reveal key={when} className="bg-ivory border border-line px-8 pt-9 pb-8 transition-all duration-350 hover:-translate-y-1 hover:border-gold/55 hover:shadow-[0_22px_44px_rgba(16,16,16,0.08)]">
                 <span className="block text-[11px] tracking-[0.24em] uppercase text-muted mb-2">{when}</span>
@@ -100,10 +103,10 @@ export default function Policy() {
       </Section>
 
       {/* Fine print sections */}
-      <Section bg="grey">
+      <Section bg="grey" tight className="py-8 md:py-10">
         <Wrap narrow>
           {SUB_SECTIONS.map(([title, body], i) => (
-            <Reveal key={title} className={`py-9 ${i > 0 ? 'border-t border-ink/14' : ''}`}>
+            <Reveal key={title} className={`py-6 md:py-7 ${i > 0 ? 'border-t border-ink/14' : ''}`}>
               <h3 className="text-[clamp(21px,2.2vw,25px)] mb-3.5">{title}</h3>
               <div className="text-[15.5px] text-muted leading-relaxed">{body}</div>
             </Reveal>
@@ -111,7 +114,7 @@ export default function Policy() {
         </Wrap>
       </Section>
 
-      <Section bg="black" className="text-center">
+      <Section bg="black" tight className="text-center py-14 md:py-18">
         <Wrap>
           <Reveal>
             <Eyebrow>Thank You for Choosing Picture Republiq</Eyebrow>

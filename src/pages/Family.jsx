@@ -52,10 +52,6 @@ export default function Family() {
         </Wrap>
       </Section>
 
-      <WorkPointer bg="white" title="See the Families We've Photographed"
-        lede="Our full body of work lives in the portfolio — browse the family sessions we've captured, filtered just for you."
-        cat="family" btn="View Family Portfolio" />
-
       <Section bg="black" className="text-center">
         <Wrap>
           <Reveal>
@@ -68,6 +64,10 @@ export default function Family() {
           </Reveal>
         </Wrap>
       </Section>
+
+      <WorkPointer bg="white" title="See the Families We've Photographed"
+        lede="Our full body of work lives in the portfolio — browse the family sessions we've captured, filtered just for you."
+        cat="family" btn="View Family Portfolio" images={[galleryImg('family', 18), galleryImg('family', 32), galleryImg('family', 20)]} />
     </main>
   )
 }

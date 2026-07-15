@@ -5,9 +5,9 @@
   --color-ink2: #1a1a1a;
   --color-gold: #c2a05d;
   --color-golddark: #a8874a;
-  --color-ivory: #f4efe6;
-  --color-warmgrey: #dfdad0;
-  --color-beige: #e7ddcc;
+  --color-ivory: #f0e6d8;
+  --color-warmgrey: #d8cbb8;
+  --color-beige: #d8cbb8;
   --color-body: #2b2b2b;
   --color-muted: #6f6a61;
   --color-line: rgba(16, 16, 16, 0.12);
@@ -30,14 +30,25 @@
 }
 
 @layer components {
+  .hero-slide-bg {
+    background-position: var(--hero-position, center top);
+  }
+
+  @media (min-width: 1024px) {
+    .hero-slide-bg {
+      background-position: var(--hero-position-lg, var(--hero-position, center top));
+    }
+  }
+
   /* Form controls (shared by all enquiry forms) */
   .field-label {
-    @apply block text-xs font-medium tracking-[0.16em] uppercase text-ink mb-2;
+    @apply block text-xs font-medium tracking-[0.2em] uppercase text-ink mb-2;
   }
   .field-input {
-    @apply w-full font-sans text-[15px] font-light text-body bg-ivory border border-line px-[18px] py-[14px] rounded-none appearance-none transition-colors duration-300;
+    @apply w-full font-sans text-[15px] font-light text-body bg-[#f4eadb]/75 border border-ink/18 px-[18px] py-[15px] rounded-none appearance-none transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.28)];
   }
-  .field-input:focus { @apply outline-none border-gold bg-ivory; }
+  .field-input:hover { @apply border-gold/55 bg-ivory; }
+  .field-input:focus { @apply outline-none border-gold bg-[#f7ecdd] shadow-[0_0_0_3px_rgba(194,160,93,0.16)]; }
   select.field-input {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c2a05d' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -78,6 +89,20 @@
     animation: service-rail-scroll 54s linear infinite;
   }
   .service-rail:hover { animation-play-state: paused; }
+
+  .vintage-panel {
+    background:
+      linear-gradient(135deg, rgba(194, 160, 93, 0.14), transparent 34%),
+      linear-gradient(315deg, rgba(16, 16, 16, 0.06), transparent 42%),
+      #f0e6d8;
+  }
+
+  .vintage-paper {
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.28), transparent 24%),
+      linear-gradient(135deg, rgba(255,255,255,0.22), rgba(194,160,93,0.08)),
+      #eadccb;
+  }
 }
 
 @keyframes ig-scroll {

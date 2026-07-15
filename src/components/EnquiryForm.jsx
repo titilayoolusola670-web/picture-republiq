@@ -6,7 +6,7 @@ import { toast } from './Toast.jsx'
 
 export function Field({ label, required, hint, children }) {
   return (
-    <div>
+    <div className="group/field">
       <label className="field-label">{label} {required && <span className="text-gold">*</span>}</label>
       {hint && <p className="text-[13px] text-muted -mt-1 mb-2.5 leading-normal">{hint}</p>}
       {children}
@@ -41,6 +41,7 @@ export function EnquiryShell({ kind, confirmation, children }) {
   return (
     <form
       noValidate
+      className="relative"
       onSubmit={async (e) => {
         e.preventDefault()
         if (!e.target.checkValidity()) { e.target.reportValidity(); return }
@@ -72,11 +73,12 @@ export function AddonChecks() {
     <div className="col-span-full">
       <label className="field-label">Additional Services</label>
       <p className="text-[13px] text-muted -mt-1 mb-2.5">Select all that apply.</p>
-      <div className="flex flex-col gap-3 mt-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
         {CHECKBOX_ADDONS.map((a) => (
-          <label key={a} className="flex items-center gap-3 text-[15px] cursor-pointer">
-            <input type="checkbox" name="addons" value={a} className="w-[18px] h-[18px] accent-gold cursor-pointer" />
-            {a}
+          <label key={a} className="group/addon flex items-center gap-3 text-[14.5px] cursor-pointer border border-ink/14 bg-[#f5efe4]/60 px-4 py-3 transition-all duration-300 hover:border-gold hover:bg-ivory">
+            <input type="checkbox" name="addons" value={a} className="peer sr-only" />
+            <span className="w-[18px] h-[18px] border border-gold/70 flex items-center justify-center text-[12px] text-transparent transition-all duration-300 peer-checked:bg-gold peer-checked:text-white">✓</span>
+            <span className="transition-colors duration-300 peer-checked:text-golddark">{a}</span>
           </label>
         ))}
       </div>

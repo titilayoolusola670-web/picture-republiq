@@ -2,7 +2,7 @@ import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, WorkPointer, Ser
 import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '../components/EnquiryForm.jsx'
 import { INCLUDES, galleryImg } from '../data.jsx'
 
-const WEDDING_SLIDES = [52, 13, 27, 45].map((n) => galleryImg('weddings', n))
+const WEDDING_SLIDES = [20, 17, 37, 14].map((n) => galleryImg('weddings', n))
 const WEDDING_RAIL = [5, 13, 27, 45, 52, 99, 108, 1].map((n) => galleryImg('weddings', n))
 
 export default function Weddings() {
@@ -41,11 +41,12 @@ export default function Weddings() {
 
       <WorkPointer bg="white" title="See the Weddings We've Captured"
         lede="Our full body of work lives in the portfolio — browse real weddings we've photographed, filtered just for you."
-        cat="weddings" btn="View Wedding Portfolio" />
+        cat="weddings" btn="View Wedding Portfolio" images={[galleryImg('weddings', 52), galleryImg('weddings', 13), galleryImg('weddings', 27)]} />
 
       <Section bg="grey" id="enquiry">
         <Wrap narrow>
-          <div className="bg-ivory border border-line border-t-[3px] border-t-gold px-7 py-11 sm:px-14 sm:py-16">
+          <div className="vintage-panel relative overflow-hidden border border-ink/18 border-t-[4px] border-t-gold px-7 py-11 shadow-[0_28px_70px_rgba(16,16,16,0.16)] sm:px-14 sm:py-16">
+            <div className="pointer-events-none absolute -top-12 -right-10 font-serif text-[160px] leading-none text-gold/10">W</div>
             <EnquiryShell kind="Wedding" confirmation={
               <Confirmation>
                 <p className="mb-4">We are honoured that you're considering Picture Republiq to capture your wedding day. Your enquiry has been received successfully, and we will review your details carefully before getting in touch with you within 24–48 hours.</p>
@@ -85,7 +86,7 @@ export default function Weddings() {
                 </div>
               </div>
               <div className="text-center mt-10">
-                <button type="submit" className="inline-block font-sans text-[13px] font-medium tracking-[0.22em] uppercase px-9 py-[15px] border border-gold bg-gold text-white cursor-pointer transition-colors duration-300 hover:bg-golddark hover:border-golddark">
+                <button type="submit" className="inline-block font-sans text-[13px] font-medium tracking-[0.22em] uppercase px-10 py-[16px] border border-ink bg-ink text-white cursor-pointer transition-all duration-300 hover:bg-gold hover:border-gold hover:text-white hover:-translate-y-0.5">
                   Request My Wedding Photography Quote
                 </button>
                 <p className="text-[13px] text-muted mt-4">We typically respond to all enquiries within 24–48 hours.</p>

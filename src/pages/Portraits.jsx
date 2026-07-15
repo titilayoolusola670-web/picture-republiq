@@ -52,10 +52,6 @@ export default function Portraits() {
         </Wrap>
       </Section>
 
-      <WorkPointer bg="white" title="Portraits That Speak"
-        lede="Our full body of work lives in the portfolio — browse the portraits we've created, filtered just for you."
-        cat="portraits" btn="View Portrait Portfolio" />
-
       <Section bg="black" className="text-center">
         <Wrap>
           <Reveal>
@@ -68,6 +64,10 @@ export default function Portraits() {
           </Reveal>
         </Wrap>
       </Section>
+
+      <WorkPointer bg="white" title="Portraits That Speak"
+        lede="Our full body of work lives in the portfolio — browse the portraits we've created, filtered just for you."
+        cat="portraits" btn="View Portrait Portfolio" images={[galleryImg('portraits', 7), galleryImg('portraits', 47), galleryImg('portraits', 10)]} />
     </main>
   )
 }

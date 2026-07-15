@@ -23,15 +23,16 @@ export const SITE_IMAGES = {
   },
   home: {
     services: {
-      weddings: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/weddings/weddings-099.jpg',
-      portraits: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/portraits/portraits-007.jpg',
-      family: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/family/family-032.jpg',
+      weddings: galleryImg('weddings', 8),
+      portraits: galleryImg('portraits', 65),
+      family: galleryImg('family', 12),
       events: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/events/events-010.jpg',
     },
     hero: [
-      'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/family-018.jpg',
-      'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/weddings-052.jpg',
+      galleryImg('weddings', 3),
+      galleryImg('weddings', 79),
       'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/weddings-027.jpg',
+      galleryImg('weddings', 77),
     ],
     weddingFeature: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/wedding-feature/weddings-013.jpg',
   },
