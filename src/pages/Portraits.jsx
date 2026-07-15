@@ -1,26 +1,23 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, WorkPointer, ServiceHero, ImageRail, ServiceStory, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, useTitle } from '../components/ui.jsx'
 import { INCLUDES, PORTRAIT_COLLECTIONS, galleryImg } from '../data.jsx'
 
-const PORTRAIT_SLIDES = [7, 1, 10, 47].map((n) => galleryImg('portraits', n))
-const PORTRAIT_RAIL = [7, 1, 3, 10, 15, 47, 52, 68].map((n) => galleryImg('portraits', n))
+const PORTRAIT_IMAGES = [7, 1, 10, 47, 60, 65, 21, 52, 68, 3].map((n) => galleryImg('portraits', n))
 
 export default function Portraits() {
   useTitle('Portraits')
   return (
     <main>
-      <ServiceHero images={PORTRAIT_SLIDES} eyebrow="Portraits"
+      <ServiceHero images={PORTRAIT_IMAGES} eyebrow="Portraits"
         title="Portraits That Feel Like You"
         sub="Confident, polished, and personal images for milestones, branding, graduation, editorial concepts, and the season of life you are in now."
         cta="Start Your Portrait Enquiry"
         to="/contact?service=portrait" />
 
-      <ImageRail images={PORTRAIT_RAIL} label="Portrait photography highlights" />
+      <ServiceGallery images={PORTRAIT_IMAGES} eyebrow="Portrait Highlights" title="Presence, confidence, and clean storytelling." label="Portrait photography highlights" />
 
       <ServiceStory
         eyebrow="The Portrait Experience"
         title={<>A guided session built around your <em className="text-golddark">presence.</em></>}
-        image={galleryImg('portraits', 47)}
-        reverse
         body={[
           "Whether you are updating your professional image, celebrating a milestone, building a personal brand, or creating something editorial, your portrait session should feel considered from start to finish.",
           "We guide expression, posture, styling rhythm, and image selection so the final gallery feels natural, confident, and unmistakably personal.",
@@ -65,9 +62,6 @@ export default function Portraits() {
         </Wrap>
       </Section>
 
-      <WorkPointer bg="white" title="Portraits That Speak"
-        lede="Our full body of work lives in the portfolio — browse the portraits we've created, filtered just for you."
-        cat="portraits" btn="View Portrait Portfolio" images={[galleryImg('portraits', 7), galleryImg('portraits', 47), galleryImg('portraits', 10)]} />
     </main>
   )
 }

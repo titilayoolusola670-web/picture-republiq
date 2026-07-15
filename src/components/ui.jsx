@@ -120,24 +120,36 @@ export function ServiceHero({ eyebrow, title, sub, images = [], cta = 'Start an 
 
   return (
     <section className="bg-warmgrey">
-      <div className="relative bg-ink pt-[82px] md:pt-[98px] overflow-hidden">
-        <div className="relative h-[58vh] md:h-[74vh] max-h-[820px] flex items-center justify-center">
+      <div className="relative bg-[#1b1712] pt-[82px] md:pt-[98px] overflow-hidden">
+        <div className="relative h-[60vh] md:h-[76vh] max-h-[840px] flex items-center justify-center">
+          {images.map((src, i) => (
+            <img
+              key={`${src}-wash`}
+              src={src}
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-35 transition-opacity duration-[1600ms] ease-out ${i === active ? 'opacity-35' : 'opacity-0'}`}
+            />
+          ))}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(194,160,93,0.16),transparent_38%),linear-gradient(180deg,rgba(16,16,16,0.28),rgba(16,16,16,0.7))]" />
           {images.map((src, i) => (
             <img
               key={src}
               src={src}
               alt=""
-              className={`absolute inset-0 w-full h-full object-contain transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'}`}
+              className={`absolute inset-0 w-full h-full object-contain p-3 sm:p-6 md:p-9 transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.015]'}`}
             />
           ))}
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#080808]/70 to-transparent" />
         </div>
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 grid grid-cols-4 gap-2 w-[min(560px,calc(100%-32px))]">
-          {images.slice(0, 4).map((src, i) => (
-            <button key={src} type="button" aria-label={`Show ${eyebrow} image ${i + 1}`} onClick={() => setActive(i)}
-              className={`relative aspect-[5/3] overflow-hidden border cursor-pointer transition-all duration-300 ${i === active ? 'border-gold opacity-100' : 'border-white/25 opacity-68 hover:opacity-95'}`}>
-              <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
-            </button>
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 w-[min(560px,calc(100%-32px))]">
+          {images.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              aria-label={`Show ${eyebrow} image ${i + 1}`}
+              onClick={() => setActive(i)}
+              className={`h-[3px] cursor-pointer transition-all duration-300 ${i === active ? 'w-10 bg-gold' : 'w-5 bg-white/35 hover:bg-white/70'}`}
+            />
           ))}
         </div>
       </div>
@@ -168,7 +180,57 @@ export function ImageRail({ images = [], label = 'Selected Work' }) {
   )
 }
 
+export function ServiceGallery({ images = [], eyebrow = 'Selected Work', title = 'A Closer Look', label = 'Selected photographs' }) {
+  return (
+    <Section bg="ivory" tight className="overflow-hidden" aria-label={label}>
+      <Wrap>
+        <Reveal className="max-w-[720px]">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h2 className="text-[clamp(30px,4vw,50px)]">{title}</h2>
+          <GoldRule left />
+        </Reveal>
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 lg:gap-6 mt-11">
+          {images.slice(0, 10).map((src, i) => (
+            <Reveal key={src} className={`break-inside-avoid mb-5 lg:mb-6 ${i % 5 === 1 ? 'lg:pt-10' : ''}`}>
+              <figure className="group/gallery relative bg-warmgrey p-2 border border-ink/12 shadow-[0_18px_48px_rgba(16,16,16,0.10)] transition-all duration-500 hover:-translate-y-1 hover:border-gold/70">
+                <img src={src} alt="" loading="lazy" className="w-full h-auto transition-transform duration-[1200ms] group-hover/gallery:scale-[1.018]" />
+                <figcaption className="absolute left-4 top-4 bg-ink/82 px-3 py-1.5 text-[11px] tracking-[0.24em] uppercase text-white/85">
+                  {String(i + 1).padStart(2, '0')}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </Wrap>
+    </Section>
+  )
+}
+
 export function ServiceStory({ eyebrow, title, body, points = [], image, reverse = false }) {
+  if (!image) {
+    return (
+      <Section bg="white">
+        <Wrap narrow>
+          <Reveal className="text-center">
+            <Eyebrow>{eyebrow}</Eyebrow>
+            <h2 className="text-[clamp(30px,4vw,50px)]">{title}</h2>
+            <GoldRule />
+            <div className="grid gap-4 text-body text-left sm:text-center">
+              {body.map((p) => <p key={p}>{p}</p>)}
+            </div>
+            {points.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8 text-left">
+                {points.map((point) => (
+                  <span key={point} className="border border-ink/12 bg-ivory px-4 py-3 text-[13px] tracking-[0.13em] uppercase text-muted">{point}</span>
+                ))}
+              </div>
+            )}
+          </Reveal>
+        </Wrap>
+      </Section>
+    )
+  }
+
   return (
     <Section bg="white">
       <Wrap>
@@ -243,12 +305,20 @@ export function Stats({ items, dark = false, className = '' }) {
 /* ---------- services include (numbered editorial grid) ---------- */
 
 export function IncludeGrid({ items }) {
+  const count = items.length
+  const gridCols = count <= 3
+    ? 'sm:grid-cols-3 max-w-[920px]'
+    : count <= 4
+      ? 'sm:grid-cols-2 lg:grid-cols-4 max-w-[1120px]'
+      : 'sm:grid-cols-2 lg:grid-cols-4 max-w-[1120px]'
+  const cardSize = count <= 3 ? 'min-h-[190px] px-6 py-7' : 'min-h-[150px] px-5 py-6'
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[1120px] mx-auto mt-12">
+    <div className={`grid grid-cols-1 gap-4 ${gridCols} mx-auto mt-12`}>
       {items.map((name, i) => (
-        <Reveal key={name} className="group/include vintage-paper border border-ink/13 px-5 py-6 min-h-[150px] flex flex-col justify-between transition-all duration-350 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_20px_42px_rgba(16,16,16,0.12)]">
+        <Reveal key={name} className={`group/include vintage-paper border border-ink/13 ${cardSize} flex flex-col justify-between transition-all duration-350 hover:-translate-y-1 hover:border-gold/70 hover:shadow-[0_20px_42px_rgba(16,16,16,0.12)]`}>
           <span className="font-serif text-[28px] leading-none text-golddark/75">{String(i + 1).padStart(2, '0')}</span>
-          <span className="block text-[16px] text-body mt-5 leading-snug">{name}</span>
+          <span className={`block text-body mt-5 leading-snug ${count <= 3 ? 'text-[18px]' : 'text-[16px]'}`}>{name}</span>
           <span className="block w-10 h-px bg-gold/70 mt-5 transition-all duration-350 group-hover/include:w-16" />
         </Reveal>
       ))}
@@ -291,12 +361,12 @@ export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [] }
             <p className="max-w-[520px] text-muted text-base">{lede}</p>
             <Btn variant="gold" to={`/portfolio?cat=${cat}`} className="mt-7">{btn}</Btn>
           </Reveal>
-          <Reveal className="grid grid-cols-3 gap-3 sm:gap-4">
+          <Reveal className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {previewImages.slice(0, 3).map((src, i) => (
               <Link
                 key={src}
                 to={`/portfolio?cat=${cat}`}
-                className={`block bg-ink border border-ink/12 p-2 transition-all duration-350 hover:-translate-y-1 hover:border-gold ${i === 1 ? 'mt-8' : ''}`}
+                className={`block bg-ink border border-ink/12 p-2 transition-all duration-350 hover:-translate-y-1 hover:border-gold ${i === 1 ? 'sm:mt-8' : ''}`}
               >
                 <img src={src} alt="" loading="lazy" className="w-full aspect-[3/4] object-contain" />
               </Link>

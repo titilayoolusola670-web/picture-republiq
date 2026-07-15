@@ -1,25 +1,23 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, WorkPointer, ServiceHero, ImageRail, ServiceStory, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, useTitle } from '../components/ui.jsx'
 import { INCLUDES, FAMILY_COLLECTIONS, galleryImg } from '../data.jsx'
 
-const FAMILY_SLIDES = [18, 32, 20, 5].map((n) => galleryImg('family', n))
-const FAMILY_RAIL = [18, 20, 32, 5, 2, 11, 24, 30].map((n) => galleryImg('family', n))
+const FAMILY_IMAGES = [18, 32, 20, 5, 2, 11, 24, 30, 28, 12].map((n) => galleryImg('family', n))
 
 export default function Family() {
   useTitle('Family')
   return (
     <main>
-      <ServiceHero images={FAMILY_SLIDES} eyebrow="Family"
+      <ServiceHero images={FAMILY_IMAGES} eyebrow="Family"
         title={<>The Moments You Never<br />Want to Forget</>}
         sub="Relaxed family photographs that preserve connection, personality, laughter, and the small gestures that become priceless with time."
         cta="Start Your Family Enquiry"
         to="/contact?service=family" />
 
-      <ImageRail images={FAMILY_RAIL} label="Family photography highlights" />
+      <ServiceGallery images={FAMILY_IMAGES} eyebrow="Family Highlights" title="Warm, natural frames with room for real connection." label="Family photography highlights" />
 
       <ServiceStory
         eyebrow="The Family Experience"
         title={<>A calm, natural space for real <em className="text-golddark">connection.</em></>}
-        image={galleryImg('family', 20)}
         body={[
           "The laughter shared around the dinner table. The little moments between parents and children. The quiet embraces, playful interactions, and genuine connections that make your family unique.",
           "Our sessions are designed to feel natural, relaxed, and enjoyable, allowing your family's true connection to shine through every photograph.",
@@ -65,9 +63,6 @@ export default function Family() {
         </Wrap>
       </Section>
 
-      <WorkPointer bg="white" title="See the Families We've Photographed"
-        lede="Our full body of work lives in the portfolio — browse the family sessions we've captured, filtered just for you."
-        cat="family" btn="View Family Portfolio" images={[galleryImg('family', 18), galleryImg('family', 32), galleryImg('family', 20)]} />
     </main>
   )
 }

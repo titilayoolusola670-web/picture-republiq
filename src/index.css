@@ -49,11 +49,32 @@
   }
   .field-input:hover { @apply border-gold/55 bg-ivory; }
   .field-input:focus { @apply outline-none border-gold bg-[#f7ecdd] shadow-[0_0_0_3px_rgba(194,160,93,0.16)]; }
+  .service-form[aria-busy="true"] button[type="submit"] {
+    @apply pointer-events-none opacity-70;
+  }
   select.field-input {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c2a05d' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 18px center;
     padding-right: 44px;
+  }
+
+  .addon-option {
+    @apply flex items-center gap-3 text-[14.5px] cursor-pointer border border-ink/14 bg-[#f5efe4]/60 px-4 py-3 transition-all duration-300 hover:border-gold hover:bg-ivory;
+  }
+
+  .form-status {
+    @apply mt-6 flex items-center gap-3 border px-4 py-3 text-[13px] leading-normal;
+  }
+  .form-status-info {
+    @apply border-gold/45 bg-[#f7ecdd] text-ink;
+  }
+  .form-status-error {
+    @apply border-[#a4392f]/35 bg-[#fff0ed] text-[#8e2f27];
+  }
+  .form-status-dot {
+    @apply block h-2.5 w-2.5 shrink-0 rounded-full bg-gold;
+    box-shadow: 0 0 0 6px rgba(194, 160, 93, 0.14);
   }
 
   /* Price card feature list checkmarks */
@@ -92,6 +113,7 @@
 
   .vintage-panel {
     background:
+      radial-gradient(circle at 8% 10%, rgba(255,255,255,0.28), transparent 18%),
       linear-gradient(135deg, rgba(194, 160, 93, 0.14), transparent 34%),
       linear-gradient(315deg, rgba(16, 16, 16, 0.06), transparent 42%),
       #f0e6d8;

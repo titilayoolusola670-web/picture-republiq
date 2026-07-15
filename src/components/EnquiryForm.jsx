@@ -41,7 +41,8 @@ export function EnquiryShell({ kind, confirmation, children }) {
   return (
     <form
       noValidate
-      className="relative"
+      aria-busy={state === 'busy'}
+      className="service-form relative"
       onSubmit={async (e) => {
         e.preventDefault()
         if (!e.target.checkValidity()) { e.target.reportValidity(); return }
@@ -60,8 +61,18 @@ export function EnquiryShell({ kind, confirmation, children }) {
       }}
     >
       {children}
-      {state === 'busy' && <p className="text-[13px] text-muted mt-4">Saving your enquiry...</p>}
-      {error && <p className="text-[13px] text-[#a4392f] mt-4">{error}</p>}
+      {state === 'busy' && (
+        <div className="form-status form-status-info">
+          <span className="form-status-dot" />
+          <span>Saving your enquiry and sending it to the studio...</span>
+        </div>
+      )}
+      {error && (
+        <div className="form-status form-status-error">
+          <span className="form-status-dot" />
+          <span>{error}</span>
+        </div>
+      )}
     </form>
   )
 }
@@ -75,7 +86,7 @@ export function AddonChecks() {
       <p className="text-[13px] text-muted -mt-1 mb-2.5">Select all that apply.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
         {CHECKBOX_ADDONS.map((a) => (
-          <label key={a} className="group/addon flex items-center gap-3 text-[14.5px] cursor-pointer border border-ink/14 bg-[#f5efe4]/60 px-4 py-3 transition-all duration-300 hover:border-gold hover:bg-ivory">
+          <label key={a} className="addon-option group/addon">
             <input type="checkbox" name="addons" value={a} className="peer sr-only" />
             <span className="w-[18px] h-[18px] border border-gold/70 flex items-center justify-center text-[12px] text-transparent transition-all duration-300 peer-checked:bg-gold peer-checked:text-white">✓</span>
             <span className="transition-colors duration-300 peer-checked:text-golddark">{a}</span>
