@@ -89,7 +89,7 @@ export default function Portfolio() {
               </button>
             ))}
           </Reveal>
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5.5">
+          <div className="columns-2 lg:columns-3 gap-3 sm:gap-5.5">
             {visible.map((t, i) => (
               <button key={t.src} onClick={() => setLb(i)} aria-label="View photo"
                 className="relative overflow-hidden cursor-zoom-in group bg-transparent block w-full mb-5.5 break-inside-avoid">

@@ -110,19 +110,35 @@ export function PageHero({ image, eyebrow, title, sub, compact = false, tight = 
   )
 }
 
-export function ServiceHero({ eyebrow, title, sub, images = [], cta = 'Start an Enquiry', to = '/contact' }) {
+export function ServiceHero({ eyebrow, title, sub, images = [], mobileImages = [], cta = 'Start an Enquiry', to = '/contact', imagePosition = 'center', imageFit = 'cover' }) {
   const [active, setActive] = useState(0)
+  const [useMobileImages, setUseMobileImages] = useState(false)
+  const heroImages = mobileImages.length && useMobileImages ? mobileImages : images
+
   useEffect(() => {
-    if (images.length < 2) return undefined
-    const t = setInterval(() => setActive((a) => (a + 1) % images.length), 4600)
+    if (!mobileImages.length) return undefined
+    const mq = window.matchMedia('(max-width: 1023px)')
+    const update = () => setUseMobileImages(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [mobileImages.length])
+
+  useEffect(() => {
+    setActive(0)
+  }, [heroImages.length])
+
+  useEffect(() => {
+    if (heroImages.length < 2) return undefined
+    const t = setInterval(() => setActive((a) => (a + 1) % heroImages.length), 4600)
     return () => clearInterval(t)
-  }, [images.length])
+  }, [heroImages.length])
 
   return (
     <section className="bg-warmgrey">
-      <div className="relative bg-[#1b1712] pt-[82px] md:pt-[98px] overflow-hidden">
-        <div className="relative h-[60vh] md:h-[76vh] max-h-[840px] flex items-center justify-center">
-          {images.map((src, i) => (
+      <div className="relative bg-[#1b1712] overflow-hidden">
+        <div className="relative h-screen flex items-center justify-center">
+          {heroImages.map((src, i) => (
             <img
               key={`${src}-wash`}
               src={src}
@@ -132,17 +148,18 @@ export function ServiceHero({ eyebrow, title, sub, images = [], cta = 'Start an 
             />
           ))}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(194,160,93,0.16),transparent_38%),linear-gradient(180deg,rgba(16,16,16,0.28),rgba(16,16,16,0.7))]" />
-          {images.map((src, i) => (
+          {heroImages.map((src, i) => (
             <img
               key={src}
               src={src}
               alt=""
-              className={`absolute inset-0 w-full h-full object-contain p-3 sm:p-6 md:p-9 transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.015]'}`}
+              style={{ objectPosition: imagePosition }}
+              className={`absolute inset-0 w-full h-full ${imageFit === 'contain' ? 'object-contain' : 'object-cover'} transition-all duration-[1600ms] ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.015]'}`}
             />
           ))}
         </div>
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 w-[min(560px,calc(100%-32px))]">
-          {images.map((src, i) => (
+          {heroImages.map((src, i) => (
             <button
               key={src}
               type="button"
@@ -153,12 +170,12 @@ export function ServiceHero({ eyebrow, title, sub, images = [], cta = 'Start an 
           ))}
         </div>
       </div>
-      <Wrap className="py-12 md:py-16">
-        <div className="max-w-[900px] mx-auto text-center">
+      <Wrap className="py-9 md:py-11">
+        <div className="max-w-[760px] mx-auto text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="text-[clamp(38px,5.8vw,72px)]">{title}</h1>
-          {sub && <p className="text-muted max-w-[690px] mx-auto mt-6 text-lg">{sub}</p>}
-          <Btn variant="gold" to={to} className="mt-8">{cta}</Btn>
+          <h1 className="text-[clamp(28px,4vw,44px)]">{title}</h1>
+          {sub && <p className="text-muted max-w-[610px] mx-auto mt-4 text-[15.5px] md:text-base leading-relaxed">{sub}</p>}
+          <Btn variant="gold" to={to} className="mt-6">{cta}</Btn>
         </div>
       </Wrap>
     </section>
@@ -181,26 +198,34 @@ export function ImageRail({ images = [], label = 'Selected Work' }) {
 }
 
 export function ServiceGallery({ images = [], eyebrow = 'Selected Work', title = 'A Closer Look', label = 'Selected photographs' }) {
+  const slides = images.slice(0, 10)
+  const rail = [...slides, ...slides]
+
+  if (!slides.length) return null
+
   return (
-    <Section bg="ivory" tight className="overflow-hidden" aria-label={label}>
+    <Section bg="ivory" tight className="overflow-hidden pb-8 md:pb-10" aria-label={label}>
       <Wrap>
         <Reveal className="max-w-[720px]">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h2 className="text-[clamp(30px,4vw,50px)]">{title}</h2>
           <GoldRule left />
         </Reveal>
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 lg:gap-6 mt-11">
-          {images.slice(0, 10).map((src, i) => (
-            <Reveal key={src} className={`break-inside-avoid mb-5 lg:mb-6 ${i % 5 === 1 ? 'lg:pt-10' : ''}`}>
-              <figure className="group/gallery relative bg-warmgrey p-2 border border-ink/12 shadow-[0_18px_48px_rgba(16,16,16,0.10)] transition-all duration-500 hover:-translate-y-1 hover:border-gold/70">
-                <img src={src} alt="" loading="lazy" className="w-full h-auto transition-transform duration-[1200ms] group-hover/gallery:scale-[1.018]" />
-                <figcaption className="absolute left-4 top-4 bg-ink/82 px-3 py-1.5 text-[11px] tracking-[0.24em] uppercase text-white/85">
-                  {String(i + 1).padStart(2, '0')}
-                </figcaption>
-              </figure>
-            </Reveal>
+      </Wrap>
+      <div className="mt-11 overflow-hidden" aria-label={`${eyebrow} slider`}>
+        <div className="service-highlight-track">
+          {rail.map((src, i) => (
+            <figure
+              key={`${src}-${i}`}
+              className="group/gallery relative w-[250px] sm:w-[330px] lg:w-[390px] h-[330px] sm:h-[420px] lg:h-[500px] shrink-0 bg-warmgrey p-2 border border-ink/12 shadow-[0_18px_48px_rgba(16,16,16,0.10)] transition-all duration-500 hover:-translate-y-1 hover:border-gold/70"
+            >
+              <img src={src} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-[1200ms] group-hover/gallery:scale-[1.018]" />
+            </figure>
           ))}
         </div>
+      </div>
+      <Wrap>
+        <div className="mt-7 h-px w-full bg-ink/10" />
       </Wrap>
     </Section>
   )
@@ -348,29 +373,58 @@ export function PriceCard({ tag, title, blurb, price, features, cta, to, feature
 
 /* ---------- portfolio pointer ---------- */
 
-export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [] }) {
+export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [], wide = false }) {
   const previewImages = images.length ? images : [1, 2, 3].map((n) => galleryImg(cat, n))
+  const shownImages = [...previewImages, ...[1, 2, 3].map((n) => galleryImg(cat, n))]
+    .filter((src, index, all) => all.indexOf(src) === index)
+    .slice(0, 3)
   return (
     <Section bg={bg} tight className="overflow-hidden">
       <Wrap>
-        <div className="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-10 lg:gap-16 items-center">
-          <Reveal>
+        <div className={`grid grid-cols-1 ${wide ? 'gap-11 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16 lg:items-center' : 'lg:grid-cols-[0.78fr_1.22fr] gap-10 lg:gap-16 items-center'}`}>
+          <Reveal className={wide ? 'max-w-[680px] lg:max-w-none' : ''}>
             <Eyebrow>Recent Work</Eyebrow>
             <h2 className="text-[clamp(29px,3.5vw,42px)]">{title}</h2>
             <GoldRule left />
             <p className="max-w-[520px] text-muted text-base">{lede}</p>
             <Btn variant="gold" to={`/portfolio?cat=${cat}`} className="mt-7">{btn}</Btn>
           </Reveal>
-          <Reveal className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {previewImages.slice(0, 3).map((src, i) => (
-              <Link
-                key={src}
-                to={`/portfolio?cat=${cat}`}
-                className={`block bg-ink border border-ink/12 p-2 transition-all duration-350 hover:-translate-y-1 hover:border-gold ${i === 1 ? 'sm:mt-8' : ''}`}
-              >
-                <img src={src} alt="" loading="lazy" className="w-full aspect-[3/4] object-contain" />
-              </Link>
-            ))}
+          <Reveal className={wide ? 'grid gap-4 w-full lg:w-auto' : 'relative min-h-[680px] sm:min-h-[680px] lg:min-h-[720px]'}>
+            {wide ? (
+              <>
+                <Link to={`/portfolio?cat=${cat}`} className="block transition-all duration-350 hover:-translate-y-1">
+                  <Tile src={shownImages[0]} alt="" fit="cover" position="center top" className="h-[320px] sm:h-[420px] lg:h-[360px] aspect-auto border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.14)] transition-colors duration-350 hover:border-gold" />
+                </Link>
+                <div className="grid grid-cols-2 gap-4">
+                  {shownImages.slice(1).map((src) => (
+                    <Link key={src} to={`/portfolio?cat=${cat}`} className="block transition-all duration-350 hover:-translate-y-1">
+                      <Tile src={src} alt="" fit="cover" position="center top" className="h-[210px] sm:h-[280px] lg:h-[240px] aspect-auto border border-ink/12 p-2 shadow-[0_18px_38px_rgba(16,16,16,0.12)] transition-colors duration-350 hover:border-gold" />
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <Link
+                  to={`/portfolio?cat=${cat}`}
+                  className="absolute left-0 top-0 z-[1] block w-[54%] sm:w-[42%] lg:w-[40%] transition-all duration-350 hover:-translate-y-1"
+                >
+                  <Tile src={shownImages[0]} alt="" fit="cover" position="center top" className="aspect-[4/5] border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.14)] transition-colors duration-350 hover:border-gold" />
+                </Link>
+                <Link
+                  to={`/portfolio?cat=${cat}`}
+                  className="absolute right-0 top-[160px] sm:top-[150px] lg:top-[162px] z-[2] block w-[52%] sm:w-[42%] lg:w-[40%] transition-all duration-350 hover:-translate-y-1"
+                >
+                  <Tile src={shownImages[1]} alt="" fit="cover" position="center top" className="aspect-[4/5] border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.16)] transition-colors duration-350 hover:border-gold" />
+                </Link>
+                <Link
+                  to={`/portfolio?cat=${cat}`}
+                  className="absolute left-[6%] bottom-0 z-[3] block w-[54%] sm:left-[8%] sm:w-[42%] lg:left-[10%] lg:w-[40%] transition-all duration-350 hover:-translate-y-1"
+                >
+                  <Tile src={shownImages[2]} alt="" fit="cover" position="center top" className="aspect-[4/5] border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.14)] transition-colors duration-350 hover:border-gold" />
+                </Link>
+              </>
+            )}
           </Reveal>
         </div>
       </Wrap>

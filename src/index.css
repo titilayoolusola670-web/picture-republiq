@@ -111,6 +111,14 @@
   }
   .service-rail:hover { animation-play-state: paused; }
 
+  .service-highlight-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: service-highlight-scroll 58s linear infinite;
+  }
+  .service-highlight-track:hover { animation-play-state: paused; }
+
   .vintage-panel {
     background:
       radial-gradient(circle at 8% 10%, rgba(255,255,255,0.28), transparent 18%),
@@ -132,6 +140,10 @@
 }
 
 @keyframes service-rail-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes service-highlight-scroll {
   to { transform: translateX(-50%); }
 }
 
@@ -157,4 +169,5 @@
   html { scroll-behavior: auto; }
   .ig-track { animation: none; }
   .service-rail { animation: none; }
+  .service-highlight-track { animation: none; }
 }

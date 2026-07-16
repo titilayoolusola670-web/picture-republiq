@@ -13,7 +13,7 @@ const SERVICE_DIRECTORY = [
     to: '/weddings',
     number: '01',
     label: 'Weddings',
-    img: galleryImg('weddings', 102),
+    img: galleryImg('weddings', 58),
     kicker: 'Traditional · White · Civil',
     line: 'For celebrations with emotion, movement, family, and all the little details that make the day yours.',
     items: ['Ceremony', 'Reception', 'Portraits'],

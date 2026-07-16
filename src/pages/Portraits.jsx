@@ -1,17 +1,21 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, WorkPointer, useTitle } from '../components/ui.jsx'
 import { INCLUDES, PORTRAIT_COLLECTIONS, galleryImg } from '../data.jsx'
 
+const PORTRAIT_HERO_IMAGES = [73, 67, 71].map((n) => galleryImg('portraits', n))
+const PORTRAIT_MOBILE_HERO_IMAGES = [73, 67, 34, 71].map((n) => galleryImg('portraits', n))
 const PORTRAIT_IMAGES = [7, 1, 10, 47, 60, 65, 21, 52, 68, 3].map((n) => galleryImg('portraits', n))
+const PORTRAIT_RECENT_IMAGES = [27, 8, 6].map((n) => galleryImg('portraits', n))
 
 export default function Portraits() {
   useTitle('Portraits')
   return (
     <main>
-      <ServiceHero images={PORTRAIT_IMAGES} eyebrow="Portraits"
+      <ServiceHero images={PORTRAIT_HERO_IMAGES} mobileImages={PORTRAIT_MOBILE_HERO_IMAGES} eyebrow="Portraits"
         title="Portraits That Feel Like You"
         sub="Confident, polished, and personal images for milestones, branding, graduation, editorial concepts, and the season of life you are in now."
         cta="Start Your Portrait Enquiry"
-        to="/contact?service=portrait" />
+        to="/contact?service=portrait"
+        imagePosition="center top" />
 
       <ServiceGallery images={PORTRAIT_IMAGES} eyebrow="Portrait Highlights" title="Presence, confidence, and clean storytelling." label="Portrait photography highlights" />
 
@@ -48,6 +52,15 @@ export default function Portraits() {
           </div>
         </Wrap>
       </Section>
+
+      <WorkPointer
+        bg="white"
+        title="Portraits From Recent Work"
+        lede="A short look at recent portrait images with clean direction, confidence, and personality."
+        cat="portraits"
+        btn="View Portrait Portfolio"
+        images={PORTRAIT_RECENT_IMAGES}
+      />
 
       <Section bg="black" className="text-center">
         <Wrap>

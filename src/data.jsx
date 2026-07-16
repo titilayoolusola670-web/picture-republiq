@@ -12,7 +12,10 @@ export const GALLERY_COUNTS = { weddings: 116, portraits: 85, family: 32, events
 export const GALLERY_LABELS = { weddings: 'Weddings', portraits: 'Portraits', family: 'Family', events: 'Events' }
 
 export const R2_PUBLIC_URL = 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev'
-export const galleryImg = (cat, n) => `${R2_PUBLIC_URL}/gallery/${cat}/${cat}-${String(n).padStart(3, '0')}.jpg`
+export const galleryImg = (cat, n) => {
+  const src = `${R2_PUBLIC_URL}/gallery/${cat}/${cat}-${String(n).padStart(3, '0')}.jpg`
+  return cat === 'weddings' && n === 13 ? `${src}?v=20260716-edited` : src
+}
 
 export const SITE_IMAGES = {
   services: {
@@ -23,18 +26,19 @@ export const SITE_IMAGES = {
   },
   home: {
     services: {
-      weddings: galleryImg('weddings', 8),
-      portraits: galleryImg('portraits', 65),
+      weddings: galleryImg('weddings', 108),
+      portraits: galleryImg('portraits', 12),
       family: galleryImg('family', 12),
       events: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/services/events/events-010.jpg',
     },
     hero: [
       galleryImg('weddings', 3),
       galleryImg('weddings', 79),
+      galleryImg('weddings', 52),
       'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/hero/weddings-027.jpg',
       galleryImg('weddings', 77),
     ],
-    weddingFeature: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/wedding-feature/weddings-013.jpg',
+    weddingFeature: 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/site-images/home/wedding-feature/weddings-013.jpg?v=20260716-edited',
   },
 }
 

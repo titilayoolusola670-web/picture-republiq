@@ -1,19 +1,22 @@
-import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, ServiceHero, ServiceGallery, ServiceStory, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, ServiceHero, ServiceGallery, ServiceStory, WorkPointer, useTitle } from '../components/ui.jsx'
 import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '../components/EnquiryForm.jsx'
 import { INCLUDES, galleryImg } from '../data.jsx'
 
 const EVENT_TYPES = ['Birthday Celebration', 'Corporate Event', 'Anniversary', 'Engagement Party', 'Baby Shower', 'Bridal Shower', 'Graduation Celebration', 'Conference', 'Church Programme', 'Award Ceremony', 'Gala Dinner', 'Product Launch', 'Networking Event', 'Private Party', 'Other (Please specify)']
+const EVENT_HERO_IMAGES = [2, 6, 14, 8].map((n) => galleryImg('events', n))
 const EVENT_IMAGES = [10, 9, 11, 3, 1, 5, 17, 24, 29, 34].map((n) => galleryImg('events', n))
+const EVENT_RECENT_IMAGES = [galleryImg('family', 18), galleryImg('events', 21), galleryImg('events', 19)]
 
 export default function Events() {
   useTitle('Events')
   return (
     <main>
-      <ServiceHero images={EVENT_IMAGES} eyebrow="Events"
+      <ServiceHero images={EVENT_HERO_IMAGES} eyebrow="Events"
         title={<>Professional Photography<br />for Meaningful Events</>}
         sub="From intimate celebrations to corporate conferences, we document atmosphere, guests, details, key moments, and the energy of the day."
         cta="Start Your Event Enquiry"
-        to="/contact?service=event" />
+        to="/contact?service=event"
+        imageFit="contain" />
 
       <ServiceGallery images={EVENT_IMAGES} eyebrow="Event Highlights" title="Atmosphere, people, details, and the energy of the room." label="Event photography highlights" />
 
@@ -37,6 +40,16 @@ export default function Events() {
           <IncludeGrid items={INCLUDES.events} />
         </Wrap>
       </Section>
+
+      <WorkPointer
+        bg="white"
+        title="Event Moments From Recent Work"
+        lede="A short look at recent event coverage, from atmosphere and guests to key moments."
+        cat="events"
+        btn="View Event Portfolio"
+        images={EVENT_RECENT_IMAGES}
+        wide
+      />
 
       <Section bg="white" id="enquiry">
         <Wrap>

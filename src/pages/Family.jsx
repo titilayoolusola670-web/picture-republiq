@@ -1,17 +1,20 @@
-import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, WorkPointer, useTitle } from '../components/ui.jsx'
 import { INCLUDES, FAMILY_COLLECTIONS, galleryImg } from '../data.jsx'
 
+const FAMILY_HERO_IMAGES = [1, 11, 29].map((n) => galleryImg('family', n))
 const FAMILY_IMAGES = [18, 32, 20, 5, 2, 11, 24, 30, 28, 12].map((n) => galleryImg('family', n))
+const FAMILY_RECENT_IMAGES = [17, 32, 8].map((n) => galleryImg('family', n))
 
 export default function Family() {
   useTitle('Family')
   return (
     <main>
-      <ServiceHero images={FAMILY_IMAGES} eyebrow="Family"
+      <ServiceHero images={FAMILY_HERO_IMAGES} eyebrow="Family"
         title={<>The Moments You Never<br />Want to Forget</>}
         sub="Relaxed family photographs that preserve connection, personality, laughter, and the small gestures that become priceless with time."
         cta="Start Your Family Enquiry"
-        to="/contact?service=family" />
+        to="/contact?service=family"
+        imagePosition="center top" />
 
       <ServiceGallery images={FAMILY_IMAGES} eyebrow="Family Highlights" title="Warm, natural frames with room for real connection." label="Family photography highlights" />
 
@@ -49,6 +52,16 @@ export default function Family() {
           </div>
         </Wrap>
       </Section>
+
+      <WorkPointer
+        bg="white"
+        title="Family Moments From Recent Work"
+        lede="A short look at relaxed family photographs with warmth, connection, and personality."
+        cat="family"
+        btn="View Family Portfolio"
+        images={FAMILY_RECENT_IMAGES}
+        wide
+      />
 
       <Section bg="black" className="text-center">
         <Wrap>

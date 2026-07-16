@@ -1,14 +1,15 @@
-import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, ServiceHero, ServiceGallery, ServiceStory, useTitle } from '../components/ui.jsx'
+import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, ServiceHero, ServiceGallery, ServiceStory, WorkPointer, useTitle } from '../components/ui.jsx'
 import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '../components/EnquiryForm.jsx'
 import { INCLUDES, galleryImg } from '../data.jsx'
 
+const WEDDING_HERO_IMAGES = [52, 28, 108, 18, 72].map((n) => galleryImg('weddings', n))
 const WEDDING_IMAGES = [20, 17, 37, 14, 3, 79, 77, 27, 39, 99].map((n) => galleryImg('weddings', n))
 
 export default function Weddings() {
   useTitle('Weddings')
   return (
     <main>
-      <ServiceHero images={WEDDING_IMAGES} eyebrow="Weddings"
+      <ServiceHero images={WEDDING_HERO_IMAGES} eyebrow="Weddings"
         title={<>From &ldquo;Yes&rdquo; to &ldquo;I Do,&rdquo;<br />Every Beautiful Detail Captured</>}
         sub="A wedding day moves quickly. We photograph the emotion, the people, the atmosphere, and the quiet details with the kind of care your story deserves."
         cta="Start Your Wedding Enquiry"
@@ -36,6 +37,15 @@ export default function Weddings() {
           <IncludeGrid items={INCLUDES.weddings} />
         </Wrap>
       </Section>
+
+      <WorkPointer
+        bg="white"
+        title="Wedding Stories From Recent Work"
+        lede="A short look at recent wedding frames, from quiet details to celebration moments."
+        cat="weddings"
+        btn="View Wedding Portfolio"
+        images={WEDDING_IMAGES.slice(0, 2)}
+      />
 
       <Section bg="grey" id="enquiry">
         <Wrap>
