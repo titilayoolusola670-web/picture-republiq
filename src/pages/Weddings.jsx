@@ -2,8 +2,9 @@ import { Section, Wrap, Eyebrow, GoldRule, Reveal, IncludeGrid, ServiceHero, Ser
 import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '../components/EnquiryForm.jsx'
 import { INCLUDES, galleryImg } from '../data.jsx'
 
-const WEDDING_HERO_IMAGES = [52, 28, 108, 18, 72].map((n) => galleryImg('weddings', n))
+const WEDDING_HERO_IMAGES = [111, 23, 108, 18, 72].map((n) => galleryImg('weddings', n))
 const WEDDING_IMAGES = [20, 17, 37, 14, 3, 79, 77, 27, 39, 99].map((n) => galleryImg('weddings', n))
+const WEDDING_RECENT_IMAGES = [37, 48, 100].map((n) => galleryImg('weddings', n))
 
 export default function Weddings() {
   useTitle('Weddings')
@@ -15,7 +16,7 @@ export default function Weddings() {
         cta="Start Your Wedding Enquiry"
         to="/contact?service=wedding" />
 
-      <ServiceGallery images={WEDDING_IMAGES} eyebrow="Wedding Highlights" title="Ten moments, one complete feeling." label="Wedding photography highlights" />
+      <ServiceGallery images={WEDDING_IMAGES} eyebrow="Wedding Highlights" title="Step into our collection of timeless wedding moments" label="Wedding photography highlights" />
 
       <ServiceStory
         eyebrow="The Wedding Experience"
@@ -44,7 +45,7 @@ export default function Weddings() {
         lede="A short look at recent wedding frames, from quiet details to celebration moments."
         cat="weddings"
         btn="View Wedding Portfolio"
-        images={WEDDING_IMAGES.slice(0, 2)}
+        images={WEDDING_RECENT_IMAGES}
       />
 
       <Section bg="grey" id="enquiry">

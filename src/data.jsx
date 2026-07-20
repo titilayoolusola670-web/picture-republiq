@@ -1,5 +1,5 @@
 export const SOCIAL = {
-  instagram: 'https://instagram.com/picture_republiq',
+  instagram: 'https://www.instagram.com/picture_republiq/',
   tiktok: 'https://www.tiktok.com/@picture_republiq',
   whatsapp: 'https://wa.me/2348097633559',
   email: 'mailto:info@picturerepubliq.com',

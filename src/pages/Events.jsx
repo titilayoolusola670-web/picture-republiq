@@ -3,9 +3,9 @@ import { EnquiryShell, Confirmation, Field, AddonChecks, HOURS, GUESTS } from '.
 import { INCLUDES, galleryImg } from '../data.jsx'
 
 const EVENT_TYPES = ['Birthday Celebration', 'Corporate Event', 'Anniversary', 'Engagement Party', 'Baby Shower', 'Bridal Shower', 'Graduation Celebration', 'Conference', 'Church Programme', 'Award Ceremony', 'Gala Dinner', 'Product Launch', 'Networking Event', 'Private Party', 'Other (Please specify)']
-const EVENT_HERO_IMAGES = [2, 6, 14, 8].map((n) => galleryImg('events', n))
+const EVENT_HERO_IMAGES = [10, 8, 9, 1].map((n) => galleryImg('events', n))
 const EVENT_IMAGES = [10, 9, 11, 3, 1, 5, 17, 24, 29, 34].map((n) => galleryImg('events', n))
-const EVENT_RECENT_IMAGES = [galleryImg('family', 18), galleryImg('events', 21), galleryImg('events', 19)]
+const EVENT_RECENT_IMAGES = [galleryImg('events', 32), galleryImg('events', 33), galleryImg('events', 19)]
 
 export default function Events() {
   useTitle('Events')
@@ -27,7 +27,7 @@ export default function Events() {
           "Every event has a pace of its own. We work discreetly and intentionally, capturing the people, details, programme flow, and candid interactions that make the occasion matter.",
           "The result is a polished gallery that feels useful, memorable, and complete whether the event is personal, corporate, faith-based, or community-led.",
         ]}
-        points={INCLUDES.events.slice(0, 6)}
+        points={['Celebration', 'Energy', 'Storytelling', 'Authenticity', 'Moments', 'Memories']}
       />
 
       <Section bg="grey">

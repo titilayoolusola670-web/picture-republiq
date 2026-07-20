@@ -110,7 +110,7 @@ export function PageHero({ image, eyebrow, title, sub, compact = false, tight = 
   )
 }
 
-export function ServiceHero({ eyebrow, title, sub, images = [], mobileImages = [], cta = 'Start an Enquiry', to = '/contact', imagePosition = 'center', imageFit = 'cover' }) {
+export function ServiceHero({ eyebrow, title, sub, images = [], mobileImages = [], cta = 'Start an Enquiry', to = '/contact', imagePosition = 'center', imageFit = 'contain' }) {
   const [active, setActive] = useState(0)
   const [useMobileImages, setUseMobileImages] = useState(false)
   const heroImages = mobileImages.length && useMobileImages ? mobileImages : images
@@ -147,7 +147,7 @@ export function ServiceHero({ eyebrow, title, sub, images = [], mobileImages = [
               className={`absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-35 transition-opacity duration-[1600ms] ease-out ${i === active ? 'opacity-35' : 'opacity-0'}`}
             />
           ))}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(194,160,93,0.16),transparent_38%),linear-gradient(180deg,rgba(16,16,16,0.28),rgba(16,16,16,0.7))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(194,160,93,0.16),transparent_38%),linear-gradient(180deg,rgba(16,16,16,0.22),rgba(16,16,16,0.66))]" />
           {heroImages.map((src, i) => (
             <img
               key={src}
@@ -381,7 +381,7 @@ export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [], 
   return (
     <Section bg={bg} tight className="overflow-hidden">
       <Wrap>
-        <div className={`grid grid-cols-1 ${wide ? 'gap-11 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16 lg:items-center' : 'lg:grid-cols-[0.78fr_1.22fr] gap-10 lg:gap-16 items-center'}`}>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16 lg:items-center">
           <Reveal className={wide ? 'max-w-[680px] lg:max-w-none' : ''}>
             <Eyebrow>Recent Work</Eyebrow>
             <h2 className="text-[clamp(29px,3.5vw,42px)]">{title}</h2>
@@ -389,42 +389,16 @@ export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [], 
             <p className="max-w-[520px] text-muted text-base">{lede}</p>
             <Btn variant="gold" to={`/portfolio?cat=${cat}`} className="mt-7">{btn}</Btn>
           </Reveal>
-          <Reveal className={wide ? 'grid gap-4 w-full lg:w-auto' : 'relative min-h-[680px] sm:min-h-[680px] lg:min-h-[720px]'}>
-            {wide ? (
-              <>
-                <Link to={`/portfolio?cat=${cat}`} className="block transition-all duration-350 hover:-translate-y-1">
-                  <Tile src={shownImages[0]} alt="" fit="cover" position="center top" className="h-[320px] sm:h-[420px] lg:h-[360px] aspect-auto border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.14)] transition-colors duration-350 hover:border-gold" />
-                </Link>
-                <div className="grid grid-cols-2 gap-4">
-                  {shownImages.slice(1).map((src) => (
-                    <Link key={src} to={`/portfolio?cat=${cat}`} className="block transition-all duration-350 hover:-translate-y-1">
-                      <Tile src={src} alt="" fit="cover" position="center top" className="h-[210px] sm:h-[280px] lg:h-[240px] aspect-auto border border-ink/12 p-2 shadow-[0_18px_38px_rgba(16,16,16,0.12)] transition-colors duration-350 hover:border-gold" />
-                    </Link>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <>
-                <Link
-                  to={`/portfolio?cat=${cat}`}
-                  className="absolute left-0 top-0 z-[1] block w-[54%] sm:w-[42%] lg:w-[40%] transition-all duration-350 hover:-translate-y-1"
-                >
-                  <Tile src={shownImages[0]} alt="" fit="cover" position="center top" className="aspect-[4/5] border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.14)] transition-colors duration-350 hover:border-gold" />
-                </Link>
-                <Link
-                  to={`/portfolio?cat=${cat}`}
-                  className="absolute right-0 top-[160px] sm:top-[150px] lg:top-[162px] z-[2] block w-[52%] sm:w-[42%] lg:w-[40%] transition-all duration-350 hover:-translate-y-1"
-                >
-                  <Tile src={shownImages[1]} alt="" fit="cover" position="center top" className="aspect-[4/5] border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.16)] transition-colors duration-350 hover:border-gold" />
-                </Link>
-                <Link
-                  to={`/portfolio?cat=${cat}`}
-                  className="absolute left-[6%] bottom-0 z-[3] block w-[54%] sm:left-[8%] sm:w-[42%] lg:left-[10%] lg:w-[40%] transition-all duration-350 hover:-translate-y-1"
-                >
-                  <Tile src={shownImages[2]} alt="" fit="cover" position="center top" className="aspect-[4/5] border border-ink/12 p-2 shadow-[0_22px_46px_rgba(16,16,16,0.14)] transition-colors duration-350 hover:border-gold" />
-                </Link>
-              </>
-            )}
+          <Reveal className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+            {shownImages.map((src) => (
+              <Link
+                key={src}
+                to={`/portfolio?cat=${cat}`}
+                className="block overflow-hidden border border-ink/12 bg-transparent p-2 shadow-[0_18px_38px_rgba(16,16,16,0.12)] transition-all duration-350 hover:-translate-y-1 hover:border-gold"
+              >
+                <img src={src} alt="" loading="lazy" className="h-auto w-full" />
+              </Link>
+            ))}
           </Reveal>
         </div>
       </Wrap>

@@ -21,7 +21,7 @@ function Hero() {
     <section className="relative min-h-screen h-screen flex items-center justify-center text-center bg-ink overflow-hidden">
       {HERO_SLIDES.map((src, i) => (
         <div key={src}
-          className={`hero-slide-bg absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-2000 ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+          className={`hero-slide-bg absolute inset-0 bg-cover bg-no-repeat blur-2xl scale-110 transition-opacity duration-2000 ${i === active ? 'opacity-45' : 'opacity-0'}`}
           style={{
             backgroundImage: `url(${src})`,
             '--hero-position': heroPosition(src).base,
@@ -30,7 +30,17 @@ function Hero() {
             transitionDuration: '2s, 8s',
           }} />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/35 to-[#0a0a0a]/72" />
+      {HERO_SLIDES.map((src, i) => (
+        <img
+          key={`${src}-main`}
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full object-contain transition-all duration-2000 ease-out ${i === active ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.015]'}`}
+          style={{ objectPosition: heroPosition(src).lg }}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/52 via-[#0a0a0a]/26 to-[#0a0a0a]/72" />
       <div className="relative z-2 px-6 pt-36 pb-24 max-w-[960px]">
         <Eyebrow>Luxury Wedding · Portrait · Event Photography</Eyebrow>
         <h1 className="text-white text-[clamp(38px,5.2vw,62px)]">

@@ -1,9 +1,16 @@
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, WorkPointer, useTitle } from '../components/ui.jsx'
 import { INCLUDES, FAMILY_COLLECTIONS, galleryImg } from '../data.jsx'
 
-const FAMILY_HERO_IMAGES = [1, 11, 29].map((n) => galleryImg('family', n))
+const FAMILY_PICTURE_URL = 'https://pub-1bfd270d8f774de6bb03af107e2f4636.r2.dev/gallery/family/familypicture.jpeg'
+const FAMILY_HERO_IMAGES = [
+  galleryImg('family', 24),
+  galleryImg('family', 5),
+  FAMILY_PICTURE_URL,
+  galleryImg('family', 19),
+  galleryImg('family', 30),
+]
 const FAMILY_IMAGES = [18, 32, 20, 5, 2, 11, 24, 30, 28, 12].map((n) => galleryImg('family', n))
-const FAMILY_RECENT_IMAGES = [17, 32, 8].map((n) => galleryImg('family', n))
+const FAMILY_RECENT_IMAGES = [17, 18, 8].map((n) => galleryImg('family', n))
 
 export default function Family() {
   useTitle('Family')
@@ -14,7 +21,7 @@ export default function Family() {
         sub="Relaxed family photographs that preserve connection, personality, laughter, and the small gestures that become priceless with time."
         cta="Start Your Family Enquiry"
         to="/contact?service=family"
-        imagePosition="center top" />
+        imagePosition="center" />
 
       <ServiceGallery images={FAMILY_IMAGES} eyebrow="Family Highlights" title="Warm, natural frames with room for real connection." label="Family photography highlights" />
 
@@ -25,7 +32,7 @@ export default function Family() {
           "The laughter shared around the dinner table. The little moments between parents and children. The quiet embraces, playful interactions, and genuine connections that make your family unique.",
           "Our sessions are designed to feel natural, relaxed, and enjoyable, allowing your family's true connection to shine through every photograph.",
         ]}
-        points={INCLUDES.family}
+        points={['Love', 'Connection', 'Togetherness']}
       />
 
       <Section bg="grey">

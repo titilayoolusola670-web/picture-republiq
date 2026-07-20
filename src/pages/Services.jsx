@@ -67,25 +67,25 @@ export default function Services() {
 
           <div className="mt-12 md:mt-16 sm:hidden relative min-h-[590px]">
             <Reveal className="absolute left-0 top-0 w-[68%] z-[1]">
-              <Tile src={HERO_IMAGES[0]} alt="Wedding photography by Picture Republiq" fit="cover" position="center top" className="aspect-[4/5] shadow-[0_22px_46px_rgba(16,16,16,0.18)]" />
+              <Tile src={HERO_IMAGES[0]} alt="Wedding photography by Picture Republiq" fit="contain" position="center" className="aspect-[4/5] shadow-[0_22px_46px_rgba(16,16,16,0.18)]" />
             </Reveal>
             <Reveal className="absolute right-0 top-[104px] w-[58%] z-[2]">
-              <Tile src={HERO_IMAGES[1]} alt="Portrait photography by Picture Republiq" fit="cover" position="center top" className="aspect-[4/5] shadow-[0_22px_46px_rgba(16,16,16,0.2)]" />
+              <Tile src={HERO_IMAGES[1]} alt="Portrait photography by Picture Republiq" fit="contain" position="center" className="aspect-[4/5] shadow-[0_22px_46px_rgba(16,16,16,0.2)]" />
             </Reveal>
             <Reveal className="absolute left-[9%] -bottom-8 w-[66%] z-[3]">
-              <Tile src={HERO_IMAGES[2]} alt="Family photography by Picture Republiq" fit="cover" position="center top" className="aspect-[4/5] shadow-[0_22px_46px_rgba(16,16,16,0.18)]" />
+              <Tile src={HERO_IMAGES[2]} alt="Family photography by Picture Republiq" fit="contain" position="center" className="aspect-[4/5] shadow-[0_22px_46px_rgba(16,16,16,0.18)]" />
             </Reveal>
           </div>
 
           <div className="hidden mt-12 md:mt-16 sm:grid sm:grid-cols-3 gap-3 md:gap-5 items-end">
             <Reveal className="sm:pb-10 md:pb-14">
-              <Tile src={HERO_IMAGES[0]} alt="Wedding photography by Picture Republiq" fit="cover" position="center top" className="aspect-[4/5]" />
+              <Tile src={HERO_IMAGES[0]} alt="Wedding photography by Picture Republiq" fit="contain" position="center" className="aspect-[4/5]" />
             </Reveal>
             <Reveal>
-              <Tile src={HERO_IMAGES[1]} alt="Portrait photography by Picture Republiq" fit="cover" position="center top" className="aspect-[5/6] md:aspect-[4/5]" />
+              <Tile src={HERO_IMAGES[1]} alt="Portrait photography by Picture Republiq" fit="contain" position="center" className="aspect-[5/6] md:aspect-[4/5]" />
             </Reveal>
             <Reveal className="sm:pb-16 md:pb-24">
-              <Tile src={HERO_IMAGES[2]} alt="Family photography by Picture Republiq" fit="cover" position="center top" className="aspect-[4/5]" />
+              <Tile src={HERO_IMAGES[2]} alt="Family photography by Picture Republiq" fit="contain" position="center" className="aspect-[4/5]" />
             </Reveal>
           </div>
         </Wrap>
@@ -106,7 +106,7 @@ export default function Services() {
               <Reveal key={service.to} className="group">
                 <div className={`grid grid-cols-1 lg:grid-cols-[0.96fr_1.04fr] gap-0 bg-ivory border border-ink/10 ${index % 2 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                   <Link to={service.to} className="block overflow-hidden bg-warmgrey">
-                    <img src={service.img} alt={`${service.label} photography by Picture Republiq`} loading="lazy" className="w-full h-[300px] md:h-[390px] lg:h-full lg:min-h-[420px] object-cover object-top transition-transform duration-[1000ms] group-hover:scale-[1.03]" />
+                    <img src={service.img} alt={`${service.label} photography by Picture Republiq`} loading="lazy" className="w-full h-[300px] md:h-[390px] lg:h-full lg:min-h-[420px] object-contain object-center transition-transform duration-[1000ms] group-hover:scale-[1.03]" />
                   </Link>
                   <div className="p-7 sm:p-10 lg:p-14 flex flex-col justify-center">
                     <div className="flex items-center gap-5 mb-8">

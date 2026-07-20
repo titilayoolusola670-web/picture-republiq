@@ -1,8 +1,8 @@
 import { Section, Wrap, Eyebrow, GoldRule, Btn, Reveal, IncludeGrid, PriceCard, ServiceHero, ServiceGallery, ServiceStory, WorkPointer, useTitle } from '../components/ui.jsx'
 import { INCLUDES, PORTRAIT_COLLECTIONS, galleryImg } from '../data.jsx'
 
-const PORTRAIT_HERO_IMAGES = [73, 67, 71].map((n) => galleryImg('portraits', n))
-const PORTRAIT_MOBILE_HERO_IMAGES = [73, 67, 34, 71].map((n) => galleryImg('portraits', n))
+const PORTRAIT_HERO_IMAGES = [15, 1, 73, 67, 71].map((n) => galleryImg('portraits', n))
+const PORTRAIT_MOBILE_HERO_IMAGES = [15, 1, 73, 67, 34, 71].map((n) => galleryImg('portraits', n))
 const PORTRAIT_IMAGES = [7, 1, 10, 47, 60, 65, 21, 52, 68, 3].map((n) => galleryImg('portraits', n))
 const PORTRAIT_RECENT_IMAGES = [27, 8, 6].map((n) => galleryImg('portraits', n))
 
@@ -15,7 +15,7 @@ export default function Portraits() {
         sub="Confident, polished, and personal images for milestones, branding, graduation, editorial concepts, and the season of life you are in now."
         cta="Start Your Portrait Enquiry"
         to="/contact?service=portrait"
-        imagePosition="center top" />
+        imagePosition="center" />
 
       <ServiceGallery images={PORTRAIT_IMAGES} eyebrow="Portrait Highlights" title="Presence, confidence, and clean storytelling." label="Portrait photography highlights" />
 
@@ -26,7 +26,7 @@ export default function Portraits() {
           "Whether you are updating your professional image, celebrating a milestone, building a personal brand, or creating something editorial, your portrait session should feel considered from start to finish.",
           "We guide expression, posture, styling rhythm, and image selection so the final gallery feels natural, confident, and unmistakably personal.",
         ]}
-        points={INCLUDES.portraits}
+        points={['Your Story', 'Your Style', 'Your Portrait', 'An Experience']}
       />
 
       <Section bg="grey">

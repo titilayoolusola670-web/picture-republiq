@@ -21,7 +21,7 @@ export default function About() {
   useTitle('About')
   return (
     <main>
-      <PageHero image={galleryImg('about', 2)} imageFit="cover" imagePosition="center top" eyebrow="About" title={<>Behind Every Great Photograph<br />Is a Story Worth Telling</>} />
+      <PageHero image={galleryImg('about', 2)} imageFit="contain" imagePosition="center" eyebrow="About" title={<>Behind Every Great Photograph<br />Is a Story Worth Telling</>} />
 
       <Section bg="white">
         <Wrap>
