@@ -18,7 +18,7 @@ function Hero() {
     return () => clearInterval(t)
   }, [])
   return (
-    <section className="relative min-h-screen h-screen flex items-center justify-center text-center bg-ink overflow-hidden">
+    <section className="relative mt-16 h-[calc(100svh-4rem)] min-h-[520px] flex items-center justify-center text-center bg-ink overflow-hidden">
       {HERO_SLIDES.map((src, i) => (
         <div key={src}
           className={`hero-slide-bg absolute inset-0 bg-cover bg-no-repeat blur-2xl scale-110 transition-opacity duration-2000 ${i === active ? 'opacity-45' : 'opacity-0'}`}
@@ -41,7 +41,7 @@ function Hero() {
         />
       ))}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/52 via-[#0a0a0a]/26 to-[#0a0a0a]/72" />
-      <div className="relative z-2 px-6 pt-36 pb-24 max-w-[960px]">
+      <div className="relative z-2 px-6 py-20 max-w-[960px]">
         <Eyebrow>Luxury Wedding · Portrait · Event Photography</Eyebrow>
         <h1 className="text-white text-[clamp(38px,5.2vw,62px)]">
           Every Moment Has a Story<br /><em className="text-gold">We Capture Yours Beautifully</em>
@@ -54,7 +54,7 @@ function Hero() {
           <Btn variant="gold" to="/contact">Book Your Session</Btn>
         </div>
       </div>
-      <div className="absolute bottom-11 left-1/2 -translate-x-1/2 flex gap-3 z-3" aria-label="Slideshow navigation">
+      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex gap-3 z-3" aria-label="Slideshow navigation">
         {HERO_SLIDES.map((src, i) => (
           <button key={src} aria-label={`Slide ${i + 1}`} onClick={() => setActive(i)}
             className={`w-2 h-2 rounded-full border cursor-pointer transition-colors ${i === active ? 'bg-gold border-gold' : 'border-white/70'}`} />

@@ -26,11 +26,11 @@ export default function Contact() {
   return (
     <main>
       {/* Contact split: photo beside the enquiry form */}
-      <section className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr]">
-        <div className="relative min-h-[72vh] md:min-h-screen bg-ink overflow-hidden">
+      <section className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] mt-16">
+        <div className="relative min-h-[72svh] md:min-h-[calc(100svh-4rem)] bg-ink overflow-hidden">
           <img src={galleryImg('portraits', 10)} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/70 via-[#080808]/12 to-transparent" />
-          <div className="relative z-2 h-full min-h-[72vh] md:min-h-screen flex flex-col justify-end px-7 lg:px-16 pt-36 pb-14 md:pb-20">
+          <div className="relative z-2 h-full min-h-[72svh] md:min-h-[calc(100svh-4rem)] flex flex-col justify-end px-7 lg:px-16 pt-20 pb-14 md:pb-20">
             <Eyebrow>Contact</Eyebrow>
             <h1 className="text-white text-[clamp(38px,5.2vw,62px)]">Let's <em className="text-gold">talk.</em></h1>
             <p className="text-white/84 max-w-[420px] mt-4">

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { galleryImg } from '../data.jsx'
+import { trackPageView } from '../lib/analytics.js'
+import { applySeo } from '../lib/seo.js'
 
 /* ---------- layout ---------- */
 
@@ -84,8 +86,8 @@ export function PageHero({ image, eyebrow, title, sub, compact = false, tight = 
   if (textBelow && image) {
     return (
       <section className="bg-warmgrey">
-        <div className="bg-ink pt-[82px] md:pt-[98px]">
-          <div className="h-[46vh] md:h-[62vh] max-h-[720px] bg-ink flex items-center justify-center overflow-hidden">
+        <div className="bg-ink mt-16">
+          <div className="h-[46svh] md:h-[62svh] max-h-[720px] bg-ink flex items-center justify-center overflow-hidden">
             <img src={image} alt="" className={`w-full h-full ${imageFit === 'cover' ? 'object-cover' : 'object-contain'}`} style={{ objectPosition: imagePosition }} />
           </div>
         </div>
@@ -99,7 +101,7 @@ export function PageHero({ image, eyebrow, title, sub, compact = false, tight = 
   }
 
   return (
-    <section className={`relative bg-ink text-center overflow-hidden ${tight ? 'pt-[72px] pb-[34px] md:pt-[92px] md:pb-[46px]' : compact ? 'pt-[96px] pb-[46px] md:pt-[126px] md:pb-[66px]' : 'pt-[150px] pb-[72px] md:pt-[210px] md:pb-[110px]'}`}>
+    <section className={`relative bg-ink text-center overflow-hidden mt-16 ${tight ? 'pt-[40px] pb-[34px] md:pt-[60px] md:pb-[46px]' : compact ? 'pt-[64px] pb-[46px] md:pt-[94px] md:pb-[66px]' : 'pt-[86px] pb-[72px] md:pt-[146px] md:pb-[110px]'}`}>
       {image && <div className={`absolute inset-0 bg-no-repeat opacity-[0.28] md:opacity-45 ${imageFit === 'cover' ? 'bg-cover' : 'bg-contain'}`} style={{ backgroundImage: `url(${image})`, backgroundPosition: imagePosition }} />}
       <Wrap className="relative z-[2]">
         <Eyebrow>{eyebrow}</Eyebrow>
@@ -136,8 +138,8 @@ export function ServiceHero({ eyebrow, title, sub, images = [], mobileImages = [
 
   return (
     <section className="bg-warmgrey">
-      <div className="relative bg-[#1b1712] overflow-hidden">
-        <div className="relative h-screen flex items-center justify-center">
+      <div className="relative bg-[#1b1712] overflow-hidden mt-16">
+        <div className="relative h-[calc(100svh-4rem)] min-h-[520px] flex items-center justify-center">
           {heroImages.map((src, i) => (
             <img
               key={`${src}-wash`}
@@ -410,6 +412,7 @@ export function WorkPointer({ bg = 'white', title, lede, cat, btn, images = [], 
 
 export function useTitle(title) {
   useEffect(() => {
-    document.title = title ? `${title} | Picture Republiq` : 'Luxury Wedding, Portrait & Event Photographer | Picture Republiq'
+    const pageTitle = applySeo(title)
+    trackPageView(pageTitle)
   }, [title])
 }
