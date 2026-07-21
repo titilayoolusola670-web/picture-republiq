@@ -16,7 +16,7 @@ The website has been updated with the core on-site SEO items a React/Vite site c
 - Added JSON-LD structured data for Picture Republiq as a photography service/business, including service types, email, phone, image, website URL, Instagram, and TikTok links.
 - Updated `public/robots.txt` so crawlers are allowed and pointed to the sitemap.
 - Expanded `public/sitemap.xml` so it includes the public pages, not only the homepage.
-- Added optional Google Analytics support in the React app through `VITE_GA_MEASUREMENT_ID`; once the owner supplies the Google Analytics Measurement ID, the app loads Google Analytics and records page views for the SPA routes.
+- Added Google Analytics support with Measurement ID `G-DPF56WPNYR`; the app loads Google Analytics and records page views for the SPA routes.
 
 ## Image and Header Fix
 
@@ -29,6 +29,6 @@ The website has been updated with the core on-site SEO items a React/Vite site c
 
 These are account-level items and require the owner's Google login or domain/property access. The site is ready for them because the sitemap, metadata, and analytics integration support are now in place.
 
-- Google Search Console: add the website property and submit `https://titilayoolusola670-web.github.io/picture-republiq/sitemap.xml`.
-- Google Analytics: create or open the GA4 property, copy the Measurement ID, and set it as `VITE_GA_MEASUREMENT_ID` in the deployment environment.
+- Google Search Console: add the website property and submit `https://picturerepubliq.com/sitemap.xml`.
+- Google Analytics: the GA4 web stream has been created for `https://picturerepubliq.com/`, and Measurement ID `G-DPF56WPNYR` has been added to the website.
 - Google Business Profile: connect the official business profile to the website URL and keep the phone, email, service categories, photos, and social links consistent with the website.

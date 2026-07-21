@@ -1,4 +1,4 @@
-const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://titilayoolusola670-web.github.io/picture-republiq').replace(/\/+$/, '')
+const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://picturerepubliq.com').replace(/\/+$/, '')
 const DEFAULT_TITLE = 'Luxury Wedding, Portrait & Event Photographer | Picture Republiq'
 const DEFAULT_DESCRIPTION = 'Picture Republiq specializes in wedding, portrait, graduation, family, maternity, and corporate photography, creating timeless images that tell your unique story.'
 const DEFAULT_IMAGE = `${SITE_URL}/assets/og-image.jpg`

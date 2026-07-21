@@ -1,4 +1,4 @@
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-DPF56WPNYR'
 
 export function installAnalytics() {
   if (!GA_MEASUREMENT_ID || typeof window === 'undefined') return
