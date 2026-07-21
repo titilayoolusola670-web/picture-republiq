@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-11 lg:gap-14 pb-16">
           <div>
-            <img src="assets/logo-mark-white.png" alt="Picture Republiq logo" className="w-[150px] mb-5" />
+            <img src="/assets/logo-mark-white.png" alt="Picture Republiq logo" className="w-[150px] mb-5" />
             <div className="flex gap-3 mt-2">
               {SOCIALS.map(([href, label, Icon]) => (
                 <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" aria-label={label}

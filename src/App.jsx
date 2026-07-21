@@ -34,7 +34,7 @@ function Splash() {
   return (
     <div
       className={`fixed inset-0 z-[999] bg-[#0c0c0c] bg-cover bg-center animate-breath transition-[opacity,visibility] duration-900 ${phase === 'hide' ? 'opacity-0 invisible' : 'opacity-100'}`}
-      style={{ backgroundImage: 'url(assets/logo1.jpg)' }}
+      style={{ backgroundImage: 'url(/assets/logo1.jpg)' }}
     />
   )
 }

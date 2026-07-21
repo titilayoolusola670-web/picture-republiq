@@ -2,10 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// base './' keeps asset URLs relative so the same build works on
-// GitHub Pages (sub-path) and cPanel (domain root) without changes.
+// The production site is served from the root domain, so absolute asset URLs
+// keep direct clean-route visits such as /weddings and /portfolio working.
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [react(), tailwindcss()],
   server: {
     host: '127.0.0.1',

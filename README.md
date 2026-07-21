@@ -41,8 +41,8 @@ ADMIN_TOKEN_SECRET=replace-with-a-long-random-string
 
 ## Notes
 
-- Admin dashboard: `/#/login`. Bookings/newsletter records are saved to
+- Admin dashboard: `/login`. Bookings/newsletter records are saved to
   MongoDB through the local API and every submission is also emailed via
   FormSubmit to the studio inbox.
-- Routing uses hash URLs (`/#/services`) so the static build works on any
-  host without server rewrites.
+- Routing uses clean URLs (`/services`, `/weddings`) with the production
+  fallback rewrite in `public/.htaccess`.

@@ -37,7 +37,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-100 h-16 bg-ink shadow-[0_2px_24px_rgba(0,0,0,0.25)]">
       <div className="h-full max-w-[1200px] mx-auto px-6 flex items-center justify-between gap-8">
         <Link to="/" aria-label="Picture Republiq — Home" className="shrink-0">
-          <img src="assets/logo-mark-white.png" alt="Picture Republiq" className="w-auto h-8" />
+          <img src="/assets/logo-mark-white.png" alt="Picture Republiq" className="w-auto h-8" />
         </Link>
 
         <button

@@ -17,6 +17,8 @@ The website has been updated with the core on-site SEO items a React/Vite site c
 - Updated `public/robots.txt` so crawlers are allowed and pointed to the sitemap.
 - Expanded `public/sitemap.xml` so it includes the public pages, not only the homepage.
 - Added Google Analytics support with Measurement ID `G-DPF56WPNYR`; the app loads Google Analytics and records page views for the SPA routes.
+- Replaced hash-style URLs with clean public URLs such as `/weddings`, `/portraits`, `/portfolio`, and `/contact`.
+- Added the cPanel/LiteSpeed rewrite fallback so direct visits to clean URLs load the React app correctly.
 
 ## Image and Header Fix
 

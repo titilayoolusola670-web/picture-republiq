@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet" />
     <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="./assets/favicon.png" />
-    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Picture Republiq" />
     <meta property="og:title" content="Luxury Wedding, Portrait &amp; Event Photographer | Picture Republiq" />
@@ -30,16 +30,15 @@
     <script id="picture-republiq-jsonld" type="application/ld+json">
       {"@context":"https://schema.org","@type":"ProfessionalService","name":"Picture Republiq","url":"https://picturerepubliq.com","image":"https://picturerepubliq.com/assets/og-image.jpg","description":"Picture Republiq specializes in wedding, portrait, graduation, family, maternity, and corporate photography, creating timeless images that tell your unique story.","telephone":"+2348097633559","email":"info@picturerepubliq.com","sameAs":["https://www.instagram.com/picture_republiq/","https://www.tiktok.com/@picture_republiq"],"serviceType":["Wedding photography","Portrait photography","Family photography","Event photography"]}
     </script>
-    <script type="module" crossorigin src="./static/index-0pL8aiYy.js"></script>
-    <link rel="stylesheet" crossorigin href="./static/index-WbH7cRh5.css">
+    <script type="module" crossorigin src="/static/index-BvLbHNop.js"></script>
+    <link rel="stylesheet" crossorigin href="/static/index-WbH7cRh5.css">
   </head>
   <body>
     <div id="root"></div>
     <script>
       ;(() => {
-        if (location.hash) return
-        const match = location.pathname.match(/^(.*?)(\/(?:admin|login))\/?$/)
-        if (match) location.replace(`${match[1] || ''}/#${match[2]}`)
+        const hashRoute = location.hash.match(/^#\/(.+)/)
+        if (hashRoute) location.replace(`/${hashRoute[1]}`)
       })()
     </script>
   </body>

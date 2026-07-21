@@ -78,7 +78,7 @@ export default function Admin() {
   return (
     <main className="min-h-screen bg-ivory">
       <header className="bg-ink2 px-5 md:px-11 py-4 flex items-center justify-between gap-5">
-        <Link to="/"><img src="assets/logo-mark-white.png" alt="Picture Republiq" className="h-[34px] w-auto" /></Link>
+        <Link to="/"><img src="/assets/logo-mark-white.png" alt="Picture Republiq" className="h-[34px] w-auto" /></Link>
         <span className="text-[11px] tracking-[0.28em] uppercase text-gold">Admin Dashboard</span>
         <button
           onClick={() => { try { sessionStorage.removeItem('pr-admin-token') } catch { /* ok */ } navigate('/login', { replace: true }) }}
